@@ -8,18 +8,16 @@ import type { ISupportedGames } from "@src/model/Interfaces"
 import { FileHandler } from '@src/model/FileHandler';
 
 // 批量导入当前目录中的所有组件
-const modules = import.meta.glob('./*', { eager: true })
+const modules = import.meta.glob('./*.ts', { eager: true })
 
-let plugs = join(homedir(), 'My Documents', 'Gloss Mod Manager', 'Plug-ins')
-// 获取 plugs 目录中的所有文件列表
-let pulugsList = FileHandler.getFolderFiles(plugs)
+// let plugs = join(homedir(), 'My Documents', 'Gloss Mod Manager', 'Plug-ins')
+// // 获取 plugs 目录中的所有文件列表
+// let pulugsList = FileHandler.getFolderFiles(plugs)
 
-pulugsList.forEach(async item => {
-    let a = await import(join(plugs, item))
-
-    console.log(a);
-
-})
+// pulugsList.forEach(async item => {
+//     let a = await import(join(plugs, item))
+//     console.log(a);
+// })
 
 
 
