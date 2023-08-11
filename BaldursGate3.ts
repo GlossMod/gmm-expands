@@ -67,19 +67,16 @@ async function handleMod(mod: IModInfo, installPath: string, isInstall: boolean)
 
 async function LoadModDataFromPak(pakPath: string) {
     const edge = require('electron-edge-js')
-
     const manager = useManager()
 
 
-
-    let Invoke = edge.func({
-        assemblyFile: join(manager.modStorage ?? "", manager.getModInfoByWebId(200783)?.id.toString() ?? "", 'BaldursGate3.dll'),
-        typeName: 'BaldursGate3.Program',
-        methodName: 'LoadModDataFromPakAsync'
-    })
-
-    return new Promise<IAttribute[]>((resolve, reject) => {
-        try {
+    try {
+        let Invoke = edge.func({
+            assemblyFile: join(manager.modStorage ?? "", manager.getModInfoByWebId(200783)?.id.toString() ?? "", 'BaldursGate3.dll'),
+            typeName: 'BaldursGate3.Program',
+            methodName: 'LoadModDataFromPakAsync'
+        })
+        return new Promise<IAttribute[]>((resolve, reject) => {
             Invoke(pakPath, async (error: any, result: any) => {
                 if (error) reject(error);
                 let attribute
@@ -90,11 +87,14 @@ async function LoadModDataFromPak(pakPath: string) {
 
                 resolve(attribute);
             })
-        } catch (error) {
-            reject(error)
-        }
+        })
+    } catch (error) {
+        ElMessage.error(`错误: ${error}`)
+    }
 
-    })
+
+
+
 }
 
 
@@ -189,7 +189,21 @@ export const supportedGames: ISupportedGames = {
             rootPath: join('..')
         }
     ],
-    startExe: join('bin', 'bg3_dx11.exe'),
+    startExe: [
+        {
+            name: 'Steam 启动',
+            exePath: 'steam://rungameid/1086940'
+        },
+        {
+            name: 'Vulkan',
+            exePath: join('bin', 'bg3.exe')
+        },
+        {
+            name: 'DirectX 11',
+            exePath: join('bin', 'bg3_dx11.exe')
+        },
+
+    ],
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/5f9fc80ea912c.png",
     modType: [
         {

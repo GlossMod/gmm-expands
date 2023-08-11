@@ -40,7 +40,20 @@ export const supportedGames: ISupportedGames = {
     installdir: "Stardew Valley",
     gameName: "Stardew Valley",
     gameExe: 'Stardew Valley.exe',
-    startExe: "StardewModdingAPI.exe",
+    startExe: [
+        {
+            name: '启用 Mod 并启动游戏',
+            exePath: 'StardewModdingAPI.exe'
+        },
+        {
+            name: '禁用 Mod 并启动游戏',
+            exePath: 'Stardew Valley.exe'
+        },
+        // {
+        //     name: 'Steam 启动 (无Mod)',
+        //     exePath: 'steam://rungameid/413150'
+        // }
+    ],
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/10.jpg",
     modType: [
         {

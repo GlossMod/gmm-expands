@@ -100,7 +100,7 @@ function handleMixed(mod: IModInfo, isInstall: boolean) {
 export const supportedGames: ISupportedGames = {
     gameID: 195,
     steamAppID: 1091500,
-    installdir: "Cyberpunk 2077",
+    installdir: join("Cyberpunk 2077", 'bin', 'x64', 'Cyberpunk2077.exe'),
     gameName: "Cyberpunk 2077",
     startExe: join('bin', 'x64', 'Cyberpunk2077.exe'),
     gameExe: [
