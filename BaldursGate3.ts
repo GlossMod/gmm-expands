@@ -71,8 +71,12 @@ async function LoadModDataFromPak(pakPath: string) {
 
 
     try {
+
+        let assemblyFile = join(manager.modStorage ?? "", manager.getModInfoByWebId(200783)?.id.toString() ?? "", 'BaldursGate3.dll')
+        console.log(assemblyFile);
+
         let Invoke = edge.func({
-            assemblyFile: join(manager.modStorage ?? "", manager.getModInfoByWebId(200783)?.id.toString() ?? "", 'BaldursGate3.dll'),
+            assemblyFile: assemblyFile,
             typeName: 'BaldursGate3.Program',
             methodName: 'LoadModDataFromPakAsync'
         })
@@ -89,6 +93,8 @@ async function LoadModDataFromPak(pakPath: string) {
             })
         })
     } catch (error) {
+        console.log(error);
+
         ElMessage.error(`错误: ${error}`)
     }
 
@@ -111,13 +117,23 @@ async function handlePak(mod: IModInfo, installPath: string, isInstall: boolean)
     let modsettings_data = await modsettings.data
     let root = modsettings_data.save.region[0].node[0].children[0].node
     // console.log(root);
-    if (!root[0].children[0].node) {
+    if (!root[0].children || !root[0].children[0].node) {
         // 如果用户是第一次装Mod
         // console.log('第一次装Mod');
-        root[0].children[0] = {
-            node: []
+        root[0] = {
+            $: {
+                id: 'ModOrder'
+            },
+            children: [
+                {
+                    node: []
+                }
+            ]
         }
     }
+
+    // console.log('root:', root);
+
 
     for (let index = 0; index < mod.modFiles.length; index++) {
         const item = mod.modFiles[index];
@@ -129,8 +145,11 @@ async function handlePak(mod: IModInfo, installPath: string, isInstall: boolean)
                 else FileHandler.deleteFile(join(installPath, basename(item)))
 
                 let meta = await LoadModDataFromPak(modStorage)
+                // console.log(`meta`, meta);
+
                 if (meta) {
                     let ModuleShortDesc = meta.filter(item => (item.$.id == 'Folder' || item.$.id == 'MD5' || item.$.id == 'Name' || item.$.id == 'UUID' || item.$.id == 'Version64'))
+
                     if (isInstall) {
                         // 安装
                         // ModOrder 中添加 UUID
@@ -211,7 +230,13 @@ export const supportedGames: ISupportedGames = {
             name: 'pak',
             installPath: join(homedir(), 'AppData', 'Local', 'Larian Studios', "Baldur's Gate 3", 'Mods'),
             async install(mod) {
-                return handlePak(mod, this.installPath ?? "", true)
+                try {
+                    return handlePak(mod, this.installPath ?? "", true)
+
+                } catch (error) {
+                    ElMessage.error(`错误: ${error}`)
+                    return false
+                }
             },
             async uninstall(mod) {
                 return handlePak(mod, this.installPath ?? "", false)
