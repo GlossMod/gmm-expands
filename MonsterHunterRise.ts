@@ -68,7 +68,16 @@ export const supportedGames: ISupportedGames = {
     installdir: "MonsterHunterRise",
     gameName: "MonsterHunterRise",
     gameExe: "MonsterHunterRise.exe",
-    startExe: 'MonsterHunterRise.exe',
+    startExe: [
+        {
+            name: '直接启动',
+            exePath: 'MonsterHunterRise.exe'
+        },
+        {
+            name: 'Steam 启动',
+            exePath: 'steam://rungameid/1446780'
+        }
+    ],
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/61dbdb30cdbce.png",
     modType: [
         {
