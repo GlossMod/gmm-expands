@@ -18,6 +18,8 @@ interface IAttribute {
     }
 }
 
+//#region pack
+
 let modsettings = {
     get data() {
         let file = join(homedir(), 'AppData', 'Local', 'Larian Studios', "Baldur's Gate 3", 'PlayerProfiles', 'Public', 'modsettings.lsx')
@@ -27,43 +29,10 @@ let modsettings = {
     set data(value) {
         let file = join(homedir(), 'AppData', 'Local', 'Larian Studios', "Baldur's Gate 3", 'PlayerProfiles', 'Public', 'modsettings.lsx')
         let data = new xml2js.Builder().buildObject(value)
-        // console.log(data);
-
         if (data) FileHandler.writeFile(file, data)
     }
 }
 
-
-
-async function handleMod(mod: IModInfo, installPath: string, isInstall: boolean) {
-    const manager = useManager()
-    let res: IState[] = []
-    mod.modFiles.forEach(async item => {
-        try {
-            let modStorage = join(manager.modStorage ?? "", mod.id.toString(), item)
-
-            if (statSync(modStorage).isFile()) {
-                // 获取 nativePC 后的路径, 包含 nativePC
-                let path = modStorage.split(/public/i)[1]
-                if (path) {
-                    let gameStorage = join(manager.gameStorage ?? "", installPath, path ?? "")
-                    if (isInstall) {
-                        let state = await FileHandler.copyFile(modStorage, gameStorage)
-                        res.push({ file: item, state: state })
-                    } else {
-                        let state = FileHandler.deleteFile(gameStorage)
-                        res.push({ file: item, state: state })
-                    }
-                }
-            }
-
-        } catch (error) {
-            res.push({ file: item, state: false })
-        }
-    })
-
-    return res
-}
 
 async function LoadModDataFromPak(pakPath: string) {
     const edge = require('electron-edge-js')
@@ -98,13 +67,7 @@ async function LoadModDataFromPak(pakPath: string) {
         ElMessage.error(`错误: ${error}`)
     }
 
-
-
-
 }
-
-
-
 
 async function handlePak(mod: IModInfo, installPath: string, isInstall: boolean) {
 
@@ -132,21 +95,15 @@ async function handlePak(mod: IModInfo, installPath: string, isInstall: boolean)
         }
     }
 
-    // console.log('root:', root);
-
-
     for (let index = 0; index < mod.modFiles.length; index++) {
         const item = mod.modFiles[index];
         let modStorage = join(manager.modStorage ?? "", mod.id.toString(), item)
         if (statSync(modStorage).isFile()) {
             if (extname(item) == '.pak') {
-
                 if (isInstall) FileHandler.copyFile(modStorage, join(installPath, basename(item)))
                 else FileHandler.deleteFile(join(installPath, basename(item)))
 
                 let meta = await LoadModDataFromPak(modStorage)
-                // console.log(`meta`, meta);
-
                 if (meta) {
                     let ModuleShortDesc = meta.filter(item => (item.$.id == 'Folder' || item.$.id == 'MD5' || item.$.id == 'Name' || item.$.id == 'UUID' || item.$.id == 'Version64'))
 
@@ -192,6 +149,80 @@ async function handlePak(mod: IModInfo, installPath: string, isInstall: boolean)
     }
     return true
 }
+
+//#endregion
+
+//#region data
+
+async function handleMod(mod: IModInfo, installPath: string, isInstall: boolean) {
+    const manager = useManager()
+    let res: IState[] = []
+    mod.modFiles.forEach(async item => {
+        try {
+            let modStorage = join(manager.modStorage ?? "", mod.id.toString(), item)
+
+            if (statSync(modStorage).isFile()) {
+                // 获取 public 后的路径, 包含 public
+                // let path = modStorage.split(/public/i)[1]
+                let path = FileHandler.getFolderFromPath(modStorage, 'public')
+                if (path) {
+                    let gameStorage = join(manager.gameStorage ?? "", installPath, path ?? "")
+                    if (isInstall) {
+                        let state = await FileHandler.copyFile(modStorage, gameStorage)
+                        res.push({ file: item, state: state })
+                    } else {
+                        let state = FileHandler.deleteFile(gameStorage)
+                        res.push({ file: item, state: state })
+                    }
+                }
+            }
+
+        } catch (error) {
+            res.push({ file: item, state: false })
+        }
+    })
+
+    return res
+}
+
+//#endregion
+
+//#region native
+
+async function headleNative(mod: IModInfo, installPath: string, isInstall: boolean) {
+
+    if (isInstall) if (!Manager.checkInstalled("Native Mod Loader", 201398)) return false
+
+    const manager = useManager()
+    let res: IState[] = []
+    mod.modFiles.forEach(async item => {
+        try {
+            let modStorage = join(manager.modStorage ?? "", mod.id.toString(), item)
+
+            if (statSync(modStorage).isFile()) {
+                let target = FileHandler.getFolderFromPath(modStorage, 'NativeMods')
+                let gameStorage = join(manager.gameStorage ?? "", installPath, item)
+                if (target) {
+                    gameStorage = join(manager.gameStorage ?? "", installPath, target)
+                }
+                if (isInstall) {
+                    let state = await FileHandler.copyFile(modStorage, gameStorage)
+                    res.push({ file: item, state: state })
+                } else {
+                    let state = FileHandler.deleteFile(gameStorage)
+                    res.push({ file: item, state: state })
+                }
+            }
+
+        } catch (error) {
+            res.push({ file: item, state: false })
+        }
+    })
+
+    return res
+}
+
+//#endregion
 
 export const supportedGames: ISupportedGames = {
     gameID: 240,
@@ -258,10 +289,53 @@ export const supportedGames: ISupportedGames = {
             name: '插件',
             installPath: '',
             async install(mod) {
+                if (mod.webId == 201398) {
+                    // 安装 Native Mod Loader
+                    let manager = useManager()
+                    // let bin = join(manager.gameStorage ?? "", 'bin')
+                    // await FileHandler.renameFile(join(bin, 'bink2w64.dll'), join(bin, 'bink2w64_original.dll')).catch(() => { })
+                    // let modFile = join(manager.modStorage ?? "", mod.id.toString(), 'bin', 'bink2w64.dll')
+                    // await FileHandler.copyFile(modFile, join(bin, 'bink2w64.dll'))
+
+                    mod.modFiles.forEach(item => {
+                        let modStorage = join(manager.modStorage ?? "", mod.id.toString(), item)
+                        if (statSync(modStorage).isFile()) {
+                            let file = FileHandler.getFolderFromPath(item, 'bin')
+                            let gameStorage = join(manager.gameStorage ?? "", file ?? "", item)
+                            FileHandler.copyFile(modStorage, gameStorage)
+                        }
+                    })
+                }
                 return true
             },
             async uninstall(mod) {
+                if (mod.webId == 201398) {
+                    // 卸载 Native Mod Loader
+                    let manager = useManager()
+                    // let bin = join(manager.gameStorage ?? "", 'bin')
+                    // await FileHandler.deleteFile(join(bin, 'bink2w64.dll'))
+                    // await FileHandler.renameFile(join(bin, 'bink2w64_original.dll'), join(bin, 'bink2w64.dll'))
+                    mod.modFiles.forEach(item => {
+                        let modStorage = join(manager.modStorage ?? "", mod.id.toString(), item)
+                        if (statSync(modStorage).isFile()) {
+                            let file = FileHandler.getFolderFromPath(item, 'bin')
+                            let gameStorage = join(manager.gameStorage ?? "", file ?? "", item)
+                            FileHandler.deleteFile(gameStorage)
+                        }
+                    })
+                }
                 return true
+            }
+        },
+        {
+            id: 4,
+            name: 'NativeMods',
+            installPath: join('bin', 'NativeMods'),
+            async install(mod) {
+                return headleNative(mod, this.installPath ?? "", true)
+            },
+            async uninstall(mod) {
+                return headleNative(mod, this.installPath ?? "", false)
             }
         },
         {
@@ -278,20 +352,24 @@ export const supportedGames: ISupportedGames = {
         }
     ],
     checkModType(mod) {
-
-        if (mod.webId == 200783) return 3
+        let plugins = [200783, 201398]
+        if (plugins.includes(mod.webId ?? 0)) return 3
 
         let pak = false
         let data = false
+        let native = false
 
         mod.modFiles.forEach(item => {
             let exe = extname(item)
             if (exe === '.pak') pak = true
             if (item.toLowerCase().includes('public')) data = true
+            if (item.toLowerCase().includes('data')) data = true
+            if (exe == '.dll') native = true
         })
 
         if (pak) return 1
         if (data) return 2
+        if (native) return 4
 
         return 99
     }

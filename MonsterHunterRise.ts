@@ -41,7 +41,8 @@ function handleMod(mod: IModInfo, installPath: string, isInstall: boolean) {
 
             if (statSync(modStorage).isFile()) {
                 // 获取 natives 后的路径, 包含 natives
-                let path = modStorage.split(/natives/i)[1]
+                // let path = modStorage.split(/natives/i)[1]
+                let path = FileHandler.getFolderFromPath(modStorage, "natives")
                 if (path) {
                     let gameStorage = join(manager.gameStorage ?? "", installPath, path ?? "")
                     if (isInstall) {

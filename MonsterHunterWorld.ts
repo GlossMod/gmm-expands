@@ -26,7 +26,8 @@ async function handleMod(mod: IModInfo, installPath: string, isInstall: boolean)
 
             if (statSync(modStorage).isFile()) {
                 // 获取 nativePC 后的路径, 包含 nativePC
-                let path = modStorage.split(/nativepc/i)[1]
+                // let path = modStorage.split(/nativepc/i)[1]
+                let path = FileHandler.getFolderFromPath(modStorage, "nativepc")
                 if (path) {
                     let gameStorage = join(manager.gameStorage ?? "", installPath, path ?? "")
                     if (isInstall) {

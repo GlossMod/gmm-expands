@@ -13,7 +13,8 @@ function handlePlugins(mod: IModInfo, installPath: string, isInstall: boolean) {
     mod.modFiles.forEach(async item => {
         let modStorage = join(manager.modStorage ?? "", mod.id.toString(), item)
         if (statSync(modStorage).isFile()) {
-            let path = modStorage.split(/autorun/i)[1]
+            // let path = modStorage.split(/autorun/i)[1]
+            let path = FileHandler.getFolderFromPath(modStorage, "autorun")
             if (path) {
                 let gameStorage = join(manager.gameStorage ?? "", installPath, path ?? "")
                 if (isInstall) {
