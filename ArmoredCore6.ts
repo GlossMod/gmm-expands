@@ -1,5 +1,5 @@
 /** 
- * @description 艾尔登法环 支持
+ * @description 装甲核心6 支持
 */
 import { FileHandler } from "@src/model/FileHandler";
 import type { IModInfo, IState, ISupportedGames } from "@src/model/Interfaces";
@@ -19,7 +19,7 @@ async function handleMod(mod: IModInfo, installPath: string, isInstall: boolean)
         }
 
         if (dictionaryList.length == 0) {
-            let EldenRingDictionary = (await axios.get("res/EldenRingDictionary.txt")).data
+            let EldenRingDictionary = (await axios.get("res/ArmoredCore6Dictionary.txt")).data
             dictionaryList = EldenRingDictionary.split("\r\n")
         }
 
@@ -56,23 +56,24 @@ async function handleMod(mod: IModInfo, installPath: string, isInstall: boolean)
     }
 }
 
+
 export const supportedGames: ISupportedGames = {
-    gameID: 275,
-    steamAppID: 1245620,
-    installdir: join('Elden Ring', 'Game'),
-    gameName: "ELDEN RING",
-    gameExe: 'eldenring.exe',
+    gameID: 323,
+    steamAppID: 1888160,
+    installdir: join('ARMORED CORE VI FIRES OF RUBICON', 'Game'),
+    gameName: "Armored Core 6",
+    gameExe: 'armoredcore6.exe',
     startExe: [
         {
             name: '启动 激活Mod',
-            exePath: 'launchmod_eldenring.bat'
+            exePath: 'launchmod_armoredcore6.bat'
         },
         {
             name: 'Steam启动',
-            exePath: 'steam://rungameid/1245620'
+            exePath: 'steam://rungameid/1888160'
         }
     ],
-    gameCoverImg: "https://mod.3dmgame.com/static/upload/game/620b6924d8c0d.png",
+    gameCoverImg: "https://mod.3dmgame.com/static/upload/game/64e5a555a4360.webp",
     modType: [
         {
             id: 1,
