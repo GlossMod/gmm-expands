@@ -18,16 +18,15 @@ async function setArchive() {
         const StarfieldPrefs = join(documents, "My Games", "Starfield", "StarfieldPrefs.ini")
         let config = ini.parse(readFileSync(StarfieldPrefs, 'utf-8'))
         console.log(config);
-        if (config.Archive.bInvalidateOlderFiles != 1) {
-            console.log(config.Archive.bInvalidateOlderFiles);
-            config.Archive = {
-                bInvalidateOlderFiles: 1,
-                sResourceDataDirsFinal: ""
-            }
-            writeFileSync(StarfieldPrefs, ini.stringify(config))
-        } else {
+        if (config.Archive?.bInvalidateOlderFiles == 1) {
             console.log('StarfieldPrefs.ini 已配置过, 无需再次配置.');
+            return
         }
+        config.Archive = {
+            bInvalidateOlderFiles: 1,
+            sResourceDataDirsFinal: ""
+        }
+        writeFileSync(StarfieldPrefs, ini.stringify(config))
     } catch (error) {
         ElMessage.error(`配置 StarfieldPrefs.ini 失败! ${error}`)
     }
