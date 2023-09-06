@@ -187,42 +187,6 @@ async function handleMod(mod: IModInfo, installPath: string, isInstall: boolean)
 
 //#endregion
 
-//#region native
-
-async function headleNative(mod: IModInfo, installPath: string, isInstall: boolean) {
-
-    if (isInstall) if (!Manager.checkInstalled("Native Mod Loader", 201398)) return false
-
-    const manager = useManager()
-    let res: IState[] = []
-    mod.modFiles.forEach(async item => {
-        try {
-            let modStorage = join(manager.modStorage ?? "", mod.id.toString(), item)
-
-            if (statSync(modStorage).isFile()) {
-                let target = FileHandler.getFolderFromPath(modStorage, 'NativeMods')
-                let gameStorage = join(manager.gameStorage ?? "", installPath, item)
-                if (target) {
-                    gameStorage = join(manager.gameStorage ?? "", installPath, target)
-                }
-                if (isInstall) {
-                    let state = await FileHandler.copyFile(modStorage, gameStorage)
-                    res.push({ file: item, state: state })
-                } else {
-                    let state = FileHandler.deleteFile(gameStorage)
-                    res.push({ file: item, state: state })
-                }
-            }
-
-        } catch (error) {
-            res.push({ file: item, state: false })
-        }
-    })
-
-    return res
-}
-
-//#endregion
 
 export const supportedGames: ISupportedGames = {
     gameID: 240,
@@ -332,10 +296,21 @@ export const supportedGames: ISupportedGames = {
             name: 'NativeMods',
             installPath: join('bin', 'NativeMods'),
             async install(mod) {
-                return headleNative(mod, this.installPath ?? "", true)
+                return Manager.installByFolder(mod, this.installPath ?? "", "NativeMods", true)
             },
             async uninstall(mod) {
-                return headleNative(mod, this.installPath ?? "", false)
+                return Manager.installByFolder(mod, this.installPath ?? "", "NativeMods", false)
+            }
+        },
+        {
+            id: 5,
+            name: 'bin',
+            installPath: join('bin'),
+            async install(mod) {
+                return Manager.installByFolder(mod, this.installPath ?? "", "bin", true)
+            },
+            async uninstall(mod) {
+                return Manager.installByFolder(mod, this.installPath ?? "", "bin", false)
             }
         },
         {
@@ -358,17 +333,20 @@ export const supportedGames: ISupportedGames = {
         let pak = false
         let data = false
         let native = false
+        let bin = false
 
         mod.modFiles.forEach(item => {
             let exe = extname(item)
             if (exe === '.pak') pak = true
             if (item.toLowerCase().includes('public')) data = true
             if (item.toLowerCase().includes('data')) data = true
+            if (item.toLowerCase().includes('bin')) bin = true
             if (exe == '.dll') native = true
         })
 
         if (pak) return 1
         if (data) return 2
+        if (bin) return 5
         if (native) return 4
 
         return 99

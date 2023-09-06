@@ -11,22 +11,23 @@ import { Manager } from "@src/model/Manager";
 
 //#region  data 类型的mod
 
-// 设置 StarfieldPrefs.ini
+// 设置 Starfield.ini
 async function setArchive() {
     try {
-        let documents = await FileHandler.getMyDocuments()
-        const StarfieldPrefs = join(documents, "My Games", "Starfield", "StarfieldPrefs.ini")
-        let config = ini.parse(readFileSync(StarfieldPrefs, 'utf-8'))
+        const manager = useManager()
+        // let documents = await FileHandler.getMyDocuments()
+        const Starfield = join(manager.gameStorage, "Starfield.ini")
+        let config = ini.parse(readFileSync(Starfield, 'utf-8'))
         console.log(config);
         if (config.Archive?.bInvalidateOlderFiles == 1) {
             console.log('StarfieldPrefs.ini 已配置过, 无需再次配置.');
             return
         }
-        config.Archive = {
-            bInvalidateOlderFiles: 1,
-            sResourceDataDirsFinal: ""
+        if (config.Archive) {
+            config.Archive.bInvalidateOlderFiles = 1
+            config.Archive.sResourceDataDirsFinal = ""
+            writeFileSync(Starfield, ini.stringify(config))
         }
-        writeFileSync(StarfieldPrefs, ini.stringify(config))
     } catch (error) {
         ElMessage.error(`配置 StarfieldPrefs.ini 失败! ${error}`)
     }
