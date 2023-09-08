@@ -71,6 +71,69 @@ async function handlePlugins(mod: IModInfo, installPath: string, isInstall: bool
 
 //#endregion
 
+
+//#region  esp 类型的mod
+
+function setGeneral(name: string, isInstall: boolean) {
+    const manager = useManager()
+    // let documents = await FileHandler.getMyDocuments()
+    const Starfield = join(manager.gameStorage, "Starfield.ini")
+    let config = ini.parse(readFileSync(Starfield, 'utf-8'))
+    // 获取 config.General 下面的所有 key
+    let keys = Object.keys(config.General)
+    console.log(keys);
+
+    if (isInstall) {
+        // 判断 key 中是否有包含 sTestFile 的
+        let hasKey = keys.some(item => item.includes('sTestFile'))
+        if (hasKey) {
+            /**
+             * sTestFile1
+             * sTestFile2
+             * sTestFile3
+             */
+            let lastKey = keys[keys.length - 1]
+            let lastNum = parseInt(lastKey[lastKey.length - 1])
+            config.General[`sTestFile${lastNum + 1}`] = name
+        } else {
+            config.General.sTestFile1 = name
+        }
+    } else {
+        // 如果是卸载 将所有 sTestFileX=name 删除
+        keys.forEach(item => {
+            if (config.General[item] == name) {
+                delete config.General[item]
+            }
+        })
+    }
+
+    writeFileSync(Starfield, ini.stringify(config))
+
+}
+
+function handleEsps(mod: IModInfo, installPath: string, isInstall: boolean) {
+    const manager = useManager()
+    mod.modFiles.forEach(item => {
+        let file = join(manager.modStorage, mod.id.toString(), item)
+        if (statSync(file).isFile()) {
+            let name = basename(file)
+            if (extname(file) == '.esp') setGeneral(name, isInstall)
+
+            let target = join(manager.gameStorage ?? "", installPath, item)
+            if (isInstall) {
+                FileHandler.copyFile(file, target)
+            } else {
+                FileHandler.deleteFile(target)
+            }
+        }
+    })
+
+    return true
+}
+
+//#endregion
+
+
 export const supportedGames: ISupportedGames = {
     gameID: 321,
     steamAppID: 1716740,
@@ -138,6 +201,17 @@ export const supportedGames: ISupportedGames = {
             }
         },
         {
+            id: 5,
+            name: 'esp',
+            installPath: join("Data"),
+            async install(mod) {
+                return handleEsps(mod, this.installPath ?? "", true)
+            },
+            async uninstall(mod) {
+                return handleEsps(mod, this.installPath ?? "", false)
+            }
+        },
+        {
             id: 99,
             name: '未知',
             installPath: '',
@@ -154,6 +228,7 @@ export const supportedGames: ISupportedGames = {
 
         let data = false
         let plugins = false
+        let esp = false
 
         if (mod.webId == 201756) {
             return 3
@@ -162,10 +237,12 @@ export const supportedGames: ISupportedGames = {
         mod.modFiles.forEach(item => {
             if (item.toLowerCase().includes('data')) data = true
             if (extname(item) == '.dll') plugins = true
+            if (extname(item) == '.esp') esp = true
         })
 
         if (data) return 1
         if (plugins) return 4
+        if (esp) return 5
 
         return 99
     }
