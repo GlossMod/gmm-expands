@@ -79,7 +79,7 @@ async function handlePak(mod: IModInfo, installPath: string, isInstall: boolean)
 
     let modsettings_data = await modsettings.data
     let root = modsettings_data.save.region[0].node[0].children[0].node
-    // console.log(root);
+    console.log(root);
     if (!root[0].children || !root[0].children[0].node) {
         // 如果用户是第一次装Mod
         // console.log('第一次装Mod');
@@ -134,10 +134,10 @@ async function handlePak(mod: IModInfo, installPath: string, isInstall: boolean)
                     } else {
                         // 卸载
                         // ModOrder 中删除 UUID
-                        root[0].children[0].node = root[0].children[0].node.filter((item: any) => item.attribute[0].$.value != ModuleShortDesc.find(item => item.$.id == 'UUID')?.$.value)
+                        root[0].children[0].node = root[0].children[0].node.filter((item: any) => item?.attribute[0].$.value != ModuleShortDesc.find(item => item.$.id == 'UUID')?.$.value)
                         // Mods 中删除 数据
                         root[1].children[0].node = root[1].children[0].node.filter((item: any) => {
-                            let uuid = item.attribute.find((item: any) => item.$.id == 'UUID')
+                            let uuid = item?.attribute.find((item: any) => item.$.id == 'UUID')
                             if (uuid) return uuid.$.value != ModuleShortDesc.find(item => item.$.id == 'UUID')?.$.value
                             else return true
                         })
@@ -225,13 +225,13 @@ export const supportedGames: ISupportedGames = {
             name: 'pak',
             installPath: join(homedir(), 'AppData', 'Local', 'Larian Studios', "Baldur's Gate 3", 'Mods'),
             async install(mod) {
-                try {
-                    return handlePak(mod, this.installPath ?? "", true)
+                // try {
+                return handlePak(mod, this.installPath ?? "", true)
 
-                } catch (error) {
-                    ElMessage.error(`错误: ${error}`)
-                    return false
-                }
+                // } catch (error) {
+                // ElMessage.error(`错误: ${error}`)
+                // return false
+                // }
             },
             async uninstall(mod) {
                 return handlePak(mod, this.installPath ?? "", false)
