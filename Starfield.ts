@@ -4,7 +4,7 @@ import { extname, basename, join, dirname } from 'path'
 import { FileHandler } from "@src/model/FileHandler"
 import { useManager } from "@src/stores/useManager";
 import { ElMessage } from "element-plus";
-import { statSync, readFileSync, writeFileSync, readdirSync } from "fs";
+import { statSync, readFileSync, writeFileSync } from "fs";
 import ini from 'ini'
 import { Manager } from "@src/model/Manager";
 
@@ -31,12 +31,37 @@ async function setArchive() {
     } catch (error) {
         ElMessage.error(`配置 StarfieldPrefs.ini 失败! ${error}`)
     }
+}
+
+// 软链 Data
+async function symlinkData() {
+    let documents = await FileHandler.getMyDocuments()
+
+    const data = join(documents, "My Games", "Starfield", "Data")
+
+    // 判断是否已经软链过了
+    if (await FileHandler.isSymlink(data)) {
+        console.log('Data 已软链过, 无需再次软链.');
+        return
+    }
+
+    // FileHandler.deleteFolder(data)
+    // 重命名旧的文件夹
+    FileHandler.renameFile(data, join(dirname(data), 'old_data'))
+
+    // 获取游戏目录中的Data
+    const manager = useManager()
+    const gameData = join(manager.gameStorage, "Data")
+
+    // 软链
+    FileHandler.createLink(gameData, data)
 
 }
 
 // 安装 卸载 data 类型的mod
 async function handleDataMod(mod: IModInfo, installPath: string, isInstall: boolean) {
     if (isInstall) setArchive();
+    if (isInstall) symlinkData();
 
     return Manager.installByFolder(mod, installPath, "data", isInstall, false, true)
 

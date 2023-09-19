@@ -9,7 +9,16 @@ export const supportedGames: ISupportedGames = {
     gameName: "CODE VEIN",
     installdir: "CodeVein",
     gameExe: 'CodeVein.exe',
-    startExe: 'CodeVein.exe',
+    startExe: [
+        {
+            name: 'Steam 启动',
+            exePath: 'steam://rungameid/678960'
+        },
+        {
+            name: '直接启动',
+            exePath: 'CodeVein.exe'
+        }
+    ],
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/207.png",
     modType: [
         {

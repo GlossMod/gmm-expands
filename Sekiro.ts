@@ -79,7 +79,16 @@ export const supportedGames: ISupportedGames = {
     installdir: "Sekiro",
     gameName: "Sekiro",
     gameExe: 'sekiro.exe',
-    startExe: 'sekiro.exe',
+    startExe: [
+        {
+            name: 'Steam 启动',
+            exePath: 'steam://rungameid/814380'
+        },
+        {
+            name: '直接启动',
+            exePath: 'sekiro.exe'
+        }
+    ],
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/185.png",
     modType: [
         {

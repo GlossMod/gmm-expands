@@ -4,11 +4,11 @@ import { useManager } from "@src/stores/useManager";
 import { join, basename, extname } from 'path'
 import { homedir } from "os";
 
-function handleMod(mod: IModInfo, isInstall: boolean) {
+async function handleMod(mod: IModInfo, isInstall: boolean) {
 
     let manager = useManager()
     let srcPath = join(manager.modStorage, mod.id.toString())
-    let destPath = join(homedir(), "My Documents", "Electronic Arts", "The Sims 4", "Mods", "Gloss Mod Manager", mod.id.toString())
+    let destPath = join(await FileHandler.getMyDocuments(), "Electronic Arts", "The Sims 4", "Mods", "Gloss Mod Manager", mod.id.toString())
     if (isInstall) {
         return FileHandler.createLink(srcPath, destPath)
 
@@ -29,7 +29,16 @@ export const supportedGames: ISupportedGames = {
             rootPath: join('..', '..')
         }
     ],
-    startExe: 'TS4_x64.exe',
+    startExe: [
+        {
+            name: 'Steam 启动',
+            exePath: 'steam://rungameid/1222670'
+        },
+        {
+            name: '直接启动',
+            exePath: join('Game', 'Bin', 'TS4_x64.exe')
+        }
+    ],
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/8a.jpg",
     modType: [
         {

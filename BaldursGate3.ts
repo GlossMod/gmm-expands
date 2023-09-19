@@ -225,13 +225,12 @@ export const supportedGames: ISupportedGames = {
             name: 'pak',
             installPath: join(homedir(), 'AppData', 'Local', 'Larian Studios', "Baldur's Gate 3", 'Mods'),
             async install(mod) {
-                // try {
-                return handlePak(mod, this.installPath ?? "", true)
-
-                // } catch (error) {
-                // ElMessage.error(`错误: ${error}`)
-                // return false
-                // }
+                try {
+                    return handlePak(mod, this.installPath ?? "", true)
+                } catch (error) {
+                    ElMessage.error(`错误: ${error}`)
+                    return false
+                }
             },
             async uninstall(mod) {
                 return handlePak(mod, this.installPath ?? "", false)

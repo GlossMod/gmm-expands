@@ -37,7 +37,16 @@ export const supportedGames: ISupportedGames = {
     installdir: "RESIDENT EVIL 4  BIOHAZARD RE4",
     gameName: "RE4Remake",
     gameExe: 're4.exe',
-    startExe: 're4.exe',
+    startExe: [
+        {
+            name: 'Steam 启动',
+            exePath: 'steam://rungameid/2050650'
+        },
+        {
+            name: '直接启动',
+            exePath: 're4.exe'
+        }
+    ],
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/63e310bf62591.webp",
     modType: [
         {

@@ -74,7 +74,16 @@ export const supportedGames: ISupportedGames = {
         }
     ],
     // startExe: join('bin', 'x64', 'witcher3.exe'),
-    startExe: "Fallout4.exe",
+    startExe: [
+        {
+            name: 'steam 启动',
+            exePath: 'steam://rungameid/377160'
+        },
+        {
+            name: '直接启动',
+            exePath: "Fallout4.exe"
+        }
+    ],
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/6b.png",
     modType: [
         {

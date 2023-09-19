@@ -71,12 +71,12 @@ export const supportedGames: ISupportedGames = {
     gameExe: "MonsterHunterRise.exe",
     startExe: [
         {
-            name: '直接启动',
-            exePath: 'MonsterHunterRise.exe'
-        },
-        {
             name: 'Steam 启动',
             exePath: 'steam://rungameid/1446780'
+        },
+        {
+            name: '直接启动',
+            exePath: 'MonsterHunterRise.exe'
         }
     ],
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/61dbdb30cdbce.png",

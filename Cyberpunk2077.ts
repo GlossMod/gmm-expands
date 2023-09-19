@@ -105,6 +105,10 @@ export const supportedGames: ISupportedGames = {
     startExe: join('bin', 'x64', 'Cyberpunk2077.exe'),
     gameExe: [
         {
+            name: 'Steam 启动',
+            rootPath: 'steam://rungameid/1091500',
+        },
+        {
             name: 'Cyberpunk2077.exe',
             rootPath: join('..', '..'),
         },

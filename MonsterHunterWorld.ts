@@ -54,7 +54,16 @@ export const supportedGames: ISupportedGames = {
     installdir: "Monster Hunter World",
     gameName: "Monster Hunter World",
     gameExe: "MonsterHunterWorld.exe",
-    startExe: 'MonsterHunterWorld.exe',
+    startExe: [
+        {
+            name: 'Steam 启动',
+            exePath: 'steam://rungameid/582010'
+        },
+        {
+            name: '直接启动',
+            exePath: 'MonsterHunterWorld.exe'
+        }
+    ],
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/161b.png",
     modType: [
         {

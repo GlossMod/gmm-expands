@@ -13,7 +13,16 @@ export const supportedGames: ISupportedGames = {
     installdir: "HogwartsLegacy",
     gameName: "Hogwarts Legacy",
     gameExe: 'HogwartsLegacy.exe',
-    startExe: 'HogwartsLegacy.exe',
+    startExe: [
+        {
+            name: 'Steam 启动',
+            exePath: 'steam://rungameid/990080'
+        },
+        {
+            name: '直接启动',
+            exePath: 'HogwartsLegacy.exe'
+        }
+    ],
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/63e2f9656f092.webp",
     modType: [
         {

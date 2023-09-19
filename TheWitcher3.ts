@@ -70,7 +70,16 @@ export const supportedGames: ISupportedGames = {
             rootPath: join("..", "..")
         }
     ],
-    startExe: join("bin", "x64", "witcher3.exe"),
+    startExe: [
+        {
+            name: "steam 启动",
+            exePath: "steam://rungameid/292030"
+        },
+        {
+            name: "直接启动",
+            exePath: join("bin", "x64", "witcher3.exe")
+        }
+    ],
     // startExe: "REDprelauncher.exe",
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/4a.jpg",
     modType: [

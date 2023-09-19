@@ -49,10 +49,10 @@ export const supportedGames: ISupportedGames = {
             name: '禁用 Mod 并启动游戏',
             exePath: 'Stardew Valley.exe'
         },
-        // {
-        //     name: 'Steam 启动 (无Mod)',
-        //     exePath: 'steam://rungameid/413150'
-        // }
+        {
+            name: 'Steam 启动 (无Mod)',
+            exePath: 'steam://rungameid/413150'
+        }
     ],
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/10.jpg",
     modType: [

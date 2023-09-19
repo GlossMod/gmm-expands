@@ -75,7 +75,16 @@ export const supportedGames: ISupportedGames = {
             rootPath: join('..', '..')
         }
     ],
-    startExe: join("bin", "Win64_Shipping_Client", "TaleWorlds.MountAndBlade.Launcher.exe"),
+    startExe: [
+        {
+            name: 'steam 启动',
+            exePath: 'steam://rungameid/261550'
+        },
+        {
+            name: '直接启动',
+            exePath: join("bin", "Win64_Shipping_Client", "TaleWorlds.MountAndBlade.Launcher.exe")
+        }
+    ],
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/225.png",
     modType: [
         {
