@@ -8,6 +8,7 @@ import { FileHandler } from "@src/model/FileHandler"
 import { statSync } from "fs";
 import { useManager } from "@src/stores/useManager";
 import { ElMessage } from "element-plus";
+import { Manager } from "@src/model/Manager";
 
 function getModFolder(mod: IModInfo) {
     let modFolder = ""
@@ -98,6 +99,17 @@ export const supportedGames: ISupportedGames = {
             },
         },
         {
+            id: 2,
+            name: "Data",
+            installPath: "Data",
+            async install(mod) {
+                return Manager.installByFolder(mod, this.installPath ?? "", "data", true, false, true)
+            },
+            async uninstall(mod) {
+                return Manager.installByFolder(mod, this.installPath ?? "", "data", false, false, true)
+            }
+        },
+        {
             id: 99,
             name: "未知",
             installPath: "",
@@ -112,10 +124,14 @@ export const supportedGames: ISupportedGames = {
     ],
     checkModType(mod) {
         let esp = false
+        let data = false
 
         mod.modFiles.forEach(item => {
             if (extname(item) == '.esp') esp = true
+            if (item.toLowerCase().includes('data')) data = true
         })
+
+        if (data) return 2
 
         if (esp) return 1
 

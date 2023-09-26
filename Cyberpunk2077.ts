@@ -1,5 +1,5 @@
 import { FileHandler } from "@src/model/FileHandler";
-import type { IModInfo, ISupportedGames } from "@src/model/Interfaces";
+import type { IModInfo, IState, ISupportedGames } from "@src/model/Interfaces";
 import { useManager } from "@src/stores/useManager";
 import { join, extname, sep, basename, dirname } from 'path'
 import { statSync } from "fs";
@@ -56,67 +56,40 @@ function handlePlugins(mod: IModInfo, installPath: string, isInstall: boolean) {
     }
 }
 
-function handleMixed(mod: IModInfo, isInstall: boolean) {
+function handleMixed(mod: IModInfo, installPath: string, isInstall: boolean) {
 
-    const manager = useManager()
-    let modStorage = join(manager.modStorage, mod.id.toString())
-    let gameStorage = manager.gameStorage ?? ""
-
-    let plugins: string[] = []
-
+    let archive = false, bin = false, engine = false, r6 = false
     mod.modFiles.forEach(item => {
-        try {
-            let file = join(modStorage, item)
-            if (statSync(file).isFile()) {
-                let exe = extname(item)
-                if (exe == ".archive") {
-                    if (isInstall) {
-                        FileHandler.copyFile(file, join(gameStorage, 'archive', 'pc', 'mod', basename(item)))
-                    } else {
-                        FileHandler.deleteFile(join(gameStorage, 'archive', 'pc', 'mod', basename(item)))
-                    }
-                } else {
-                    plugins.push(file)
-                }
-            }
-        } catch { }
+        let list = FileHandler.pathToArray(item)
+        if (list.includes('archive')) archive = true
+        if (list.includes('bin')) bin = true
+        if (list.includes('engine')) engine = true
+        if (list.includes('r6')) r6 = true
     })
 
-    let folder = getCommonParentFolder(plugins)
-    let lastFolder = basename(folder)
+    if (archive) Manager.installByFolder(mod, installPath, 'archive', isInstall, true)
+    if (bin) Manager.installByFolder(mod, installPath, 'bin', isInstall, true)
+    if (engine) Manager.installByFolder(mod, installPath, 'engine', isInstall, true)
+    if (r6) Manager.installByFolder(mod, installPath, 'r6', isInstall, true)
 
-    // 如果只有一个文件
-    if (plugins.length == 1) {
-        folder = dirname(plugins[0])
-        lastFolder = basename(folder)
-    }
-    if (isInstall) {
-        return FileHandler.copyFolder(folder, join(gameStorage, 'bin', 'x64', 'plugins', 'cyber_engine_tweaks', 'mods', lastFolder))
-    } else {
-        return FileHandler.deleteFolder(join(gameStorage, 'bin', 'x64', 'plugins', 'cyber_engine_tweaks', 'mods', lastFolder))
-    }
 }
 
 export const supportedGames: ISupportedGames = {
     gameID: 195,
     steamAppID: 1091500,
-    installdir: join("Cyberpunk 2077", 'bin', 'x64', 'Cyberpunk2077.exe'),
+    installdir: join("Cyberpunk 2077", 'bin', 'x64'),
     gameName: "Cyberpunk 2077",
-    startExe: join('bin', 'x64', 'Cyberpunk2077.exe'),
-    gameExe: [
+    startExe: [
         {
             name: 'Steam 启动',
-            rootPath: 'steam://rungameid/1091500',
+            exePath: 'steam://rungameid/1091500'
         },
         {
-            name: 'Cyberpunk2077.exe',
-            rootPath: join('..', '..'),
-        },
-        {
-            name: 'REDprelauncher.exe',
-            rootPath: '',
+            name: "直接启动",
+            exePath: join('bin', 'x64', 'Cyberpunk2077.exe')
         }
     ],
+    gameExe: "Cyberpunk2077.exe",
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/195.png",
     modType: [
         {
@@ -180,17 +153,14 @@ export const supportedGames: ISupportedGames = {
         },
         {
             id: 4,
-            name: '混合',
+            name: '主目录',
             installPath: '\\',
             async install(mod) {
-
-                handleMixed(mod, true)
-
-
+                handleMixed(mod, this.installPath ?? "", true)
                 return true
             },
             async uninstall(mod) {
-                handleMixed(mod, false)
+                handleMixed(mod, this.installPath ?? "", false)
                 return true
             }
         },
@@ -211,17 +181,24 @@ export const supportedGames: ISupportedGames = {
         // 判断是否是CET
         if (mod.webId == 197625) return 1
 
+        let folderList = ['archive', 'bin', 'engine', 'r6']
 
         let archive = false
         let lua = false
+        let mainFolder = false
         mod.modFiles.forEach(item => {
+
+            // 判断目录是否包含 folderList
+            let list = FileHandler.pathToArray(item)
+            if (list.some(item => folderList.includes(item))) mainFolder = true
             // 是否有archive文件
             let exe = extname(item)
             if (exe == ".archive") archive = true
             if (exe == ".lua") lua = true
         })
 
-        if (archive && lua) return 4
+        if (mainFolder) return 4
+        // if (archive && lua) return 4
         if (archive) return 2
         if (lua) return 3
         return 5
