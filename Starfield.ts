@@ -75,22 +75,24 @@ async function handlePlugins(mod: IModInfo, installPath: string, isInstall: bool
 
     if (isInstall) Manager.checkInstalled("SFSE", 201756)
 
-    const manager = useManager()
-    let modStorage = join(manager.modStorage ?? "", mod.id.toString())
+    return Manager.installByFolder(mod, installPath, "plugins", isInstall, false, true)
 
-    let files: string[] = []
-    mod.modFiles.forEach(item => {
-        try {
-            let file = join(modStorage, item)
-            if (statSync(file).isFile()) {
-                files.push(file)
-            }
-        } catch { }
+    // const manager = useManager()
+    // let modStorage = join(manager.modStorage ?? "", mod.id.toString())
 
-    })
-    let lastFolder = basename(FileHandler.getCommonParentFolder(files))
+    // let files: string[] = []
+    // mod.modFiles.forEach(item => {
+    //     try {
+    //         let file = join(modStorage, item)
+    //         if (statSync(file).isFile()) {
+    //             files.push(file)
+    //         }
+    //     } catch { }
 
-    return Manager.installByFolder(mod, installPath, lastFolder, isInstall)
+    // })
+    // let lastFolder = basename(FileHandler.getCommonParentFolder(files))
+
+    // return Manager.installByFolder(mod, installPath, lastFolder, isInstall)
 
 }
 
@@ -261,7 +263,8 @@ export const supportedGames: ISupportedGames = {
 
         mod.modFiles.forEach(item => {
             if (item.toLowerCase().includes('data')) data = true
-            if (extname(item) == '.dll') plugins = true
+            if (item.toLowerCase().includes('plugins')) plugins = true
+            // if (extname(item) == '.dll') plugins = true
             if (extname(item) == '.esp') esp = true
         })
 
