@@ -56,23 +56,23 @@ function handlePlugins(mod: IModInfo, installPath: string, isInstall: boolean) {
     }
 }
 
-function handleMixed(mod: IModInfo, installPath: string, isInstall: boolean) {
+// function handleMixed(mod: IModInfo, installPath: string, isInstall: boolean) {
 
-    let archive = false, bin = false, engine = false, r6 = false
-    mod.modFiles.forEach(item => {
-        let list = FileHandler.pathToArray(item)
-        if (list.includes('archive')) archive = true
-        if (list.includes('bin')) bin = true
-        if (list.includes('engine')) engine = true
-        if (list.includes('r6')) r6 = true
-    })
+//     let archive = false, bin = false, engine = false, r6 = false
+//     mod.modFiles.forEach(item => {
+//         let list = FileHandler.pathToArray(item)
+//         if (list.includes('archive')) archive = true
+//         if (list.includes('bin')) bin = true
+//         if (list.includes('engine')) engine = true
+//         if (list.includes('r6')) r6 = true
+//     })
 
-    if (archive) Manager.installByFolder(mod, installPath, 'archive', isInstall, true)
-    if (bin) Manager.installByFolder(mod, installPath, 'bin', isInstall, true)
-    if (engine) Manager.installByFolder(mod, installPath, 'engine', isInstall, true)
-    if (r6) Manager.installByFolder(mod, installPath, 'r6', isInstall, true)
+//     if (archive) Manager.installByFolder(mod, installPath, 'archive', isInstall, true)
+//     if (bin) Manager.installByFolder(mod, installPath, 'bin', isInstall, true)
+//     if (engine) Manager.installByFolder(mod, installPath, 'engine', isInstall, true)
+//     if (r6) Manager.installByFolder(mod, installPath, 'r6', isInstall, true)
 
-}
+// }
 
 export const supportedGames: ISupportedGames = {
     gameID: 195,
@@ -89,7 +89,16 @@ export const supportedGames: ISupportedGames = {
             exePath: join('bin', 'x64', 'Cyberpunk2077.exe')
         }
     ],
-    gameExe: "Cyberpunk2077.exe",
+    gameExe: [
+        {
+            name: "Cyberpunk2077.exe",
+            rootPath: join("..", "..")
+        },
+        {
+            name: "REDprelauncher.exe",
+            rootPath: ""
+        }
+    ],
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/195.png",
     modType: [
         {
@@ -156,12 +165,10 @@ export const supportedGames: ISupportedGames = {
             name: '主目录',
             installPath: '\\',
             async install(mod) {
-                handleMixed(mod, this.installPath ?? "", true)
-                return true
+                return Manager.generalInstall(mod, this.installPath ?? "", true)
             },
             async uninstall(mod) {
-                handleMixed(mod, this.installPath ?? "", false)
-                return true
+                return Manager.generalUninstall(mod, this.installPath ?? "", true)
             }
         },
         {
@@ -179,24 +186,31 @@ export const supportedGames: ISupportedGames = {
     ],
     checkModType(mod) {
         // 判断是否是CET
-        if (mod.webId == 197625) return 1
+        // if (mod.webId == 197625) return 1
 
-        let folderList = ['archive', 'bin', 'engine', 'r6']
+        let folderList = ['archive', 'bin', 'engine', 'r6', 'mods']
 
+        let cet = false
         let archive = false
         let lua = false
         let mainFolder = false
         mod.modFiles.forEach(item => {
 
+
             // 判断目录是否包含 folderList
             let list = FileHandler.pathToArray(item)
+            // console.log(list);
+
             if (list.some(item => folderList.includes(item))) mainFolder = true
             // 是否有archive文件
             let exe = extname(item)
             if (exe == ".archive") archive = true
             if (exe == ".lua") lua = true
+            if (basename(item) == 'cyber_engine_tweaks.asi') cet = true
+
         })
 
+        if (cet) return 1
         if (mainFolder) return 4
         // if (archive && lua) return 4
         if (archive) return 2
