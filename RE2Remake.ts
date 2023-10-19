@@ -5,22 +5,22 @@ import { ElMessage } from "element-plus";
 
 
 export const supportedGames: ISupportedGames = {
-    gameID: 303,
-    steamAppID: 2050650,
-    installdir: "RESIDENT EVIL 4  BIOHAZARD RE4",
-    gameName: "RE4Remake",
-    gameExe: 're4.exe',
+    gameID: 180,
+    steamAppID: 883710,
+    installdir: "RESIDENT EVIL 2  BIOHAZARD RE2",
+    gameName: "Resident Evil 2",
+    gameExe: 're2.exe',
     startExe: [
         {
             name: 'Steam 启动',
-            exePath: 'steam://rungameid/2050650'
+            exePath: 'steam://rungameid/883710'
         },
         {
             name: '直接启动',
-            exePath: 're4.exe'
+            exePath: 're2.exe'
         }
     ],
-    gameCoverImg: "https://mod.3dmgame.com/static/upload/game/63e310bf62591.webp",
+    gameCoverImg: "https://mod.3dmgame.com/static/upload/game/180.png",
     modType: [
         {
             id: 2,
@@ -38,7 +38,7 @@ export const supportedGames: ISupportedGames = {
             name: "autorun",
             installPath: join('reframework', 'autorun'),
             async install(mod) {
-                if (!Manager.checkInstalled("REFramework", 197869)) return false
+                if (!Manager.checkInstalled("REFramework", 202993)) return false
                 return Manager.installByFolder(mod, this.installPath ?? "", 'autorun', true)
             },
             async uninstall(mod) {
@@ -50,7 +50,7 @@ export const supportedGames: ISupportedGames = {
             name: 'plugins',
             installPath: join('reframework', 'plugins'),
             async install(mod) {
-                if (!Manager.checkInstalled("REFramework", 197869)) return false
+                if (!Manager.checkInstalled("REFramework", 202993)) return false
                 return Manager.installByFolder(mod, this.installPath ?? "", 'plugins', true)
             },
             async uninstall(mod) {
@@ -62,7 +62,7 @@ export const supportedGames: ISupportedGames = {
             name: "模型替换",
             installPath: join('natives'),
             async install(mod) {
-                if (!Manager.checkInstalled("REFramework", 197869)) return false
+                if (!Manager.checkInstalled("REFramework", 202993)) return false
                 if (!Manager.checkInstalled("FirstNatives", 202971)) return false
 
                 return Manager.installByFolder(mod, this.installPath ?? "", 'natives', true)

@@ -5,22 +5,22 @@ import { ElMessage } from "element-plus";
 
 
 export const supportedGames: ISupportedGames = {
-    gameID: 303,
-    steamAppID: 2050650,
-    installdir: "RESIDENT EVIL 4  BIOHAZARD RE4",
-    gameName: "RE4Remake",
-    gameExe: 're4.exe',
+    gameID: 183,
+    steamAppID: 601150,
+    installdir: "Devil May Cry 5",
+    gameName: "Devil May Cry 5",
+    gameExe: 'DevilMayCry5.exe',
     startExe: [
         {
             name: 'Steam 启动',
-            exePath: 'steam://rungameid/2050650'
+            exePath: 'steam://rungameid/601150'
         },
         {
             name: '直接启动',
-            exePath: 're4.exe'
+            exePath: 'DevilMayCry5.exe'
         }
     ],
-    gameCoverImg: "https://mod.3dmgame.com/static/upload/game/63e310bf62591.webp",
+    gameCoverImg: "https://mod.3dmgame.com/static/upload/game/183.jpg",
     modType: [
         {
             id: 2,
@@ -38,7 +38,7 @@ export const supportedGames: ISupportedGames = {
             name: "autorun",
             installPath: join('reframework', 'autorun'),
             async install(mod) {
-                if (!Manager.checkInstalled("REFramework", 197869)) return false
+                if (!Manager.checkInstalled("REFramework", 202996)) return false
                 return Manager.installByFolder(mod, this.installPath ?? "", 'autorun', true)
             },
             async uninstall(mod) {
@@ -50,7 +50,7 @@ export const supportedGames: ISupportedGames = {
             name: 'plugins',
             installPath: join('reframework', 'plugins'),
             async install(mod) {
-                if (!Manager.checkInstalled("REFramework", 197869)) return false
+                if (!Manager.checkInstalled("REFramework", 202996)) return false
                 return Manager.installByFolder(mod, this.installPath ?? "", 'plugins', true)
             },
             async uninstall(mod) {
@@ -62,7 +62,7 @@ export const supportedGames: ISupportedGames = {
             name: "模型替换",
             installPath: join('natives'),
             async install(mod) {
-                if (!Manager.checkInstalled("REFramework", 197869)) return false
+                if (!Manager.checkInstalled("REFramework", 202996)) return false
                 if (!Manager.checkInstalled("FirstNatives", 202971)) return false
 
                 return Manager.installByFolder(mod, this.installPath ?? "", 'natives', true)
@@ -100,6 +100,8 @@ export const supportedGames: ISupportedGames = {
         let plugins = false
         let autorun = false
         let REFramework = false
+        // if (mod.webId == 197869) return 2
+
         mod.modFiles.forEach(item => {
             if (basename(item) == 'dinput8.dll') REFramework = true
             if (item.toLowerCase().includes('natives')) natives = true

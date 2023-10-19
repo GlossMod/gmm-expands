@@ -20,7 +20,7 @@ async function setArchive() {
         let config = ini.parse(readFileSync(Starfield, 'utf-8'))
         console.log(config);
         if (config.Archive?.bInvalidateOlderFiles == 1) {
-            console.log('StarfieldPrefs.ini 已配置过, 无需再次配置.');
+            console.log('Fallout4.ini 已配置过, 无需再次配置.');
             return
         }
         if (config.Archive) {
@@ -29,7 +29,7 @@ async function setArchive() {
             writeFileSync(Starfield, ini.stringify(config))
         }
     } catch (error) {
-        ElMessage.error(`配置 StarfieldPrefs.ini 失败! ${error}`)
+        ElMessage.error(`配置 Fallout4.ini 失败! ${error}`)
     }
 }
 // 修改 plugins
