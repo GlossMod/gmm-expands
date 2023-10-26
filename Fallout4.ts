@@ -183,6 +183,7 @@ export const supportedGames: ISupportedGames = {
             // if (extname(item) == '.esm') esm = true
             if (item.toLowerCase().includes('data')) data = true
             if (basename(item) == 'f4se_loader.exe') f4se = true
+            if (extname(item) == '.esp' || extname(item) == '.esm') data = true
         })
 
         if (f4se) return 3

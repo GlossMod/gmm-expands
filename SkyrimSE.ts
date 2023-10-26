@@ -180,6 +180,7 @@ export const supportedGames: ISupportedGames = {
             if (item.toLowerCase().includes('data')) data = true
             if (item.toLowerCase().includes('plugins')) plugins = true
             if (basename(item) == 'skse64_loader.exe') skse = true
+            if (extname(item) == '.esp' || extname(item) == '.esm') data = true
         })
 
         if (skse) return 2

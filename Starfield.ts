@@ -7,6 +7,7 @@ import { ElMessage } from "element-plus";
 import { statSync, readFileSync, writeFileSync } from "fs";
 import ini from 'ini'
 import { Manager } from "@src/model/Manager";
+import { homedir } from 'os'
 
 
 //#region  data 类型的mod
@@ -58,14 +59,41 @@ async function symlinkData() {
 
 }
 
-// 安装 卸载 data 类型的mod
-async function handleDataMod(mod: IModInfo, installPath: string, isInstall: boolean) {
-    if (isInstall) setArchive();
-    if (isInstall) symlinkData();
+// 修改 plugins
+async function setPlugins(mod: IModInfo, install: boolean) {
+    // AppData\Local\Fallout4\plugins.txt
+    let documents = join(homedir(), "AppData", "Local", "Starfield", "plugins.txt")
+    let plugins = await FileHandler.readFileSync(documents)
+    let arr = plugins.split('\n')
 
-    return Manager.installByFolder(mod, installPath, "data", isInstall, false, true)
+    if (arr[0] != "# This file is used by Starfield to keep track of your downloaded content. (You HAVE to keep a # on the first line here)") {
+        arr.unshift("# This file is used by Starfield to keep track of your downloaded content. (You HAVE to keep a # on the first line here)")
+    }
+
+    mod.modFiles.forEach(item => {
+        if (extname(item) == '.esp' || extname(item) == '.esm') {
+            if (install) {
+                arr.push(`*${basename(item)}`)
+            } else {
+                arr = arr.filter(i => i != `*${basename(item)}`)
+            }
+        }
+    })
+    // arr 中移除空内容
+    arr = arr.filter(i => i != "")
+
+    FileHandler.writeFile(documents, arr.join('\n'))
 
 }
+
+// // 安装 卸载 data 类型的mod
+// async function handleDataMod(mod: IModInfo, installPath: string, isInstall: boolean) {
+//     if (isInstall) setArchive();
+//     if (isInstall) symlinkData();
+
+//     return Manager.installByFolder(mod, installPath, "data", isInstall, false, true)
+
+// }
 //#endregion
 
 //#region  Plugins 类型的mod
@@ -160,6 +188,45 @@ function handleEsps(mod: IModInfo, installPath: string, isInstall: boolean) {
 
 //#endregion
 
+// 获取 sfse_loader.exe 所在目录
+function getBaseFolder(mod: IModInfo) {
+    let folder = ""
+    mod.modFiles.forEach(item => {
+        if (basename(item) == 'sfse_loader.exe') {
+            folder = dirname(item)
+        }
+    })
+    return folder
+}
+
+function handleSfse(mod: IModInfo, install: boolean) {
+    const manager = useManager()
+    const modStorage = join(manager.modStorage ?? "", mod.id.toString())
+
+    let baseFolder = getBaseFolder(mod)
+    if (baseFolder == "") {
+        ElMessage.error(`未找到 sfse_loader.exe, 请不要随意修改MOD类型`)
+        return false
+    }
+
+    mod.modFiles.forEach(item => {
+        let source = join(modStorage, item)
+        if (statSync(source).isFile()) {
+            // 从 item 中移除 folder
+
+            let path = item
+            if (baseFolder != '.') {
+                path = item.replace(baseFolder, "")
+            }
+            console.log(path);
+            let target = join(manager.gameStorage ?? "", path)
+            if (install) FileHandler.copyFile(source, target)
+            else FileHandler.deleteFile(target)
+        }
+    })
+
+    return true
+}
 
 export const supportedGames: ISupportedGames = {
     gameID: 321,
@@ -188,10 +255,14 @@ export const supportedGames: ISupportedGames = {
             name: 'data',
             installPath: join("Data"),
             async install(mod) {
-                return handleDataMod(mod, this.installPath ?? "", true,)
+                setArchive();
+                symlinkData();
+                setPlugins(mod, true)
+                return Manager.installByFolder(mod, this.installPath ?? "", "data", true, false, true)
             },
             async uninstall(mod) {
-                return handleDataMod(mod, this.installPath ?? "", false,)
+                setPlugins(mod, false)
+                return Manager.installByFolder(mod, this.installPath ?? "", "data", false, false, true)
             },
         },
         {
@@ -207,13 +278,13 @@ export const supportedGames: ISupportedGames = {
         },
         {
             id: 3,
-            name: '前置插件',
+            name: 'sfse',
             installPath: join(""),
             async install(mod) {
-                return Manager.generalInstall(mod, this.installPath ?? "", true)
+                return handleSfse(mod, true)
             },
             async uninstall(mod) {
-                return Manager.generalUninstall(mod, this.installPath ?? "", true)
+                return handleSfse(mod, false)
             },
         },
         {
@@ -256,17 +327,18 @@ export const supportedGames: ISupportedGames = {
         let data = false
         let plugins = false
         let esp = false
+        let sfse = false
 
-        if (mod.webId == 201756) {
-            return 3
-        }
 
         mod.modFiles.forEach(item => {
             if (item.toLowerCase().includes('data')) data = true
             if (item.toLowerCase().includes('plugins')) plugins = true
             // if (extname(item) == '.dll') plugins = true
-            if (extname(item) == '.esp') esp = true
+            if (extname(item) == '.esp' || extname(item) == '.esm') data = true
+            if (basename(item) == 'sfse_loader.exe') sfse = true
         })
+
+        if (sfse) return 3
 
         if (data) return 1
         if (plugins) return 4
