@@ -37,6 +37,10 @@ function handlePlugins(mod: IModInfo, installPath: string, isInstall: boolean) {
 export const supportedGames: ISupportedGames = {
     gameID: 10,
     steamAppID: 413150,
+    NexusMods: {
+        game_domain_name: 'stardewvalley',
+        game_id: 1303
+    },
     installdir: "Stardew Valley",
     gameName: "Stardew Valley",
     gameExe: 'Stardew Valley.exe',

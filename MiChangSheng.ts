@@ -50,6 +50,10 @@ async function handlePlugins(mod: IModInfo, installPath: string, isInstall: bool
 export const supportedGames: ISupportedGames = {
     gameID: 255,
     steamAppID: 1189490,
+    NexusMods: {
+        game_domain_name: "MiChangSheng",
+        game_id: 99999
+    },
     installdir: "觅长生",
     gameName: "MiChangSheng",
     // https://store.steampowered.com/app/1189490?snr=5000_5100___primarylinks

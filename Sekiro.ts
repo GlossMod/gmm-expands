@@ -76,6 +76,10 @@ async function handleMod(mod: IModInfo, installPath: string, isInstall: boolean)
 export const supportedGames: ISupportedGames = {
     gameID: 185,
     steamAppID: 814380,
+    NexusMods: {
+        game_domain_name: "sekiro",
+        game_id: 2763
+    },
     installdir: "Sekiro",
     gameName: "Sekiro",
     gameExe: 'sekiro.exe',

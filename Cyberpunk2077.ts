@@ -77,6 +77,10 @@ function handlePlugins(mod: IModInfo, installPath: string, isInstall: boolean) {
 export const supportedGames: ISupportedGames = {
     gameID: 195,
     steamAppID: 1091500,
+    NexusMods: {
+        game_domain_name: "cyberpunk2077",
+        game_id: 3333
+    },
     installdir: join("Cyberpunk 2077", 'bin', 'x64'),
     gameName: "Cyberpunk 2077",
     startExe: [
@@ -200,6 +204,7 @@ export const supportedGames: ISupportedGames = {
             // 判断目录是否包含 folderList
             let list = FileHandler.pathToArray(item)
             // console.log(list);
+            console.log(list);
 
             if (list.some(item => folderList.includes(item))) mainFolder = true
             // 是否有archive文件

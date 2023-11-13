@@ -51,6 +51,10 @@ async function handleMod(mod: IModInfo, installPath: string, isInstall: boolean)
 export const supportedGames: ISupportedGames = {
     gameID: 161,
     steamAppID: 582010,
+    NexusMods: {
+        game_domain_name: "monsterhunterworld",
+        game_id: 2531
+    },
     installdir: "Monster Hunter World",
     gameName: "Monster Hunter World",
     gameExe: "MonsterHunterWorld.exe",

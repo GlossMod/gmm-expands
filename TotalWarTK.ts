@@ -27,6 +27,10 @@ function handlePack(mod: IModInfo, installPath: string, install: boolean) {
 export const supportedGames: ISupportedGames = {
     gameID: 193,
     steamAppID: 779340,
+    NexusMods: {
+        game_domain_name: "totalwarthreekingdoms",
+        game_id: 2847
+    },
     installdir: join("Total War THREE KINGDOMS"),
     gameName: "Total War THREE KINGDOMS",
     gameExe: "Three_Kingdoms.exe",

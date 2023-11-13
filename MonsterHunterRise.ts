@@ -66,6 +66,10 @@ export const supportedGames: ISupportedGames = {
 
     gameID: 270,
     steamAppID: 1446780,
+    NexusMods: {
+        game_domain_name: "monsterhunterrise",
+        game_id: 4095
+    },
     installdir: "MonsterHunterRise",
     gameName: "MonsterHunterRise",
     gameExe: "MonsterHunterRise.exe",

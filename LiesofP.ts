@@ -6,6 +6,10 @@ import { ElMessage } from "element-plus";
 export const supportedGames: ISupportedGames = {
     gameID: 325,
     steamAppID: 1627720,
+    NexusMods: {
+        game_domain_name: "liesofp",
+        game_id: 5441
+    },
     installdir: join("Lies of P"),
     gameName: "Lies of P",
     startExe: [

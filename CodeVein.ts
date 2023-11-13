@@ -6,6 +6,10 @@ import { ElMessage } from "element-plus";
 export const supportedGames: ISupportedGames = {
     gameID: 207,
     steamAppID: 678960,
+    NexusMods: {
+        game_id: 2981,
+        game_domain_name: "codevein",
+    },
     gameName: "CODE VEIN",
     installdir: "CodeVein",
     gameExe: 'CodeVein.exe',

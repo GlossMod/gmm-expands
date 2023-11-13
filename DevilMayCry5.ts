@@ -7,6 +7,10 @@ import { ElMessage } from "element-plus";
 export const supportedGames: ISupportedGames = {
     gameID: 183,
     steamAppID: 601150,
+    NexusMods: {
+        game_id: 2751,
+        game_domain_name: "devilmaycry5",
+    },
     installdir: "Devil May Cry 5",
     gameName: "Devil May Cry 5",
     gameExe: 'DevilMayCry5.exe',

@@ -21,6 +21,10 @@ async function renameFile() {
 export const supportedGames: ISupportedGames = {
     gameID: 24,
     steamAppID: 275850,
+    NexusMods: {
+        game_domain_name: "nomanssky",
+        game_id: 1634
+    },
     installdir: join("No Man's Sky", "Binaries"),
     gameName: "No Man's Sky",
     gameExe: [

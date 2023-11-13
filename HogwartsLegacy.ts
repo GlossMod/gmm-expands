@@ -10,6 +10,10 @@ import { ElMessage } from "element-plus";
 export const supportedGames: ISupportedGames = {
     gameID: 302,
     steamAppID: 990080,
+    NexusMods: {
+        game_domain_name: "hogwartslegacy",
+        game_id: 5113
+    },
     installdir: "HogwartsLegacy",
     gameName: "Hogwarts Legacy",
     gameExe: 'HogwartsLegacy.exe',

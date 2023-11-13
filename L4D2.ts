@@ -9,6 +9,10 @@ import { useManager } from "@src/stores/useManager";
 export const supportedGames: ISupportedGames = {
     gameID: 12,
     steamAppID: 550,
+    NexusMods: {
+        game_domain_name: "left4dead2",
+        game_id: 195
+    },
     installdir: "Left 4 Dead 2",
     gameName: "Left 4 Dead 2",
     gameExe: 'left4dead2.exe',

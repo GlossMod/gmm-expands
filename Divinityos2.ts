@@ -31,6 +31,10 @@ async function handlePakMod(mod: IModInfo, isInstall: boolean) {
 export const supportedGames: ISupportedGames = {
     gameID: 34,
     steamAppID: 435150,
+    NexusMods: {
+        game_domain_name: "divinityoriginalsin2",
+        game_id: 1661
+    },
     installdir: join("Divinity Original Sin 2", "DefEd", "bin"),
     gameName: "Divinity Original Sin 2",
     startExe: [

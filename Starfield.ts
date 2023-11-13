@@ -231,6 +231,10 @@ function handleSfse(mod: IModInfo, install: boolean) {
 export const supportedGames: ISupportedGames = {
     gameID: 321,
     steamAppID: 1716740,
+    NexusMods: {
+        game_domain_name: "starfield",
+        game_id: 4187
+    },
     installdir: join("Starfield"),
     gameName: "Starfield",
     gameExe: "Starfield.exe",

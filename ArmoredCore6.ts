@@ -60,6 +60,10 @@ async function handleMod(mod: IModInfo, installPath: string, isInstall: boolean)
 export const supportedGames: ISupportedGames = {
     gameID: 323,
     steamAppID: 1888160,
+    NexusMods: {
+        game_domain_name: "armoredcore6firesofrubicon",
+        game_id: 5679
+    },
     installdir: join('ARMORED CORE VI FIRES OF RUBICON', 'Game'),
     gameName: "Armored Core 6",
     gameExe: 'armoredcore6.exe',

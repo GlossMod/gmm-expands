@@ -62,6 +62,10 @@ function handleMods(mod: IModInfo, installPath: string, isInstall: boolean, mark
 export const supportedGames: ISupportedGames = {
     gameID: 4,
     steamAppID: 292030,
+    NexusMods: {
+        game_domain_name: "witcher3",
+        game_id: 952
+    },
     installdir: join("The Witcher 3", "bin", "x64"),
     gameName: "The Witcher 3",
     gameExe: [

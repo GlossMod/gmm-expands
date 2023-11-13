@@ -38,6 +38,10 @@ function handleMods(mod: IModInfo, installPath: string, isInstall: boolean) {
 export const supportedGames: ISupportedGames = {
     gameID: 14,
     steamAppID: 322330,
+    NexusMods: {
+        game_domain_name: 'dontstarvetogether',
+        game_id: 2709
+    },
     installdir: join("Don't Starve Together", "bin"),
     gameName: "Don't Starve Together",
     gameExe: [

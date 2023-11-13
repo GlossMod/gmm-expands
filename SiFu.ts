@@ -27,6 +27,10 @@ function handlePack(mod: IModInfo, installPath: string, install: boolean) {
 export const supportedGames: ISupportedGames = {
     gameID: 64,
     steamAppID: 2138710,
+    NexusMods: {
+        game_domain_name: "sifu",
+        game_id: 4309
+    },
     installdir: join("Sifu"),
     gameName: "SiFu",
     gameExe: "Sifu.exe",

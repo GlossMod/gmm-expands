@@ -92,6 +92,10 @@ function handleF4se(mod: IModInfo, install: boolean) {
 export const supportedGames: ISupportedGames = {
     gameID: 6,
     steamAppID: 377160,
+    NexusMods: {
+        game_domain_name: "fallout4",
+        game_id: 1151
+    },
     installdir: join("Fallout 4"),
     gameName: "Fallout 4",
     gameExe: [

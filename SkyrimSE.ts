@@ -93,6 +93,10 @@ function handleSkse64(mod: IModInfo, install: boolean) {
 export const supportedGames: ISupportedGames = {
     gameID: 2,
     steamAppID: 489830,
+    NexusMods: {
+        game_domain_name: "skyrimspecialedition",
+        game_id: 1704
+    },
     installdir: join("Skyrim Special Edition"),
     gameName: "Skyrim Special Edition",
     gameExe: [

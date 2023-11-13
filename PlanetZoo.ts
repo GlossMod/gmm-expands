@@ -1,5 +1,5 @@
 /**
- * @description 无人深空 支持
+ * @description 动物园之星 支持
  */
 
 import type { ISupportedGames } from "@src/model/Interfaces";
@@ -10,6 +10,10 @@ import { Manager } from "@src/model/Manager";
 export const supportedGames: ISupportedGames = {
     gameID: 327,
     steamAppID: 703080,
+    NexusMods: {
+        game_domain_name: "planetzoo",
+        game_id: 3100
+    },
     installdir: join("Planet Zoo"),
     gameName: "Planet Zoo",
     gameExe: "PlanetZoo.exe",

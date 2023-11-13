@@ -34,6 +34,10 @@ function handlePlugins(mod: IModInfo, installPath: string, isInstall: boolean) {
 export const supportedGames: ISupportedGames = {
     gameID: 167,
     steamAppID: 838350,
+    NexusMods: {
+        game_domain_name: "thescrolloftaiwu",
+        game_id: 99999
+    },
     installdir: "The Scroll Of Taiwu",
     gameName: "The Scroll Of Taiwu",
     gameExe: [

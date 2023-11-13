@@ -7,6 +7,10 @@ import { ElMessage } from "element-plus";
 export const supportedGames: ISupportedGames = {
     gameID: 180,
     steamAppID: 883710,
+    NexusMods: {
+        game_domain_name: "residentevil22019",
+        game_id: 2702
+    },
     installdir: "RESIDENT EVIL 2  BIOHAZARD RE2",
     gameName: "Resident Evil 2",
     gameExe: 're2.exe',

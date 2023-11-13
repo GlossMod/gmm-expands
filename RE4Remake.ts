@@ -7,6 +7,10 @@ import { ElMessage } from "element-plus";
 export const supportedGames: ISupportedGames = {
     gameID: 303,
     steamAppID: 2050650,
+    NexusMods: {
+        game_domain_name: "residentevil42023",
+        game_id: 5195
+    },
     installdir: "RESIDENT EVIL 4  BIOHAZARD RE4",
     gameName: "RE4Remake",
     gameExe: 're4.exe',

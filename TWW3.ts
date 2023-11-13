@@ -26,6 +26,10 @@ function handlePack(mod: IModInfo, installPath: string, install: boolean) {
 export const supportedGames: ISupportedGames = {
     gameID: 273,
     steamAppID: 1142710,
+    NexusMods: {
+        game_domain_name: "totalwarwarhammer3",
+        game_id: 4717
+    },
     installdir: join("Total War WARHAMMER III"),
     gameName: "Total War WARHAMMER III",
     gameExe: "Warhammer3.exe",

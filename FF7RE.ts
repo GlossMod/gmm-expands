@@ -6,6 +6,10 @@ import { ElMessage } from "element-plus";
 export const supportedGames: ISupportedGames = {
     gameID: 266,
     steamAppID: 1462040,
+    NexusMods: {
+        game_domain_name: "finalfantasy7remake",
+        game_id: 4202
+    },
     installdir: join("FINAL FANTASY VII REMAKE"),
     gameName: "FINAL FANTASY VII REMAKE",
     startExe: [

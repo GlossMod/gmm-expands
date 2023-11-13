@@ -35,6 +35,10 @@ function handlePlugins(mod: IModInfo, installPath: string, isInstall: boolean) {
 export const supportedGames: ISupportedGames = {
     gameID: 248,
     steamAppID: 1468810,
+    NexusMods: {
+        game_domain_name: "taleofimmortal",
+        game_id: 4447
+    },
     installdir: "鬼谷八荒",
     gameName: "Tale of Immortal",
     gameExe: 'guigubahuang.exe',

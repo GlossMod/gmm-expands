@@ -11,6 +11,10 @@ import { FileHandler } from "@src/model/FileHandler";
 export const supportedGames: ISupportedGames = {
     gameID: 261,
     steamAppID: 1547000,
+    NexusMods: {
+        game_domain_name: 'grandtheftautothetrilogy',
+        game_id: 4142
+    },
     installdir: join("GTA San Andreas - Definitive Edition", "Gameface", "Binaries", "Win64"),
     gameName: "GTA San Andreas Definitive Edition",
     gameExe: [
@@ -29,7 +33,7 @@ export const supportedGames: ISupportedGames = {
             exePath: join("Gameface", "Binaries", "Win64", "SanAndreas.exe")
         }
     ],
-    gameCoverImg: "/imgs/gtasade_logo.jpg",
+    gameCoverImg: "imgs/gtasade_logo.jpg",
     modType: [
         {
             id: 1,

@@ -11,6 +11,10 @@ import { Manager } from "@src/model/Manager";
 export const supportedGames: ISupportedGames = {
     gameID: 40,
     steamAppID: 251570,
+    NexusMods: {
+        game_id: 1059,
+        game_domain_name: "7daystodie",
+    },
     installdir: join("7 Days to Die"),
     gameName: "7 Days to Die",
     gameExe: "7DaysToDie.exe",

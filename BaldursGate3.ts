@@ -35,7 +35,7 @@ let modsettings = {
 
 
 async function LoadModDataFromPak(pakPath: string) {
-    const edge = require('electron-edge-js')
+    const edge = require('electron-edge-js-v26-only')
     const manager = useManager()
 
 
@@ -191,6 +191,10 @@ async function handleMod(mod: IModInfo, installPath: string, isInstall: boolean)
 export const supportedGames: ISupportedGames = {
     gameID: 240,
     steamAppID: 1086940,
+    NexusMods: {
+        game_domain_name: "baldursgate3",
+        game_id: 3474
+    },
     installdir: join("Baldurs Gate 3", "bin"),
     gameName: "Baldurs Gate 3",
     gameExe: [
