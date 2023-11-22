@@ -152,42 +152,6 @@ async function handlePak(mod: IModInfo, installPath: string, isInstall: boolean)
 
 //#endregion
 
-//#region data
-
-async function handleMod(mod: IModInfo, installPath: string, isInstall: boolean) {
-    const manager = useManager()
-    let res: IState[] = []
-    mod.modFiles.forEach(async item => {
-        try {
-            let modStorage = join(manager.modStorage ?? "", mod.id.toString(), item)
-
-            if (statSync(modStorage).isFile()) {
-                // 获取 public 后的路径, 包含 public
-                // let path = modStorage.split(/public/i)[1]
-                let path = FileHandler.getFolderFromPath(modStorage, 'public')
-                if (path) {
-                    let gameStorage = join(manager.gameStorage ?? "", installPath, path ?? "")
-                    if (isInstall) {
-                        let state = await FileHandler.copyFile(modStorage, gameStorage)
-                        res.push({ file: item, state: state })
-                    } else {
-                        let state = FileHandler.deleteFile(gameStorage)
-                        res.push({ file: item, state: state })
-                    }
-                }
-            }
-
-        } catch (error) {
-            res.push({ file: item, state: false })
-        }
-    })
-
-    return res
-}
-
-//#endregion
-
-
 export const supportedGames: ISupportedGames = {
     gameID: 240,
     steamAppID: 1086940,
@@ -243,12 +207,12 @@ export const supportedGames: ISupportedGames = {
         {
             id: 2,
             name: 'Data',
-            installPath: join('Data', 'Public'),
+            installPath: join('Data'),
             async install(mod) {
-                return handleMod(mod, this.installPath ?? "", true)
+                return Manager.installByFolder(mod, this.installPath ?? "", "data", true, false, true)
             },
             async uninstall(mod) {
-                return handleMod(mod, this.installPath ?? "", false)
+                return Manager.installByFolder(mod, this.installPath ?? "", "data", false, false, true)
             }
         },
         {

@@ -9,22 +9,25 @@ async function handleMod(mod: IModInfo, installPath: string, isInstall: boolean)
 
     let manager = useManager()
 
-    let modBaseFolder = ""
+    let modBaseFolder: string[] = []
     mod.modFiles.forEach(item => {
         let path = join(manager.modStorage, mod.id.toString(), item)
         if (basename(path).toLowerCase() == "about.xml") {
-            modBaseFolder = join(path, '..', '..')
+            // modBaseFolder = join(path, '..', '..')
+            modBaseFolder.push(join(path, '..', '..'));
         }
     })
-    if (modBaseFolder != "") {
+    if (modBaseFolder.length > 0) {
         console.log(modBaseFolder);
-
-        let destPath = join(manager.gameStorage, installPath, basename(modBaseFolder))
-        if (isInstall) {
-            return FileHandler.createLink(modBaseFolder, destPath)
-        } else {
-            return FileHandler.removeLink(destPath)
-        }
+        modBaseFolder.forEach(item => {
+            let destPath = join(manager.gameStorage, installPath, basename(item))
+            if (isInstall) {
+                FileHandler.createLink(item, destPath)
+            } else {
+                FileHandler.removeLink(destPath)
+            }
+        })
+        return true
     } else {
         ElMessage.error("未找到 about.xml 文件, 无法安装!")
         return false

@@ -157,7 +157,7 @@ export const supportedGames: ISupportedGames = {
         },
         {
             name: "直接启动",
-            exePath: join("Gameface", "Binaries", "Win64", "SanAndreas.exe")
+            exePath: join("RDR2.exe")
         }
     ],
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/208.png",
@@ -207,6 +207,17 @@ export const supportedGames: ISupportedGames = {
             }
         },
         {
+            id: 5,
+            name: 'script',
+            installPath: join('scripts'),
+            async install(mod) {
+                return Manager.generalInstall(mod, this.installPath ?? "", true)
+            },
+            async uninstall(mod) {
+                return Manager.generalUninstall(mod, this.installPath ?? "", true)
+            }
+        },
+        {
             id: 99,
             name: "未知",
             installPath: "",
@@ -225,6 +236,7 @@ export const supportedGames: ISupportedGames = {
         let folderList = ['x64']
         let lml = false
         let ScriptHookRDR2 = false
+        let scripts = false
 
         mod.modFiles.forEach(item => {
             // 判断目录是否包含 folderList
@@ -232,6 +244,7 @@ export const supportedGames: ISupportedGames = {
             if (list.some(item => folderList.includes(item))) rootFolder = true
 
             if (extname(item) == '.asi') asi = true
+            if (extname(item) == '.dll') scripts = true
             if (basename(item) == 'install.xml') lml = true
             if (basename(item) == 'ScriptHookRDR2.dll') ScriptHookRDR2 = true
         })
@@ -241,6 +254,7 @@ export const supportedGames: ISupportedGames = {
         if (lml) return 2
         if (asi) return 1
         if (rootFolder) return 3
+        if (scripts) return 5
 
 
         return 99
