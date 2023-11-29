@@ -35,51 +35,7 @@ let mods_xml = {
 
 
 function asi(mod: IModInfo, isInstall: boolean) {
-    // 将 *.asi 文件复制到游戏根目录
-    // 同时复制 与 *.asi 同名级的所有文件
-    let manager = useManager()
-    let modStorage = join(manager.modStorage, mod.id.toString())
-    let gameStorage = join(manager.gameStorage ?? "")
-
-    let files = [] as {
-        folder: string
-        files: string[]
-    }[]
-
-    mod.modFiles.forEach(item => {
-        if (extname(item) === '.asi') {
-            // 获取所在文件夹
-            let folder = join(modStorage, item)
-            folder = join(folder, '..')
-            files.push({
-                folder: folder,
-                files: FileHandler.getAllFilesInFolder(folder, true, true)
-            })
-        }
-    })
-
-    // files 去重
-    files = [...new Set(files)]
-    files.forEach(item => {
-        if (isInstall) {
-            item.files.forEach(file => {
-                // 从 file 中移除 item.folder
-                let source = file;
-                file = file.replace(item.folder, '')
-                let target = join(gameStorage, file)
-                FileHandler.copyFile(source, target)
-            })
-        } else {
-            item.files.forEach(file => {
-                // 从 file 中移除 item.folder
-                file = file.replace(item.folder, '')
-                let target = join(gameStorage, file)
-                FileHandler.deleteFile(target)
-            })
-        }
-    })
-
-    return true
+    return Manager.installByFileSibling(mod, "", '.asi', isInstall, true)
 }
 
 async function install_xml(file: string, isInstall: boolean) {
@@ -123,7 +79,12 @@ async function install_xml(file: string, isInstall: boolean) {
 }
 
 function lmi(mod: IModInfo, installPath: string, isInstall: boolean) {
-    asi(mod, isInstall)
+
+    // 判断 mod.modFiles 是否有包含 *.asi 的文件
+    if (mod.modFiles.some(item => extname(item) == '.asi')) {
+        asi(mod, isInstall)
+    }
+
     let manager = useManager()
     let modStorage = join(manager.modStorage, mod.id.toString())
     // 获取 install.xml 路径
@@ -131,8 +92,10 @@ function lmi(mod: IModInfo, installPath: string, isInstall: boolean) {
     if (xml) {
         xml.forEach(item => {
             install_xml(join(modStorage, item), isInstall)
+            Manager.installByFileSibling(mod, join(installPath, basename(join(item, '..'))), "install.xml", isInstall)
         })
-        return Manager.installByFile(mod, installPath, "install.xml", isInstall)
+        // return Manager.installByFileSibling(mod, installPath, "install.xml", isInstall)
+        return true
     } else {
         ElMessage.warning("未找到 install.xml")
         return false
@@ -165,7 +128,7 @@ export const supportedGames: ISupportedGames = {
         {
             id: 1,
             name: "asi",
-            installPath: join("Gameface", "Content", "Paks", "~mods"),
+            installPath: join(""),
             async install(mod) {
                 return asi(mod, true)
             },
@@ -175,7 +138,7 @@ export const supportedGames: ISupportedGames = {
         },
         {
             id: 2,
-            name: "lmi",
+            name: "lml",
             installPath: join("lml"),
             async install(mod) {
                 return lmi(mod, this.installPath ?? "", true)
@@ -200,10 +163,11 @@ export const supportedGames: ISupportedGames = {
             name: "ScriptHookRDR2",
             installPath: "",
             async install(mod) {
-                return Manager.generalInstall(mod, this.installPath ?? "", false)
+                // ScriptHookRDR2.dll
+                return Manager.installByFileSibling(mod, this.installPath ?? "", 'ScriptHookRDR2.dll', true)
             },
             async uninstall(mod) {
-                return Manager.generalUninstall(mod, this.installPath ?? "", false)
+                return Manager.installByFileSibling(mod, this.installPath ?? "", 'ScriptHookRDR2.dll', false)
             }
         },
         {
