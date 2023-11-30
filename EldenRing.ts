@@ -81,7 +81,7 @@ export const supportedGames: ISupportedGames = {
         {
             id: 1,
             name: '通用类型',
-            installPath: '\\mods',
+            installPath: join("mods"),
             async install(mod) {
                 return handleMod(mod, this.installPath ?? '', true)
             },
@@ -92,7 +92,7 @@ export const supportedGames: ISupportedGames = {
         {
             id: 2,
             name: 'Engine 2',
-            installPath: "\\",
+            installPath: join(""),
             async install(mod) {
                 return Manager.generalInstall(mod, this.installPath ?? "", true)
             },
