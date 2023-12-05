@@ -3,17 +3,17 @@
  */
 
 import type { ISupportedGames } from "@src/model/Interfaces";
-import { basename, join, extname } from "node:path"
-import { ElMessage } from "element-plus";
+import { join, basename, extname } from "node:path"
+import { UnityGame } from "@src/model/UnityGame";
 import { Manager } from "@src/model/Manager";
+import { homedir } from 'os'
 
 
 export const supportedGames: ISupportedGames = {
     gameID: 326,
     steamAppID: 949230,
-    NexusMods: {
-        game_id: 5833,
-        game_domain_name: "citiesskylines2",
+    Thunderstore: {
+        community_identifier: 'cities-skylines-ii'
     },
     installdir: join("Cities Skylines II"),
     gameName: "Cities Skylines II",
@@ -31,62 +31,35 @@ export const supportedGames: ISupportedGames = {
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/6535dbba96ba3.webp",
     modType: [
         {
-            id: 1,
-            name: "BepInEx",
-            installPath: join(""),
-            async install(mod) {
-                return Manager.installByFileSibling(mod, this.installPath ?? "", 'winhttp.dll', true)
-            },
-            async uninstall(mod) {
-                return Manager.installByFileSibling(mod, this.installPath ?? "", 'winhttp.dll', false)
-            }
-        },
-        {
-            id: 2,
-            name: "plugins",
-            installPath: join("BepInEx", "plugins"),
-            async install(mod) {
-                return Manager.installByFolder(mod, this.installPath ?? "", "plugins", true, false, true)
-            },
-            async uninstall(mod) {
-                return Manager.installByFolder(mod, this.installPath ?? "", "plugins", false, false, true)
-            }
-        },
-        {
-            id: 3,
-            name: "游戏根目录",
-            installPath: join(""),
-            async install(mod) {
-                return Manager.generalInstall(mod, this.installPath ?? "", false)
-            },
-            async uninstall(mod) {
-                return Manager.generalUninstall(mod, this.installPath ?? "", false)
-            }
-        },
-        {
-            id: 99,
-            name: "未知",
+            id: 4,
+            name: 'Map',
             installPath: "",
             async install(mod) {
-                ElMessage.warning("未知类型, 请手动安装")
-                return false
+                // "%UserProfile%\AppData\LocalLow\Colossal Order\Cities Skylines II\Maps"
+                let installPath = join(homedir(), "AppData", "LocalLow", "Colossal Order", "Cities Skylines II", "Maps")
+                return Manager.installByFileSibling(mod, installPath, '.cok', true, true, false)
             },
             async uninstall(mod) {
-                return true
+                let installPath = join(homedir(), "AppData", "LocalLow", "Colossal Order", "Cities Skylines II", "Maps")
+                return Manager.installByFileSibling(mod, installPath, '.cok', false, true, false)
             }
-        }
+        },
+        ...UnityGame.modType
     ],
     checkModType(mod) {
         let BepInEx = false
         let plugins = false
+        let map = false
 
         mod.modFiles.forEach(item => {
             if (basename(item).toLowerCase() == 'winhttp.dll') BepInEx = true
             if (extname(item) == '.dll') plugins = true
+            if (extname(item) == '.cok') map = true
         })
 
         if (BepInEx) return 1
         if (plugins) return 2
+        if (map) return 4
 
         return 99
     }

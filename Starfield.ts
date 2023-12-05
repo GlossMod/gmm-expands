@@ -260,7 +260,7 @@ export const supportedGames: ISupportedGames = {
             installPath: join("Data"),
             async install(mod) {
                 setArchive();
-                symlinkData();
+                // symlinkData();
                 setPlugins(mod, true)
                 return Manager.installByFolder(mod, this.installPath ?? "", "data", true, false, true)
             },

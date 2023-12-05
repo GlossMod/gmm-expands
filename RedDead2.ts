@@ -35,6 +35,13 @@ let mods_xml = {
 
 
 function asi(mod: IModInfo, isInstall: boolean) {
+    let manager = useManager()
+    let modStorage = join(manager.modStorage, mod.id.toString())
+    mod.modFiles.forEach(item => {
+        if (basename(item) == 'install.xml') {
+            install_xml(join(modStorage, item), isInstall)
+        }
+    })
     return Manager.installByFileSibling(mod, "", '.asi', isInstall, true)
 }
 
@@ -79,12 +86,6 @@ async function install_xml(file: string, isInstall: boolean) {
 }
 
 function lmi(mod: IModInfo, installPath: string, isInstall: boolean) {
-
-    // 判断 mod.modFiles 是否有包含 *.asi 的文件
-    if (mod.modFiles.some(item => extname(item) == '.asi')) {
-        asi(mod, isInstall)
-    }
-
     let manager = useManager()
     let modStorage = join(manager.modStorage, mod.id.toString())
     // 获取 install.xml 路径
@@ -215,8 +216,8 @@ export const supportedGames: ISupportedGames = {
 
         if (ScriptHookRDR2) return 4
 
-        if (lml) return 2
         if (asi) return 1
+        if (lml) return 2
         if (rootFolder) return 3
         if (scripts) return 5
 

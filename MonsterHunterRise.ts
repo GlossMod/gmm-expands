@@ -62,6 +62,44 @@ function handleMod(mod: IModInfo, installPath: string, isInstall: boolean) {
     return res
 }
 
+
+function handlePak(mod: IModInfo, isInstall: boolean) {
+    const manager = useManager()
+
+    mod.modFiles.forEach(item => {
+        let modStorage = join(manager.modStorage ?? "", mod.id.toString(), item)
+        if (statSync(modStorage).isFile()) {
+            let gameStorage = join(manager.gameStorage ?? "")
+            // 获取游戏目录下所有 *.pak 文件
+            let pakFiles = FileHandler.getFolderFiles(gameStorage).filter(item => extname(item) == '.pak')
+            console.log(pakFiles);
+            // 获取 "re_chunk_000.pak.patch_001.pak" 中的 patch_001.pak 为 1
+            let pakNum = pakFiles.map(item => {
+                let name = basename(item)
+                let num = name.split('.pak')
+                // 获取 倒数第二个
+                let num2 = num[num.length - 2]
+                return Number.isNaN(Number(num2.split('_')[1])) ? 0 : Number(num2.split('_')[1])
+            })
+            // 获取最大的数字
+            let maxNum = Math.max(...pakNum)
+
+            // 001 或 010
+            let num = isInstall ? String(maxNum + 1).padStart(3, '0') : String(maxNum).padStart(3, '0')
+            let pakName = `re_chunk_000.pak.patch_${num}.pak`
+            console.log(pakName);
+
+            let gamePak = join(gameStorage, pakName)
+            if (isInstall) {
+                FileHandler.copyFile(modStorage, gamePak)
+            } else {
+                if (num != '001') FileHandler.deleteFile(gamePak)
+            }
+        }
+    })
+    return true
+}
+
 export const supportedGames: ISupportedGames = {
 
     gameID: 270,
@@ -134,11 +172,10 @@ export const supportedGames: ISupportedGames = {
             name: "pak",
             installPath: join(''),
             async install(mod) {
-                ElMessage.warning("pak 类型暂时无法自动安装, 需要您手动去修改文件名, 重命名为最新的顺位 patch_00x ")
-                return false
+                return handlePak(mod, true)
             },
             async uninstall(mod) {
-                return true
+                return handlePak(mod, false)
             }
         },
         {
