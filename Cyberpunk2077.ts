@@ -204,7 +204,6 @@ export const supportedGames: ISupportedGames = {
             // 判断目录是否包含 folderList
             let list = FileHandler.pathToArray(item)
             // console.log(list);
-            console.log(list);
 
             if (list.some(item => folderList.includes(item))) mainFolder = true
             // 是否有archive文件
