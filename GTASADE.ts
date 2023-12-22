@@ -9,7 +9,7 @@ import { Manager } from "@src/model/Manager";
 import { FileHandler } from "@src/model/FileHandler";
 
 export const supportedGames: ISupportedGames = {
-    gameID: 261,
+    gameID: 258,
     steamAppID: 1547000,
     NexusMods: {
         game_domain_name: 'grandtheftautothetrilogy',

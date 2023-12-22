@@ -49,7 +49,7 @@ export const supportedGames: ISupportedGames = {
         {
             id: 1,
             name: "pak",
-            installPath: join("Sifu", "Content", "Paks"),
+            installPath: join("Sifu", "Content", "Paks", "~mods"),
             async install(mod) {
                 return Manager.generalInstall(mod, this.installPath ?? "", false)
             },
