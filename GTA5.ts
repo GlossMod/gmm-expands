@@ -241,14 +241,16 @@ async function tyfHandler(mod: IModInfo, isInstall: boolean) {
 
 //#region 人物
 
-async function pedItem(name: string, isInstall: boolean) {
+async function pedItem(name: string, mod: IModInfo, isInstall: boolean) {
     let xml = {
-        "Name": [name],
+        "Name": [
+            mod.advanced?.enabled ? mod.advanced.data.name : name
+        ],
         "PropsName": [
-            "null"
+            mod.advanced?.enabled ? mod.advanced.data.mod.Pedtype : "null"
         ],
         "ClipDictionaryName": [
-            "move_f@generic"
+            mod.advanced?.enabled ? mod.advanced.data.ClipDictionaryName : "move_f@generic"
         ],
         "BlendShapeFileName": [
             "null"
@@ -266,7 +268,7 @@ async function pedItem(name: string, isInstall: boolean) {
             "CIVFEMALE"
         ],
         "MovementClipSet": [
-            "move_f@generic"
+            mod.advanced?.enabled ? mod.advanced.data.MovementClipSet : "move_f@generic"
         ],
         "StrafeClipSet": [
             "move_ped_strafing"
@@ -305,10 +307,10 @@ async function pedItem(name: string, isInstall: boolean) {
             "NMBS_SLOW_GETUPS"
         ],
         "CreatureMetadataName": [
-            "null"
+            mod.advanced?.enabled ? mod.advanced.data.CreatureMetadataName : "null"
         ],
         "DecisionMakerName": [
-            "DEFAULT"
+            mod.advanced?.enabled ? mod.advanced.data.DecisionMakerName : "DEFAULT"
         ],
         "MotionTaskDataSetName": [
             "STANDARD_PED"
@@ -337,7 +339,7 @@ async function pedItem(name: string, isInstall: boolean) {
         "IsStreamedGfx": [
             {
                 "$": {
-                    "value": "false"
+                    "value": mod.advanced?.enabled ? mod.advanced.data.Streamed : "false"
                 }
             }
         ],
@@ -392,10 +394,10 @@ async function pedItem(name: string, isInstall: boolean) {
             "WEAPON_UNARMED"
         ],
         "Personality": [
-            "Streamed_Female"
+            mod.advanced?.enabled ? mod.advanced.data.Personality : "Streamed_Female"
         ],
         "CombatInfo": [
-            "DEFAULT"
+            mod.advanced?.enabled ? mod.advanced.data.CombatInfo : "DEFAULT"
         ],
         "VfxInfoName": [
             "VFXPEDINFO_HUMAN_GENERIC"
@@ -593,7 +595,7 @@ async function yddHandler(mod: IModInfo, isInstall: boolean) {
     names = [...new Set(names)]
     for (let index = 0; index < names.length; index++) {
         const item = names[index];
-        await pedItem(item, isInstall);
+        await pedItem(item, mod, isInstall);
     }
 
     buidGmm()
@@ -749,6 +751,159 @@ export const supportedGames: ISupportedGames = {
             },
             async uninstall(mod) {
                 return yddHandler(mod, false)
+            },
+            advanced: {
+                name: "配置",
+                icon: "mdi-align-horizontal-center",
+                item: [
+                    {
+                        type: "input",
+                        label: "模型名称",
+                        key: "name"
+                    },
+                    {
+                        type: "selects",
+                        label: "角色性别",
+                        key: "sex",
+                        selectItem: [
+                            { name: "男", value: "Male" },
+                            { name: "女", value: "Female" }
+                        ],
+                        defaultValue: "Female"
+                    },
+                    {
+                        type: "selects",
+                        label: "类型",
+                        key: "Pedtype",
+                        selectItem: [
+                            { name: "CIVMALE", value: "CIVMALE" },
+                            { name: "CIVFEMALE", value: "CIVFEMALE" }
+                        ],
+                        defaultValue: "CIVMALE"
+                    },
+                    {
+                        type: "switch",
+                        label: "组合",
+                        key: "Streamed"
+                    },
+                    {
+                        type: "selects",
+                        label: "词典名称",
+                        key: "ClipDictionaryName",
+                        selectItem: [
+                            { name: "move_f@generic", value: "move_f@generic" },
+                            { name: "move_m@generic", value: "move_m@generic" },
+                            { name: "move_m@tool_belt@a", value: "move_m@tool_belt@a" },
+                            { name: "move_m@shy@a", value: "move_m@shy@a" }
+                        ],
+                        defaultValue: "move_f@generic"
+                    },
+                    {
+                        type: "selects",
+                        label: "走路姿势",
+                        key: "MovementClipSet",
+                        selectItem: [
+                            { name: "ANIM_GROUP_MOVE_BALLISTIC", value: "ANIM_GROUP_MOVE_BALLISTIC" },
+                            { name: "ANIM_GROUP_MOVE_LEMAR_ALLEY", value: "ANIM_GROUP_MOVE_LEMAR_ALLEY" },
+                            { name: "clipset@move@trash_fast_turn", value: "clipset@move@trash_fast_turn" },
+                            { name: "FEMALE_FAST_RUNNER", value: "FEMALE_FAST_RUNNER" },
+                            { name: "missfbi4prepp1_garbageman", value: "missfbi4prepp1_garbageman" },
+                            { name: "move_characters@franklin@fire", value: "move_characters@franklin@fire" },
+                            { name: "move_characters@Jimmy@slow@", value: "move_characters@Jimmy@slow@" },
+                            { name: "move_characters@michael@fire", value: "move_characters@michael@fire" },
+                            { name: "move_f@flee@a", value: "move_f@flee@a" },
+                            { name: "move_f@scared", value: "move_f@scared" },
+                            { name: "move_f@sexy@a", value: "move_f@sexy@a" },
+                            { name: "move_heist_lester", value: "move_heist_lester" },
+                            { name: "move_injured_generic", value: "move_injured_generic" },
+                            { name: "move_lester_CaneUp", value: "move_lester_CaneUp" },
+                            { name: "move_m@bag", value: "move_m@bag" },
+                            { name: "MOVE_M@BAIL_BOND_NOT_TAZERED", value: "MOVE_M@BAIL_BOND_NOT_TAZERED" },
+                            { name: "MOVE_M@BAIL_BOND_TAZERED", value: "MOVE_M@BAIL_BOND_TAZERED" },
+                            { name: "move_m@brave", value: "move_m@brave" },
+                            { name: "move_m@casual@d", value: "move_m@casual@d" },
+                            { name: "move_m@drunk@moderatedrunk", value: "move_m@drunk@moderatedrunk" },
+                            { name: "MOVE_M@DRUNK@MODERATEDRUNK", value: "MOVE_M@DRUNK@MODERATEDRUNK" },
+                            { name: "MOVE_M@DRUNK@MODERATEDRUNK_HEAD_UP", value: "MOVE_M@DRUNK@MODERATEDRUNK_HEAD_UP" },
+                            { name: "MOVE_M@DRUNK@SLIGHTLYDRUNK", value: "MOVE_M@DRUNK@SLIGHTLYDRUNK" },
+                            { name: "MOVE_M@DRUNK@VERYDRUNK", value: "MOVE_M@DRUNK@VERYDRUNK" },
+                            { name: "move_m@fire", value: "move_m@fire" },
+                            { name: "move_m@gangster@var_e", value: "move_m@gangster@var_e" },
+                            { name: "move_m@gangster@var_f", value: "move_m@gangster@var_f" },
+                            { name: "move_m@gangster@var_i", value: "move_m@gangster@var_i" },
+                            { name: "move_m@JOG@", value: "move_m@JOG@" },
+                            { name: "MOVE_M@PRISON_GAURD", value: "MOVE_M@PRISON_GAURD" },
+                            { name: "MOVE_P_M_ONE", value: "MOVE_P_M_ONE" },
+                            { name: "MOVE_P_M_ONE_BRIEFCASE", value: "MOVE_P_M_ONE_BRIEFCASE" },
+                            { name: "move_p_m_zero_janitor", value: "move_p_m_zero_janitor" },
+                            { name: "move_p_m_zero_slow", value: "move_p_m_zero_slow" },
+                            { name: "move_ped_bucket", value: "move_ped_bucket" },
+                            { name: "move_ped_crouched", value: "move_ped_crouched" },
+                            { name: "move_ped_mop", value: "move_ped_mop" },
+                            { name: "MOVE_M@FEMME@", value: "MOVE_M@FEMME@" },
+                            { name: "MOVE_F@FEMME@", value: "MOVE_F@FEMME@" },
+                            { name: "MOVE_M@GANGSTER@NG", value: "MOVE_M@GANGSTER@NG" },
+                            { name: "MOVE_F@GANGSTER@NG", value: "MOVE_F@GANGSTER@NG" },
+                            { name: "MOVE_M@POSH@", value: "MOVE_M@POSH@" },
+                            { name: "MOVE_F@POSH@", value: "MOVE_F@POSH@" },
+                            { name: "MOVE_M@TOUGH_GUY@", value: "MOVE_M@TOUGH_GUY@" },
+                            { name: "MOVE_F@TOUGH_GUY@", value: "MOVE_F@TOUGH_GUY@" }
+                        ],
+                        defaultValue: "move_f@generic"
+                    },
+                    {
+                        type: "selects",
+                        label: "源数据",
+                        key: "CreatureMetadataName",
+                        selectItem: [
+                            { name: "null", value: "null" },
+                            { name: "ambientPed_upperWrinkles", value: "ambientPed_upperWrinkles" },
+                            { name: "3Lateral_Facial", value: "3Lateral_Facial" },
+                            { name: "MP_CreatureMetadata", value: "MP_CreatureMetadata" }
+                        ],
+                        defaultValue: "null"
+                    },
+                    {
+                        type: "selects",
+                        label: "所属派系",
+                        key: "DecisionMakerName",
+                        selectItem: [
+                            { name: "默认", value: "DEFAULT" },
+                            { name: "帮派", value: "GANG" },
+                            { name: "警察", value: "COP" }
+                        ],
+                        defaultValue: "DEFAULT"
+                    },
+                    {
+                        type: "selects",
+                        key: "Personality",
+                        label: "性格",
+                        selectItem: [
+                            { name: "Streamed_Male", value: "Streamed_Male" },
+                            { name: "Streamed_Female", value: "Streamed_Female" },
+                            { name: "FitnessMale", value: "FitnessMale" },
+                            { name: "FitnessFemale", value: "FitnessFemale" },
+                            { name: "VAGOS", value: "VAGOS" },
+                            { name: "MERRYWEATHER", value: "MERRYWEATHER" },
+                            { name: "SERVICEMALES", value: "SERVICEMALES" },
+                            { name: "SERVICEFEMALES", value: "SERVICEFEMALES" },
+                            { name: "YOUNGAVERAGETOUGHWOMAN", value: "YOUNGAVERAGETOUGHWOMAN" },
+                            { name: "CONSTRUCTION", value: "CONSTRUCTION" }
+                        ],
+                        defaultValue: "Streamed_Male"
+                    },
+                    {
+                        type: "selects",
+                        key: "CombatInfo",
+                        label: "战斗动作",
+                        selectItem: [
+                            { name: "默认", value: "DEFAULT" },
+                            { name: "帮派", value: "GANG" },
+                            { name: "警察", value: "COP" }
+                        ],
+                        defaultValue: "DEFAULT"
+                    }
+                ]
             }
         },
         {
