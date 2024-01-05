@@ -1,5 +1,5 @@
 /**
- * @description 无人深空 支持
+ * @description GTA5 支持
  */
 
 import type { IModInfo, ISupportedGames } from "@src/model/Interfaces";
