@@ -250,13 +250,13 @@ async function pedItem(name: string, mod: IModInfo, isInstall: boolean) {
             mod.advanced?.enabled ? mod.advanced.data.Pedtype : "null"
         ],
         "ClipDictionaryName": [
-            mod.advanced?.enabled ? mod.advanced.data.ClipDictionaryName : "move_f@generic"
+            mod.advanced?.enabled ? mod.advanced.data.ClipDictionaryName : "move_m@generic"
         ],
         "BlendShapeFileName": [
             "null"
         ],
         "ExpressionSetName": [
-            "expr_set_ambient_female"
+            "expr_set_ambient_male"
         ],
         "ExpressionDictionaryName": [
             "null"
@@ -265,10 +265,10 @@ async function pedItem(name: string, mod: IModInfo, isInstall: boolean) {
             "null"
         ],
         "Pedtype": [
-            "CIVFEMALE"
+            "CIVMALE"
         ],
         "MovementClipSet": [
-            mod.advanced?.enabled ? mod.advanced.data.MovementClipSet : "move_f@generic"
+            mod.advanced?.enabled ? mod.advanced.data.MovementClipSet : "move_m@generic"
         ],
         "StrafeClipSet": [
             "move_ped_strafing"
@@ -286,13 +286,13 @@ async function pedItem(name: string, mod: IModInfo, isInstall: boolean) {
             "dam_ad"
         ],
         "DefaultGestureClipSet": [
-            "ANIM_GROUP_GESTURE_F_GENERIC"
+            "ANIM_GROUP_GESTURE_M_GENERIC"
         ],
         "FacialClipsetGroupName": [
-            "facial_clipset_group_gen_female"
+            "facial_clipset_group_gen_male"
         ],
         "DefaultVisemeClipSet": [
-            "ANIM_GROUP_VISEMES_F_LO"
+            "ANIM_GROUP_VISEMES_M_LO"
         ],
         "SidestepClipSet": [
             "CLIP_SET_ID_INVALID"
@@ -319,7 +319,7 @@ async function pedItem(name: string, mod: IModInfo, isInstall: boolean) {
             "STANDARD_PED"
         ],
         "PedCapsuleName": [
-            "STANDARD_FEMALE"
+            "STANDARD_MALE"
         ],
         "PedLayoutName": [
             ""
@@ -379,7 +379,7 @@ async function pedItem(name: string, mod: IModInfo, isInstall: boolean) {
             }
         ],
         "RelationshipGroup": [
-            "CIVFEMALE"
+            "CIVMALE"
         ],
         "NavCapabilitiesName": [
             "STANDARD_PED"
@@ -394,7 +394,7 @@ async function pedItem(name: string, mod: IModInfo, isInstall: boolean) {
             "WEAPON_UNARMED"
         ],
         "Personality": [
-            mod.advanced?.enabled ? mod.advanced.data.Personality : "Streamed_Female"
+            mod.advanced?.enabled ? mod.advanced.data.Personality : "Streamed_Male"
         ],
         "CombatInfo": [
             mod.advanced?.enabled ? mod.advanced.data.CombatInfo : "DEFAULT"
@@ -406,10 +406,10 @@ async function pedItem(name: string, mod: IModInfo, isInstall: boolean) {
             "FLEE"
         ],
         "Radio1": [
-            "RADIO_GENRE_PUNK"
+            "RADIO_GENRE_CLASSIC_ROCK"
         ],
         "Radio2": [
-            "RADIO_GENRE_JAZZ"
+            "RADIO_GENRE_RIGHT_WING_TALK"
         ],
         "FUpOffset": [
             {
