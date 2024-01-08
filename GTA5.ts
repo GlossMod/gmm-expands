@@ -247,7 +247,7 @@ async function pedItem(name: string, mod: IModInfo, isInstall: boolean) {
             mod.advanced?.enabled ? mod.advanced.data.name : name
         ],
         "PropsName": [
-            mod.advanced?.enabled ? mod.advanced.data.mod.Pedtype : "null"
+            mod.advanced?.enabled ? mod.advanced.data.Pedtype : "null"
         ],
         "ClipDictionaryName": [
             mod.advanced?.enabled ? mod.advanced.data.ClipDictionaryName : "move_f@generic"
@@ -576,17 +576,38 @@ async function yddHandler(mod: IModInfo, isInstall: boolean) {
     let names = []
 
     const target = join(tools_path, "gmm", "x64", "peds.rpf")
-    for (let index = 0; index < mod.modFiles.length; index++) {
+    for (let index in mod.modFiles) {
         const item = mod.modFiles[index];
         let types = ['.ydd', '.yft', '.yld', '.ymt', '.ytd']
-        if (types.includes(extname(item))) {
-            // 不包含后缀的文件名
-            names.push(basename(item, extname(item)))
+        let source = join(manager.modStorage, mod.id.toString(), item)
 
-            if (isInstall) {
-                await FileHandler.copyFile(join(manager.modStorage, mod.id.toString(), item), join(target, basename(item)))
+        if (types.includes(extname(item)) || FileHandler.isDir(source)) {
+            if (mod.advanced?.enabled && mod.advanced.data.Streamed) {
+                // 如果是组合式
+                if (basename(item, extname(item)) == mod.advanced.data.name) {
+                    names.push(mod.advanced.data.name)
+                    if (isInstall) {
+                        if (FileHandler.isDir(source)) {
+                            await FileHandler.copyFolder(source, join(target, basename(item)))
+                        } else {
+                            await FileHandler.copyFile(source, join(target, basename(item)))
+                        }
+                    } else {
+                        if (FileHandler.isDir(join(target, basename(item)))) {
+                            await FileHandler.deleteFolder(join(target, basename(item)))
+                        } else {
+                            await FileHandler.deleteFile(join(target, basename(item)))
+                        }
+                    }
+                }
             } else {
-                await FileHandler.deleteFile(join(target, basename(item)))
+                // 如果不是组合式
+                names.push(basename(item, extname(item)))
+                if (isInstall) {
+                    await FileHandler.copyFile(join(manager.modStorage, mod.id.toString(), item), join(target, basename(item)))
+                } else {
+                    await FileHandler.deleteFile(join(target, basename(item)))
+                }
             }
         }
     }
@@ -601,9 +622,8 @@ async function yddHandler(mod: IModInfo, isInstall: boolean) {
     buidGmm()
 
     return true
+
 }
-
-
 
 //#endregion
 
