@@ -603,10 +603,12 @@ async function yddHandler(mod: IModInfo, isInstall: boolean) {
             } else {
                 // 如果不是组合式
                 names.push(basename(item, extname(item)))
-                if (isInstall) {
-                    await FileHandler.copyFile(join(manager.modStorage, mod.id.toString(), item), join(target, basename(item)))
-                } else {
-                    await FileHandler.deleteFile(join(target, basename(item)))
+                if (!FileHandler.isDir(source)) {
+                    if (isInstall) {
+                        await FileHandler.copyFile(source, join(target, basename(item)))
+                    } else {
+                        await FileHandler.deleteFile(join(target, basename(item)))
+                    }
                 }
             }
         }

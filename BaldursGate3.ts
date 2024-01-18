@@ -73,7 +73,7 @@ async function handlePak(mod: IModInfo, installPath: string, isInstall: boolean)
 
     if (!Manager.checkInstalled("博德之门3 前置插件 For GMM", 200783)) return false
 
-    if (isInstall) if (!Manager.checkInstalled("Patch 3 Mod Fixer", 200740)) return false
+    // if (isInstall) if (!Manager.checkInstalled("Patch 3 Mod Fixer", 200740)) return false
     let res: IState[] = []
     let manager = useManager()
 
@@ -223,10 +223,6 @@ export const supportedGames: ISupportedGames = {
                 if (mod.webId == 201398) {
                     // 安装 Native Mod Loader
                     let manager = useManager()
-                    // let bin = join(manager.gameStorage ?? "", 'bin')
-                    // await FileHandler.renameFile(join(bin, 'bink2w64.dll'), join(bin, 'bink2w64_original.dll')).catch(() => { })
-                    // let modFile = join(manager.modStorage ?? "", mod.id.toString(), 'bin', 'bink2w64.dll')
-                    // await FileHandler.copyFile(modFile, join(bin, 'bink2w64.dll'))
 
                     mod.modFiles.forEach(item => {
                         let modStorage = join(manager.modStorage ?? "", mod.id.toString(), item)
@@ -243,9 +239,6 @@ export const supportedGames: ISupportedGames = {
                 if (mod.webId == 201398) {
                     // 卸载 Native Mod Loader
                     let manager = useManager()
-                    // let bin = join(manager.gameStorage ?? "", 'bin')
-                    // await FileHandler.deleteFile(join(bin, 'bink2w64.dll'))
-                    // await FileHandler.renameFile(join(bin, 'bink2w64_original.dll'), join(bin, 'bink2w64.dll'))
                     mod.modFiles.forEach(item => {
                         let modStorage = join(manager.modStorage ?? "", mod.id.toString(), item)
                         if (statSync(modStorage).isFile()) {
@@ -281,6 +274,17 @@ export const supportedGames: ISupportedGames = {
             }
         },
         {
+            id: 6,
+            name: "bg3se",
+            installPath: join('bin'),
+            async install(mod) {
+                return Manager.generalInstall(mod, this.installPath ?? "", true)
+            },
+            async uninstall(mod) {
+                return Manager.generalUninstall(mod, this.installPath ?? "", true)
+            }
+        },
+        {
             id: 99,
             name: '未知',
             installPath: '',
@@ -301,6 +305,7 @@ export const supportedGames: ISupportedGames = {
         let data = false
         let native = false
         let bin = false
+        let bg3se = false
 
         mod.modFiles.forEach(item => {
             let exe = extname(item)
@@ -309,7 +314,10 @@ export const supportedGames: ISupportedGames = {
             if (item.toLowerCase().includes('data')) data = true
             if (item.toLowerCase().includes('bin')) bin = true
             if (exe == '.dll') native = true
+            if (basename(item).toLowerCase() == 'DWrite.dll'.toLowerCase()) bg3se = true
         })
+
+        if (bg3se) return 6
 
         if (pak) return 1
         if (data) return 2
