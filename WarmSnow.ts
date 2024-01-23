@@ -8,7 +8,7 @@ import { UnityGame } from "@src/model/UnityGame";
 
 
 export const supportedGames: ISupportedGames = {
-    gameID: 274,
+    GlossGameId: 274,
     steamAppID: 1296830,
     installdir: join("WarmSnow"),
     gameName: "WarmSnow",

@@ -19,7 +19,7 @@ async function handleMod(mod: IModInfo, isInstall: boolean) {
 
 
 export const supportedGames: ISupportedGames = {
-    gameID: 8,
+    GlossGameId: 8,
     steamAppID: 1222670,
     NexusMods: {
         game_domain_name: 'thesims4',

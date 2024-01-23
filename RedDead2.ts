@@ -105,7 +105,7 @@ function lmi(mod: IModInfo, installPath: string, isInstall: boolean) {
 
 
 export const supportedGames: ISupportedGames = {
-    gameID: 208,
+    GlossGameId: 208,
     steamAppID: 1174180,
     NexusMods: {
         game_domain_name: 'reddeadredemption2',

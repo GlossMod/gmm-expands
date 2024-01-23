@@ -5,7 +5,7 @@ import { ElMessage } from "element-plus";
 
 
 export const supportedGames: ISupportedGames = {
-    gameID: 303,
+    GlossGameId: 303,
     steamAppID: 2050650,
     NexusMods: {
         game_domain_name: "residentevil42023",

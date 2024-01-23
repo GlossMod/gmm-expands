@@ -43,7 +43,7 @@ function handleMods(mod: IModInfo, installPath: string, isInstall: boolean) {
 
 
 export const supportedGames: ISupportedGames = {
-    gameID: 80,
+    GlossGameId: 80,
     steamAppID: 219990,
     NexusMods: {
         game_id: 1190,

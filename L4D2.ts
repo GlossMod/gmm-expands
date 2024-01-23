@@ -7,7 +7,7 @@ import { useManager } from "@src/stores/useManager";
 
 
 export const supportedGames: ISupportedGames = {
-    gameID: 12,
+    GlossGameId: 12,
     steamAppID: 550,
     NexusMods: {
         game_domain_name: "left4dead2",

@@ -49,7 +49,7 @@ async function handleMod(mod: IModInfo, installPath: string, isInstall: boolean)
 
 
 export const supportedGames: ISupportedGames = {
-    gameID: 161,
+    GlossGameId: 161,
     steamAppID: 582010,
     NexusMods: {
         game_domain_name: "monsterhunterworld",

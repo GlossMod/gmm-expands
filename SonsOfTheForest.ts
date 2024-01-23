@@ -8,7 +8,7 @@ import { UnityGame } from "@src/model/UnityGame";
 
 
 export const supportedGames: ISupportedGames = {
-    gameID: 305,
+    GlossGameId: 305,
     steamAppID: 1326470,
     Thunderstore: {
         community_identifier: 'sons-of-the-forest'

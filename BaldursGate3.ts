@@ -153,7 +153,7 @@ async function handlePak(mod: IModInfo, installPath: string, isInstall: boolean)
 //#endregion
 
 export const supportedGames: ISupportedGames = {
-    gameID: 240,
+    GlossGameId: 240,
     steamAppID: 1086940,
     NexusMods: {
         game_domain_name: "baldursgate3",

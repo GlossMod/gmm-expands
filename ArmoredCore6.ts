@@ -58,7 +58,7 @@ async function handleMod(mod: IModInfo, installPath: string, isInstall: boolean)
 
 
 export const supportedGames: ISupportedGames = {
-    gameID: 323,
+    GlossGameId: 323,
     steamAppID: 1888160,
     NexusMods: {
         game_domain_name: "armoredcore6firesofrubicon",

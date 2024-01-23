@@ -10,7 +10,7 @@ import { Manager } from "@src/model/Manager";
 
 
 export const supportedGames: ISupportedGames = {
-    gameID: 310,
+    GlossGameId: 310,
     steamAppID: 1948980,
     installdir: join("WulinSH"),
     gameName: "WulinSH",

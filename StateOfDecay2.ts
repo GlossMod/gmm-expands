@@ -4,7 +4,7 @@ import { Manager } from "@src/model/Manager";
 import { ElMessage } from "element-plus";
 
 export const supportedGames: ISupportedGames = {
-    gameID: 238,
+    GlossGameId: 238,
     steamAppID: 495420,
     NexusMods: {
         game_domain_name: "stateofdecay2",

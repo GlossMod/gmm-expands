@@ -36,7 +36,7 @@ function handleMods(mod: IModInfo, installPath: string, isInstall: boolean) {
 
 
 export const supportedGames: ISupportedGames = {
-    gameID: 14,
+    GlossGameId: 14,
     steamAppID: 322330,
     NexusMods: {
         game_domain_name: 'dontstarvetogether',

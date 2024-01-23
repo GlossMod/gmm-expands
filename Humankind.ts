@@ -11,7 +11,7 @@ import { useManager } from "@src/stores/useManager";
 
 
 export const supportedGames: ISupportedGames = {
-    gameID: 330,
+    GlossGameId: 330,
     steamAppID: 1124300,
     installdir: join("Humankind"),
     gameName: "Humankind",

@@ -60,7 +60,7 @@ function handleMods(mod: IModInfo, installPath: string, isInstall: boolean, mark
 
 
 export const supportedGames: ISupportedGames = {
-    gameID: 4,
+    GlossGameId: 4,
     steamAppID: 292030,
     NexusMods: {
         game_domain_name: "witcher3",

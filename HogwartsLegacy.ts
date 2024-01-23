@@ -8,7 +8,7 @@ import { Manager } from "@src/model/Manager"
 import { ElMessage } from "element-plus";
 
 export const supportedGames: ISupportedGames = {
-    gameID: 302,
+    GlossGameId: 302,
     steamAppID: 990080,
     NexusMods: {
         game_domain_name: "hogwartslegacy",
@@ -40,7 +40,7 @@ export const supportedGames: ISupportedGames = {
                     return res
                 } catch (e) {
                     console.log(e);
-                    FileHandler.writeLog(`错误:${e}`);
+                    FileHandler.writeLog(`error: ${e}`);
                     return false
                 }
             },
@@ -49,7 +49,7 @@ export const supportedGames: ISupportedGames = {
                     return Manager.generalUninstall(mod, this.installPath ?? "")
                 } catch (e) {
                     console.log(e);
-                    FileHandler.writeLog(`错误:${e}`);
+                    FileHandler.writeLog(`error: ${e}`);
                     return false
                 }
             }

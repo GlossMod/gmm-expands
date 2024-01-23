@@ -32,7 +32,7 @@ function handlePlugins(mod: IModInfo, installPath: string, isInstall: boolean) {
 }
 
 export const supportedGames: ISupportedGames = {
-    gameID: 167,
+    GlossGameId: 167,
     steamAppID: 838350,
     NexusMods: {
         game_domain_name: "thescrolloftaiwu",

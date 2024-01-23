@@ -8,7 +8,7 @@ import { UnityGame } from "@src/model/UnityGame";
 
 
 export const supportedGames: ISupportedGames = {
-    gameID: 245,
+    GlossGameId: 245,
     steamAppID: 1366540,
     Thunderstore: {
         community_identifier: 'dyson-sphere-program'

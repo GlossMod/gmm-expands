@@ -90,7 +90,7 @@ function handleF4se(mod: IModInfo, install: boolean) {
 }
 
 export const supportedGames: ISupportedGames = {
-    gameID: 6,
+    GlossGameId: 6,
     steamAppID: 377160,
     NexusMods: {
         game_domain_name: "fallout4",

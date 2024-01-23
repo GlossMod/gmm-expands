@@ -29,7 +29,7 @@ async function handlePakMod(mod: IModInfo, isInstall: boolean) {
 }
 
 export const supportedGames: ISupportedGames = {
-    gameID: 34,
+    GlossGameId: 34,
     steamAppID: 435150,
     NexusMods: {
         game_domain_name: "divinityoriginalsin2",

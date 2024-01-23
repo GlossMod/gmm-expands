@@ -33,7 +33,7 @@ function handlePlugins(mod: IModInfo, installPath: string, isInstall: boolean) {
 }
 
 export const supportedGames: ISupportedGames = {
-    gameID: 248,
+    GlossGameId: 248,
     steamAppID: 1468810,
     NexusMods: {
         game_domain_name: "taleofimmortal",

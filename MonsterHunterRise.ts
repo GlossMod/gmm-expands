@@ -102,7 +102,7 @@ function handlePak(mod: IModInfo, isInstall: boolean) {
 
 export const supportedGames: ISupportedGames = {
 
-    gameID: 270,
+    GlossGameId: 270,
     steamAppID: 1446780,
     NexusMods: {
         game_domain_name: "monsterhunterrise",

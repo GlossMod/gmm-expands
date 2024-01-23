@@ -8,7 +8,7 @@ import { UnityGame } from "@src/model/UnityGame";
 
 
 export const supportedGames: ISupportedGames = {
-    gameID: 250,
+    GlossGameId: 250,
     steamAppID: 632360,
     Thunderstore: {
         community_identifier: 'riskofrain2'

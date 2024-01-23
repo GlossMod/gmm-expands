@@ -25,7 +25,7 @@ function handlePack(mod: IModInfo, installPath: string, install: boolean) {
 }
 
 export const supportedGames: ISupportedGames = {
-    gameID: 64,
+    GlossGameId: 64,
     steamAppID: 2138710,
     NexusMods: {
         game_domain_name: "sifu",

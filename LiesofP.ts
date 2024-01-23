@@ -4,7 +4,7 @@ import { Manager } from "@src/model/Manager";
 import { ElMessage } from "element-plus";
 
 export const supportedGames: ISupportedGames = {
-    gameID: 325,
+    GlossGameId: 325,
     steamAppID: 1627720,
     NexusMods: {
         game_domain_name: "liesofp",

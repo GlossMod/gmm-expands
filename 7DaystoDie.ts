@@ -9,7 +9,7 @@ import { Manager } from "@src/model/Manager";
 
 
 export const supportedGames: ISupportedGames = {
-    gameID: 40,
+    GlossGameId: 40,
     steamAppID: 251570,
     NexusMods: {
         game_id: 1059,

@@ -10,7 +10,7 @@ import { homedir } from 'os'
 
 
 export const supportedGames: ISupportedGames = {
-    gameID: 326,
+    GlossGameId: 326,
     steamAppID: 949230,
     Thunderstore: {
         community_identifier: 'cities-skylines-ii'

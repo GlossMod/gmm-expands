@@ -10,7 +10,7 @@ import { Manager } from "@src/model/Manager";
 
 
 export const supportedGames: ISupportedGames = {
-    gameID: 189,
+    GlossGameId: 189,
     steamAppID: 916440,
     installdir: join("Anno 1800", "Bin", "Win64"),
     gameName: "Anno 1800",

@@ -11,7 +11,7 @@ import { Manager } from "@src/model/Manager";
 
 
 export const supportedGames: ISupportedGames = {
-    gameID: 331,
+    GlossGameId: 331,
     steamAppID: 1649080,
     installdir: join("Two Point Campus"),
     gameName: "Two Point Campus",

@@ -8,7 +8,7 @@ import { UnityGame } from "@src/model/UnityGame";
 
 
 export const supportedGames: ISupportedGames = {
-    gameID: 105,
+    GlossGameId: 105,
     steamAppID: 264710,
     NexusMods: {
         game_id: 1155,

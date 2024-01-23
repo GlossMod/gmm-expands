@@ -26,7 +26,7 @@ function installMod(mod: IModInfo, isInstall: boolean) {
 }
 
 export const supportedGames: ISupportedGames = {
-    gameID: 249,
+    GlossGameId: 249,
     steamAppID: 1325200,
     NexusMods: {
         game_domain_name: 'nioh2',

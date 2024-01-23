@@ -229,7 +229,7 @@ function handleSfse(mod: IModInfo, install: boolean) {
 }
 
 export const supportedGames: ISupportedGames = {
-    gameID: 321,
+    GlossGameId: 321,
     steamAppID: 1716740,
     NexusMods: {
         game_domain_name: "starfield",

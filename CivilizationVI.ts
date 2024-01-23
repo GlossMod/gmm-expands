@@ -11,7 +11,7 @@ import { Manager } from "@src/model/Manager";
 
 
 export const supportedGames: ISupportedGames = {
-    gameID: 5,
+    GlossGameId: 5,
     steamAppID: 289070,
     installdir: join("Sid Meier's Civilization VI", "Base", "Binaries", "Win64Steam"),
     gameName: "Sid Meier's Civilization VI",

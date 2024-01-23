@@ -8,7 +8,7 @@ import { UnityGame } from "@src/model/UnityGame";
 
 
 export const supportedGames: ISupportedGames = {
-    gameID: 329,
+    GlossGameId: 329,
     steamAppID: 1966720,
     Thunderstore: {
         community_identifier: 'lethal-company'

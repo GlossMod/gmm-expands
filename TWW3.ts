@@ -24,7 +24,7 @@ function handlePack(mod: IModInfo, installPath: string, install: boolean) {
 }
 
 export const supportedGames: ISupportedGames = {
-    gameID: 273,
+    GlossGameId: 273,
     steamAppID: 1142710,
     NexusMods: {
         game_domain_name: "totalwarwarhammer3",

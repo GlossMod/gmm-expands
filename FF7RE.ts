@@ -4,7 +4,7 @@ import { Manager } from "@src/model/Manager";
 import { ElMessage } from "element-plus";
 
 export const supportedGames: ISupportedGames = {
-    gameID: 266,
+    GlossGameId: 266,
     steamAppID: 1462040,
     NexusMods: {
         game_domain_name: "finalfantasy7remake",

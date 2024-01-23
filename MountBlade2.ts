@@ -40,7 +40,7 @@ function handleMods(mod: IModInfo, installPath: string, isInstall: boolean) {
 
 
 export const supportedGames: ISupportedGames = {
-    gameID: 225,
+    GlossGameId: 225,
     steamAppID: 261550,
     NexusMods: {
         game_domain_name: "mountandblade2bannerlord",

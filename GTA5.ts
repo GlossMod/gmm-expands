@@ -665,7 +665,7 @@ async function gameconfig(mod: IModInfo, isInstall: boolean) {
 }
 
 export const supportedGames: ISupportedGames = {
-    gameID: 261,
+    GlossGameId: 261,
     steamAppID: 271590,
     installdir: join("Grand Theft Auto V"),
     gameName: "Grand Theft Auto V",
