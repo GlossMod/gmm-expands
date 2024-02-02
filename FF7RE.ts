@@ -1,3 +1,8 @@
+/**
+ * @description 最终幻想 7 重制版 支持
+ */
+
+
 import type { IModInfo, IState, ISupportedGames } from "@src/model/Interfaces";
 import { join, extname, sep, basename, dirname } from 'path'
 import { Manager } from "@src/model/Manager";
