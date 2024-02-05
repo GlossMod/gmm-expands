@@ -1,5 +1,5 @@
 /**
- * @description 深海迷航 支持
+ * @description 城市天际线 支持
  */
 
 import type { ISupportedGames } from "@src/model/Interfaces";
