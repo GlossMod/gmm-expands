@@ -3,7 +3,6 @@
  */
 import type { ISupportedGames } from "@src/model/Interfaces";
 import { join } from 'path'
-import { Manager } from "@src/model/Manager";
 
 import { UnrealEngine } from "@src/model/UnrealEngine"
 
