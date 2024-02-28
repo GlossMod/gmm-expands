@@ -22,9 +22,9 @@ function getCommonParentFolder(paths: string[]): string {
 
 function handlePlugins(mod: IModInfo, installPath: string, isInstall: boolean) {
 
-    if (isInstall) {
-        if (!Manager.checkInstalled("Cyber Engine Tweaks (CET)", 197625)) return false
-    }
+    // if (isInstall) {
+    //     if (!Manager.checkInstalled("Cyber Engine Tweaks (CET)", 197625)) return false
+    // }
 
 
     const manager = useManager()
