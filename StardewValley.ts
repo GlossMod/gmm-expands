@@ -1,37 +1,41 @@
 import { FileHandler } from "@src/model/FileHandler";
 import type { IModInfo, IState, ISupportedGames } from "@src/model/Interfaces";
 import { useManager } from "@src/stores/useManager";
-import { join, basename, dirname } from 'path'
+import { join, basename, dirname, parse } from 'path'
 import { Manager } from "@src/model/Manager";
 import { ElMessage } from "element-plus";
+import { spawnSync, execSync, exec, spawn, execFile, execFileSync } from 'child_process';
 
-function handlePlugins(mod: IModInfo, installPath: string, isInstall: boolean) {
-    if (isInstall) if (!Manager.checkInstalled("SMAPI", 197894)) return false
-    let res: IState[] = []
-    const manager = useManager()
+function handleSMAPI(mod: IModInfo, isInstall: boolean) {
+    let manager = useManager()
     let modStorage = join(manager.modStorage, mod.id.toString())
-    let gameStorage = join(manager.gameStorage ?? "", installPath)
-    let folder: string[] = []
+
     mod.modFiles.forEach(item => {
-        if (basename(item) == "manifest.json") {
-            folder.push(dirname(join(modStorage, item)))
+        // 获取 SMAPI.Installer.exe 的路径
+        if (basename(item) == "SMAPI.Installer.exe") {
+            modStorage = join(modStorage, dirname(item));
         }
     })
-    if (folder.length > 0) {
-        folder.forEach(item => {
-            let target = join(gameStorage, basename(item))
-            if (isInstall) {
-                // FileHandler.copyFolder(item, target)               
-                FileHandler.createLink(item, target)
-            } else {
-                // FileHandler.deleteFolder(target)         
-                FileHandler.removeLink(target)
-            }
-        })
 
-    }
+    let SMAPIInstaller = join(modStorage, "SMAPI.Installer.exe")
 
-    return res
+    let arg = [
+        '--no-prompt',
+        isInstall ? '--install' : '--uninstall',
+        '--game-path',
+    ]
+    let { root, dir: folder, base: name } = parse(SMAPIInstaller)
+
+    let cmd = `start cmd /S /C SMAPI.Installer.exe ${arg.join(' ')} "${manager.gameStorage}"`
+
+    // console.log(cmd);
+
+    spawn(cmd, {
+        cwd: folder,
+        shell: true,
+    })
+
+    return true
 }
 
 export const supportedGames: ISupportedGames = {
@@ -65,10 +69,10 @@ export const supportedGames: ISupportedGames = {
             name: "SMAPI",
             installPath: "",
             async install(mod) {
-                return Manager.generalInstall(mod, this.installPath ?? "", true)
+                return handleSMAPI(mod, true)
             },
             async uninstall(mod) {
-                return Manager.generalUninstall(mod, this.installPath ?? "", true)
+                return handleSMAPI(mod, false)
             }
         },
         {
@@ -76,14 +80,17 @@ export const supportedGames: ISupportedGames = {
             name: "通用",
             installPath: "Mods",
             async install(mod) {
-                return handlePlugins(mod, this.installPath ?? "", true)
+                if (!Manager.checkInstalled("SMAPI", 207496)) return false
+                return Manager.installByFile(mod, this.installPath ?? "", 'manifest.json', true, false)
+
             },
             async uninstall(mod) {
-                return handlePlugins(mod, this.installPath ?? "", false)
+                return Manager.installByFile(mod, this.installPath ?? "", 'manifest.json', false, false)
+
             }
         },
         {
-            id: 3,
+            id: 99,
             name: "未知",
             installPath: "",
             async install(mod) {
@@ -97,16 +104,19 @@ export const supportedGames: ISupportedGames = {
     ],
     checkModType(mod) {
 
-        if (mod.webId == 197894) return 1
-
         let plugins = false
-        // manifest.json
+        let smapi = false
+
         mod.modFiles.forEach(item => {
+            if (FileHandler.compareFileName(basename(item), "SMAPI.Installer.dll")) smapi = true
             if (basename(item) == "manifest.json") plugins = true
+
         })
+
+        if (smapi) return 1
 
         if (plugins) return 2
 
-        return 3
+        return 99
     }
 }

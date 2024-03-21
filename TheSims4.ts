@@ -4,11 +4,11 @@ import { useManager } from "@src/stores/useManager";
 import { join, basename, extname } from 'path'
 import { homedir } from "os";
 
-async function handleMod(mod: IModInfo, isInstall: boolean) {
+function handleMod(mod: IModInfo, isInstall: boolean) {
 
     let manager = useManager()
     let srcPath = join(manager.modStorage, mod.id.toString())
-    let destPath = join(await FileHandler.getMyDocuments(), "Electronic Arts", "The Sims 4", "Mods", "Gloss Mod Manager", mod.id.toString())
+    let destPath = join(FileHandler.getMyDocuments(), "Electronic Arts", "The Sims 4", "Mods", "Gloss Mod Manager", mod.id.toString())
     if (isInstall) {
         return FileHandler.createLink(srcPath, destPath)
 
@@ -21,10 +21,6 @@ async function handleMod(mod: IModInfo, isInstall: boolean) {
 export const supportedGames: ISupportedGames = {
     GlossGameId: 8,
     steamAppID: 1222670,
-    NexusMods: {
-        game_domain_name: 'thesims4',
-        game_id: 641
-    },
     installdir: join("The Sims 4", "Game", "Bin"),
     gameName: "The Sims 4",
     gameExe: [
