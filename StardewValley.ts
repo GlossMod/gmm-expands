@@ -4,7 +4,7 @@ import { useManager } from "@src/stores/useManager";
 import { join, basename, dirname, parse } from 'path'
 import { Manager } from "@src/model/Manager";
 import { ElMessage } from "element-plus";
-import { spawnSync, execSync, exec, spawn, execFile, execFileSync } from 'child_process';
+import { spawn } from 'child_process';
 
 function handleSMAPI(mod: IModInfo, isInstall: boolean) {
     let manager = useManager()
