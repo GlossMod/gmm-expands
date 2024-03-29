@@ -22,7 +22,7 @@ let pakList = {
         return pakList
     },
     set data(value) {
-        console.log("写入");
+        // console.log("写入");
 
         let manager = useManager()
         let file = join(manager.modStorage, 'pakList.txt')
@@ -31,7 +31,7 @@ let pakList = {
     }
 }
 
-function getGamePakName(isInstall: boolean) {
+function getGamePakName() {
     const manager = useManager()
     let gameStorage = manager.gameStorage
     // 获取游戏目录下所有 *.pak 文件
@@ -49,7 +49,7 @@ function getGamePakName(isInstall: boolean) {
     let maxNum = Math.max(...pakNum)
 
     // 001 或 010
-    let num = isInstall ? String(maxNum + 1).padStart(3, '0') : String(maxNum).padStart(3, '0')
+    let num = String(maxNum + 1).padStart(3, '0')
     let pakName = `re_chunk_000.pak.patch_${num}.pak`
 
     return pakName
@@ -66,9 +66,9 @@ async function handlePak(mod: IModInfo, isInstall: boolean) {
         if (statSync(modStorage).isFile() && extname(modStorage) == '.pak') {
             let gameStorage = join(manager.gameStorage ?? "")
 
-            let pakName = getGamePakName(isInstall)
 
             if (isInstall) {
+                let pakName = getGamePakName()
                 let gamePak = join(gameStorage, pakName)
                 FileHandler.copyFile(modStorage, gamePak)
                 console.log(pakName);
@@ -78,7 +78,7 @@ async function handlePak(mod: IModInfo, isInstall: boolean) {
             } else {
                 // 从 modPakInGamePak 中获取 包含 basename(modStorage) 的数组
                 let modPakInGamePak = pakListData.filter(item => item.includes(basename(modStorage)))
-                pakName = modPakInGamePak[0][1];
+                let pakName = modPakInGamePak[0][1];
                 pakListData = pakListData.filter(item => !item.includes(pakName))
                 let gamePak = join(gameStorage, pakName)
                 FileHandler.deleteFile(gamePak)

@@ -7,7 +7,7 @@ import { Manager } from "@src/model/Manager";
 import { ElMessage } from "element-plus";
 
 function handlePlugins(mod: IModInfo, installPath: string, split: string, isInstall: boolean) {
-    if (isInstall) if (!Manager.checkInstalled("REFramework", 199521)) return false
+    // if (isInstall) if (!Manager.checkInstalled("REFramework", 199521)) return false
     let res: IState[] = []
     const manager = useManager()
     mod.modFiles.forEach(async item => {
@@ -29,9 +29,9 @@ function handlePlugins(mod: IModInfo, installPath: string, split: string, isInst
 }
 
 function handleMod(mod: IModInfo, installPath: string, isInstall: boolean) {
-    if (isInstall) {
-        if (!Manager.checkInstalled("First Natives", 199507)) return false
-    }
+    // if (isInstall) {
+    //     if (!Manager.checkInstalled("First Natives", 199507)) return false
+    // }
 
     const manager = useManager()
     let res: IState[] = []
