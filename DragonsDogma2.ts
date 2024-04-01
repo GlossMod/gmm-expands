@@ -153,17 +153,6 @@ export const supportedGames: ISupportedGames = {
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/65f8f21471754.webp",
     modType: [
         {
-            id: 2,
-            name: "REFramework",
-            installPath: join(''),
-            async install(mod) {
-                return Manager.generalInstall(mod, this.installPath ?? "", true)
-            },
-            async uninstall(mod) {
-                return Manager.generalUninstall(mod, this.installPath ?? "", true)
-            }
-        },
-        {
             id: 1,
             name: "autorun",
             installPath: join('reframework', 'autorun'),
@@ -176,15 +165,14 @@ export const supportedGames: ISupportedGames = {
             }
         },
         {
-            id: 4,
-            name: 'plugins',
-            installPath: join('reframework', 'plugins'),
+            id: 2,
+            name: "REFramework",
+            installPath: join(''),
             async install(mod) {
-                if (!Manager.checkInstalled("REFramework", 207695)) return false
-                return Manager.installByFolder(mod, this.installPath ?? "", 'plugins', true)
+                return Manager.generalInstall(mod, this.installPath ?? "", true)
             },
             async uninstall(mod) {
-                return Manager.installByFolder(mod, this.installPath ?? "", 'plugins', false)
+                return Manager.generalUninstall(mod, this.installPath ?? "", true)
             }
         },
         // {
@@ -201,6 +189,18 @@ export const supportedGames: ISupportedGames = {
         //         return Manager.installByFolder(mod, this.installPath ?? "", 'natives', false)
         //     }
         // },
+        {
+            id: 4,
+            name: 'plugins',
+            installPath: join('reframework', 'plugins'),
+            async install(mod) {
+                if (!Manager.checkInstalled("REFramework", 207695)) return false
+                return Manager.installByFolder(mod, this.installPath ?? "", 'plugins', true)
+            },
+            async uninstall(mod) {
+                return Manager.installByFolder(mod, this.installPath ?? "", 'plugins', false)
+            }
+        },
         {
             id: 5,
             name: '主目录',
@@ -224,6 +224,18 @@ export const supportedGames: ISupportedGames = {
             },
         },
         {
+            id: 7,
+            name: 'RefPubgins',
+            installPath: join('reframework'),
+            async install(mod) {
+                if (!Manager.checkInstalled("REFramework", 207695)) return false
+                return Manager.installByFolder(mod, this.installPath ?? "", 'reframework', true)
+            },
+            async uninstall(mod) {
+                return Manager.installByFolder(mod, this.installPath ?? "", 'reframework', false)
+            }
+        },
+        {
             id: 99,
             name: "未知",
             installPath: join(''),
@@ -242,15 +254,29 @@ export const supportedGames: ISupportedGames = {
         let autorun = false
         let REFramework = false
         let pak = false
+
+        let refPubgins = false
+
         mod.modFiles.forEach(item => {
+
+            let list = FileHandler.pathToArray(item)
+
+            if (list.some(item => FileHandler.compareFileName(item, 'reframework'))) {
+                console.log(list);
+            }
+
             if (basename(item) == 'dinput8.dll') REFramework = true
-            if (item.toLowerCase().includes('natives')) natives = true
-            if (item.toLowerCase().includes('autorun')) autorun = true
-            if (item.toLowerCase().includes('plugins')) plugins = true
+            if (list.some(item => FileHandler.compareFileName(item, 'natives'))) natives = true
+            if (list.some(item => FileHandler.compareFileName(item, 'autorun'))) autorun = true
+            if (list.some(item => FileHandler.compareFileName(item, 'plugins'))) plugins = true
+            if (list.some(item => FileHandler.compareFileName(item, 'reframework'))) refPubgins = true
             if (extname(item) == '.pak') pak = true
         })
 
         if (REFramework) return 2
+
+        if (refPubgins) return 7
+
         if (autorun) return 1
         if (plugins) return 4
         if (natives) return 3
