@@ -13,15 +13,15 @@ import { ElMessage } from "element-plus";
 
 let dictionaryList: string[] = []
 
-function getDictionaryList(data: string[]) {
-    if (dictionaryList.length == 0) {
-        axios.get("res/SekiroDictionary.txt").then(({ data }) => {
-            dictionaryList = data.split("\r\n")
-            data = dictionaryList
-        })
-    }
-    return dictionaryList
-}
+// function getDictionaryList(data: string[]) {
+//     if (dictionaryList.length == 0) {
+//         axios.get("res/SekiroDictionary.txt").then(({ data }) => {
+//             dictionaryList = data.split("\r\n")
+//             data = dictionaryList
+//         })
+//     }
+//     return dictionaryList
+// }
 
 async function handleMod(mod: IModInfo, installPath: string, isInstall: boolean) {
     try {
@@ -30,7 +30,8 @@ async function handleMod(mod: IModInfo, installPath: string, isInstall: boolean)
         }
 
         if (dictionaryList.length == 0) {
-            let SekiroDictionary = (await axios.get("res/SekiroDictionary.txt")).data
+            // let SekiroDictionary = (await axios.get("res/SekiroDictionary.txt")).data
+            let SekiroDictionary = FileHandler.readFile(join(FileHandler.getResourcesPath(), 'res', 'SekiroDictionary.txt'))
             dictionaryList = SekiroDictionary.split("\r\n")
         }
         const manager = useManager()
@@ -111,25 +112,51 @@ export const supportedGames: ISupportedGames = {
             name: 'ModEngine',
             installPath: "",
             async install(mod) {
-                Manager.generalInstall(mod, this.installPath ?? "")
-                return true
+                return Manager.installByFileSibling(mod, this.installPath ?? "", "dinput8.dll", true)
+                // Manager.generalInstall(mod, this.installPath ?? "")
+                // return true
             },
             async uninstall(mod) {
-                Manager.generalUninstall(mod, this.installPath ?? "")
-                return true
+                return Manager.installByFileSibling(mod, this.installPath ?? "", "dinput8.dll", false)
+                // Manager.generalUninstall(mod, this.installPath ?? "")
+                // return true
             },
+        },
+        {
+            id: 99,
+            name: "未知",
+            installPath: "",
+            async install(mod) {
+                ElMessage.warning("未知类型, 请手动安装")
+                return false
+            },
+            async uninstall(mod) {
+                return true
+            }
         }
     ],
     checkModType(mod) {
-        if (mod.webId == 71282) return 2
+        // if (mod.webId == 71282) return 2
+
+        if (dictionaryList.length == 0) {
+            // let SekiroDictionary = (await axios.get("res/SekiroDictionary.txt")).data
+            let SekiroDictionary = FileHandler.readFile(join(FileHandler.getResourcesPath(), 'res', 'SekiroDictionary.txt'))
+            dictionaryList = SekiroDictionary.split("\r\n")
+        }
 
 
-        // mod.modFiles.forEach(file => {
-        //     if (list.some(item => item.includes(basename(file)))) {
+        let engine = false
+        let mods = false
 
-        //     }
-        // })
+        mod.modFiles.forEach(item => {
+            if (basename(item) == 'dinput8.dll') engine = true
+            if (dictionaryList.find(item2 => FileHandler.compareFileName(item, item2))) mods = true
 
-        return 1
+        })
+
+        if (engine) return 2
+        if (mods) return 1
+
+        return 99
     }
 }

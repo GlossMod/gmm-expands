@@ -52,30 +52,6 @@ export const supportedGames: ISupportedGames = {
         {
             name: "Bannerlord.exe",
             rootPath: join('..', '..')
-        },
-        {
-            name: "Bannerlord.Native.exe",
-            rootPath: join('..', '..')
-        },
-        {
-            name: "Launcher.Native.exe",
-            rootPath: join('..', '..')
-        },
-        {
-            name: "TaleWorlds.MountAndBlade.Launcher.exe",
-            rootPath: join('..', '..')
-        },
-        {
-            name: "TaleWorlds.MountAndBlade.Launcher.Multiplayer.exe",
-            rootPath: join('..', '..')
-        },
-        {
-            name: "TaleWorlds.MountAndBlade.Launcher.Singleplayer.exe",
-            rootPath: join('..', '..')
-        },
-        {
-            name: "TaleWorlds.MountAndBlade.SteamWorkshop.exe",
-            rootPath: join('..', '..')
         }
     ],
     startExe: [

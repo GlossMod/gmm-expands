@@ -55,40 +55,6 @@ async function setPlugins(mod: IModInfo, install: boolean) {
 
 }
 
-// 获取 skse64_loader.exe 所在目录
-function getBaseFolder(mod: IModInfo) {
-    let folder = ""
-    mod.modFiles.forEach(item => {
-        if (basename(item) == 'skse64_loader.exe') {
-            folder = dirname(item)
-        }
-    })
-    return folder
-}
-
-function handleSkse64(mod: IModInfo, install: boolean) {
-    const manager = useManager()
-    const modStorage = join(manager.modStorage ?? "", mod.id.toString())
-
-    let baseFolder = getBaseFolder(mod)
-    if (baseFolder == "") {
-        ElMessage.error(`未找到 skse64_loader.exe, 请不要随意修改MOD类型`)
-        return false
-    }
-
-    mod.modFiles.forEach(item => {
-        let source = join(modStorage, item)
-        if (statSync(source).isFile()) {
-            // 从 item 中移除 folder
-            let path = item.replace(baseFolder, "")
-            let target = join(manager.gameStorage ?? "", path)
-            if (install) FileHandler.copyFile(source, target)
-            else FileHandler.deleteFile(target)
-        }
-    })
-
-    return true
-}
 
 export const supportedGames: ISupportedGames = {
     GlossGameId: 2,
@@ -99,16 +65,7 @@ export const supportedGames: ISupportedGames = {
     },
     installdir: join("Skyrim Special Edition"),
     gameName: "Skyrim Special Edition",
-    gameExe: [
-        {
-            name: "SkyrimSE.exe",
-            rootPath: ""
-        },
-        {
-            name: "SkyrimSELauncher.exe",
-            rootPath: ""
-        }
-    ],
+    gameExe: "SkyrimSE.exe",
     // startExe: join('bin', 'x64', 'witcher3.exe'),
     startExe: [
         {
@@ -145,10 +102,12 @@ export const supportedGames: ISupportedGames = {
             name: 'skse64',
             installPath: '',
             async install(mod) {
-                return handleSkse64(mod, true)
+                return Manager.installByFileSibling(mod, this.installPath ?? "", "skse64_loader.exe", true)
+                // return handleSkse64(mod, true)
             },
             async uninstall(mod) {
-                return handleSkse64(mod, false)
+                return Manager.installByFileSibling(mod, this.installPath ?? "", "skse64_loader.exe", false)
+                // return handleSkse64(mod, false)
             }
         },
         {

@@ -54,41 +54,6 @@ async function setPlugins(mod: IModInfo, install: boolean) {
 
 }
 
-// 获取 f4se_loader.exe 所在目录
-function getBaseFolder(mod: IModInfo) {
-    let folder = ""
-    mod.modFiles.forEach(item => {
-        if (basename(item) == 'f4se_loader.exe') {
-            folder = dirname(item)
-        }
-    })
-    return folder
-}
-
-function handleF4se(mod: IModInfo, install: boolean) {
-    const manager = useManager()
-    const modStorage = join(manager.modStorage ?? "", mod.id.toString())
-
-    let baseFolder = getBaseFolder(mod)
-    if (baseFolder == "") {
-        ElMessage.error(`未找到 f4se_loader.exe, 请不要随意修改MOD类型`)
-        return false
-    }
-
-    mod.modFiles.forEach(item => {
-        let source = join(modStorage, item)
-        if (statSync(source).isFile()) {
-            // 从 item 中移除 folder
-            let path = item.replace(baseFolder, "")
-            let target = join(manager.gameStorage ?? "", path)
-            if (install) FileHandler.copyFile(source, target)
-            else FileHandler.deleteFile(target)
-        }
-    })
-
-    return true
-}
-
 export const supportedGames: ISupportedGames = {
     GlossGameId: 6,
     steamAppID: 377160,
@@ -125,19 +90,19 @@ export const supportedGames: ISupportedGames = {
     ],
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/6b.png",
     modType: [
-        // {
-        //     id: 1,
-        //     name: 'esp',
-        //     installPath: 'Data',
-        //     async install(mod) {
-        //         setPlugins(mod, true)
-        //         return handleMods(mod, this.installPath ?? "", true)
-        //     },
-        //     async uninstall(mod) {
-        //         setPlugins(mod, false)
-        //         return handleMods(mod, this.installPath ?? "", false)
-        //     },
-        // },
+        {
+            id: 1,
+            name: 'Plugins',
+            installPath: join("Data", "F4SE", "plugins"),
+            async install(mod) {
+                return Manager.installByFolder(mod, this.installPath ?? "", "plugins", true, false, true)
+
+            },
+            async uninstall(mod) {
+                return Manager.installByFolder(mod, this.installPath ?? "", "plugins", false, false, true)
+
+            },
+        },
         {
             id: 2,
             name: "Data",
@@ -157,10 +122,10 @@ export const supportedGames: ISupportedGames = {
             name: 'f4se',
             installPath: '',
             async install(mod) {
-                return handleF4se(mod, true)
+                return Manager.installByFileSibling(mod, this.installPath ?? "", "f4se_loader.exe", true)
             },
             async uninstall(mod) {
-                return handleF4se(mod, false)
+                return Manager.installByFileSibling(mod, this.installPath ?? "", "f4se_loader.exe", false)
             }
         },
         {
@@ -179,20 +144,21 @@ export const supportedGames: ISupportedGames = {
     checkModType(mod) {
         // let esp = false
         let data = false
-        // let esm = false
+        let plugins = false
         let f4se = false
 
         mod.modFiles.forEach(item => {
             // if (extname(item) == '.esp') esp = true
-            // if (extname(item) == '.esm') esm = true
+            if (extname(item) == '.dll') plugins = true
             if (item.toLowerCase().includes('data')) data = true
             if (basename(item) == 'f4se_loader.exe') f4se = true
             if (extname(item) == '.esp' || extname(item) == '.esm') data = true
         })
 
         if (f4se) return 3
-
         if (data) return 2
+
+        if (plugins) return 1
 
         // if (esp) return 1
         // if (esm) return 3

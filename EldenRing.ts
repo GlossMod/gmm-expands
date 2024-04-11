@@ -19,7 +19,7 @@ async function handleMod(mod: IModInfo, installPath: string, isInstall: boolean)
         }
 
         if (dictionaryList.length == 0) {
-            let EldenRingDictionary = (await axios.get("res/EldenRingDictionary.txt")).data
+            let EldenRingDictionary = FileHandler.readFile(join(FileHandler.getResourcesPath(), 'res', 'EldenRingDictionary.txt'))
             dictionaryList = EldenRingDictionary.split("\r\n")
         }
 
@@ -94,18 +94,50 @@ export const supportedGames: ISupportedGames = {
             name: 'Engine 2',
             installPath: join(""),
             async install(mod) {
-                return Manager.generalInstall(mod, this.installPath ?? "", true)
+                return Manager.installByFileSibling(mod, this.installPath ?? "", "modengine2_launcher.exe", true)
             },
             async uninstall(mod) {
-                return Manager.generalUninstall(mod, this.installPath ?? "", true)
+                return Manager.installByFileSibling(mod, this.installPath ?? "", "modengine2_launcher.exe", false)
 
             },
+        },
+        {
+            id: 99,
+            name: "未知",
+            installPath: "",
+            async install(mod) {
+                ElMessage.warning("未知类型, 请手动安装")
+                return false
+            },
+            async uninstall(mod) {
+                return true
+            }
         }
     ],
     checkModType(mod) {
-        if (mod.webId == 197418) {
-            return 2
+        // if (mod.webId == 197418) {
+        //     return 2
+        // }
+
+        if (dictionaryList.length == 0) {
+            let EldenRingDictionary = FileHandler.readFile(join(FileHandler.getResourcesPath(), 'res', 'EldenRingDictionary.txt'))
+            dictionaryList = EldenRingDictionary.split("\r\n")
         }
-        return 1
+
+        // console.log(dictionaryList);
+
+        let engine = false
+        let mods = false
+
+        mod.modFiles.forEach(item => {
+            if (basename(item) == 'modengine2_launcher.exe') engine = true
+            if (dictionaryList.find(item2 => FileHandler.compareFileName(item, item2))) mods = true
+        })
+
+        if (engine) return 2
+
+        if (mods) return 1
+
+        return 99
     }
 }
