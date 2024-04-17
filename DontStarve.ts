@@ -1,4 +1,4 @@
-// 博德之门3 Mod支持
+// 饥荒 Mod支持
 import type { IModInfo, IState, ISupportedGames } from "@src/model/Interfaces";
 import { basename, join, dirname } from 'path'
 import { FileHandler } from "@src/model/FileHandler"
