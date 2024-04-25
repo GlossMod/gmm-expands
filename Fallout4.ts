@@ -15,9 +15,9 @@ import { homedir } from 'os'
 // 修改 Archive配置
 async function setArchive() {
     try {
-        let documents = await FileHandler.getMyDocuments()
-        const Starfield = join(documents, "My Games", "Fallout4", "Fallout4.ini")
-        let config = ini.parse(readFileSync(Starfield, 'utf-8'))
+        let documents = FileHandler.getMyDocuments()
+        const Fallout4Ini = join(documents, "My Games", "Fallout4", "Fallout4.ini")
+        let config = ini.parse(await FileHandler.readFileSync(Fallout4Ini, ''))
         console.log(config);
         if (config.Archive?.bInvalidateOlderFiles == 1) {
             console.log('Fallout4.ini 已配置过, 无需再次配置.');
@@ -26,10 +26,11 @@ async function setArchive() {
         if (config.Archive) {
             config.Archive.bInvalidateOlderFiles = 1
             config.Archive.sResourceDataDirsFinal = ""
-            writeFileSync(Starfield, ini.stringify(config))
+            writeFileSync(Fallout4Ini, ini.stringify(config))
         }
     } catch (error) {
-        ElMessage.error(`配置 Fallout4.ini 失败! ${error}`)
+        // ElMessage.error(`配置 Fallout4.ini 失败! ${error}`)
+        console.log(`配置 Fallout4.ini 失败! ${error}`);
     }
 }
 // 修改 plugins

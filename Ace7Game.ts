@@ -1,5 +1,5 @@
 /**
- * @description 幻兽帕鲁 支持
+ * @description 皇牌空战 支持
  */
 import type { ISupportedGames } from "@src/model/Interfaces";
 import { join } from 'path'

@@ -26,7 +26,7 @@ export const supportedGames: ISupportedGames = {
             exePath: join("Cult Of The Lamb.exe")
         }
     ],
-    gameCoverImg: "https://mod.3dmgame.com/static/upload/game/65f1415124b36.webp",
+    gameCoverImg: "https://mod.3dmgame.com/static/upload/game/65f2c99bb3e08.webp",
     modType: UnityGame.modType,
     checkModType: UnityGame.checkModType
 }

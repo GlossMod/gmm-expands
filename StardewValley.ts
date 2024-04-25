@@ -1,3 +1,7 @@
+/**
+ * @description 星露谷物语 支持
+ */
+
 import { FileHandler } from "@src/model/FileHandler";
 import type { IModInfo, IState, ISupportedGames } from "@src/model/Interfaces";
 import { useManager } from "@src/stores/useManager";
@@ -80,7 +84,7 @@ export const supportedGames: ISupportedGames = {
             name: "通用",
             installPath: "Mods",
             async install(mod) {
-                if (!Manager.checkInstalled("SMAPI", 207496)) return false
+                // if (!Manager.checkInstalled("SMAPI", 207496)) return false
                 return Manager.installByFile(mod, this.installPath ?? "", 'manifest.json', true, false)
 
             },
