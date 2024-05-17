@@ -35,6 +35,9 @@ export const supportedGames: ISupportedGames = {
     steamAppID: 1145350,
     installdir: join("Hades II", "Ship"),
     gameName: "Hades2",
+    Thunderstore: {
+        community_identifier: 'hades-ii'
+    },
     gameExe: [
         {
             name: "Hades2.exe",
