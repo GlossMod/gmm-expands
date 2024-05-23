@@ -13,6 +13,9 @@ export const supportedGames: ISupportedGames = {
     installdir: join("Homeworld 3"),
     gameName: "Homeworld 3",
     gameExe: "Homeworld3.exe",
+    mod_io: {
+        game_id: 5251
+    },
     startExe: [
         {
             name: "Steam 启动",
