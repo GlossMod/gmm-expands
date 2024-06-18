@@ -15,6 +15,7 @@ export const supportedGames: ISupportedGames = {
         game_domain_name: "finalfantasy7remake",
         game_id: 4202
     },
+    // curseforge: 4593,
     installdir: join("FINAL FANTASY VII REMAKE"),
     gameName: "FINAL FANTASY VII REMAKE",
     startExe: [

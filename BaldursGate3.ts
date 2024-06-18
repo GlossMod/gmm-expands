@@ -299,7 +299,7 @@ export const supportedGames: ISupportedGames = {
     ],
     checkModType(mod) {
         let plugins = [200783, 201398]
-        if (plugins.includes(mod.webId ?? 0)) return 3
+        if (plugins.includes((mod.webId ?? 0) as number)) return 3
 
         let pak = false
         let data = false

@@ -16,9 +16,7 @@ export const supportedGames: ISupportedGames = {
     installdir: join("Humankind"),
     gameName: "Humankind",
     gameExe: "Humankind.exe",
-    mod_io: {
-        game_id: 2599
-    },
+    mod_io: 2599,
     startExe: [
         {
             name: "Steam 启动",

@@ -26,6 +26,7 @@ async function handleMod(mod: IModInfo, installPath: string, isInstall: boolean)
 export const supportedGames: ISupportedGames = {
     GlossGameId: 52,
     steamAppID: 1222670,
+    curseforge: 4819,
     installdir: join("American Truck Simulator", "bin", "win_x64"),
     gameName: "American Truck Simulator",
     gameExe: [

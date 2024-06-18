@@ -10,6 +10,7 @@ import { UnrealEngine } from "@src/model/UnrealEngine"
 export const supportedGames: ISupportedGames = {
     GlossGameId: 333,
     steamAppID: 1623730,
+    curseforge: 85196,
     installdir: join("Palworld"),
     gameName: "Palworld",
     startExe: [

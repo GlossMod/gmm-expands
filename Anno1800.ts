@@ -20,9 +20,7 @@ export const supportedGames: ISupportedGames = {
             rootPath: join('..', '..')
         }
     ],
-    mod_io: {
-        game_id: 4169
-    },
+    mod_io: 4169,
     startExe: [
         {
             name: "Steam 启动",

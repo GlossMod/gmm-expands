@@ -8,7 +8,7 @@ import { UnrealEngine } from "@src/model/UnrealEngine";
 
 
 export const supportedGames: ISupportedGames = {
-    GlossGameId: 312,
+    GlossGameId: 350,
     steamAppID: 1951220,
     installdir: join("DaoYanJue"),
     gameName: "DaoYanJue",

@@ -13,6 +13,7 @@ import { FileHandler } from "@src/model/FileHandler";
 export const supportedGames: ISupportedGames = {
     GlossGameId: 320,
     steamAppID: 105600,
+    // curseforge: 431,
     SteamWorkshop: true,
     installdir: join("Terraria"),
     gameName: "Terraria",

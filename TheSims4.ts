@@ -23,6 +23,7 @@ export const supportedGames: ISupportedGames = {
     steamAppID: 1222670,
     installdir: join("The Sims 4", "Game", "Bin"),
     gameName: "The Sims 4",
+    curseforge: 78062,
     gameExe: [
         {
             name: 'TS4_x64.exe',

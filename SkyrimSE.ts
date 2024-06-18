@@ -63,6 +63,7 @@ export const supportedGames: ISupportedGames = {
         game_domain_name: "skyrimspecialedition",
         game_id: 1704
     },
+    // curseforge: 449,
     installdir: join("Skyrim Special Edition"),
     gameName: "Skyrim Special Edition",
     gameExe: "SkyrimSE.exe",

@@ -16,9 +16,7 @@ export const supportedGames: ISupportedGames = {
     installdir: join("Two Point Campus"),
     gameName: "Two Point Campus",
     gameExe: "TPC.exe",
-    mod_io: {
-        game_id: 4081
-    },
+    mod_io: 4081,
     startExe: [
         {
             name: "Steam 启动",
