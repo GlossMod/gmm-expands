@@ -1,5 +1,5 @@
 /**
- * @description 无人深空 支持
+ * @description 荒野大镖客 支持
  */
 
 import type { IModInfo, ISupportedGames } from "@src/model/Interfaces";
@@ -124,6 +124,7 @@ export const supportedGames: ISupportedGames = {
             exePath: join("RDR2.exe")
         }
     ],
+    archivePath: join(FileHandler.getMyDocuments(), "Rockstar Games", "Red Dead Redemption 2"),
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/208.png",
     modType: [
         {

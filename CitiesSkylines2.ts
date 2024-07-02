@@ -1,5 +1,5 @@
 /**
- * @description 城市天际线 支持
+ * @description 城市天际线2 支持
  */
 
 import type { ISupportedGames } from "@src/model/Interfaces";
@@ -7,6 +7,7 @@ import { join, basename, extname } from "node:path"
 import { UnityGame } from "@src/model/UnityGame";
 import { Manager } from "@src/model/Manager";
 import { homedir } from 'os'
+import { FileHandler } from "@src/model/FileHandler";
 
 
 export const supportedGames: ISupportedGames = {
@@ -28,6 +29,7 @@ export const supportedGames: ISupportedGames = {
             exePath: join("Cities2.exe")
         }
     ],
+    archivePath: join(FileHandler.GetAppData(), "LocalLow", "Colossal Order", "Cities Skylines II"),
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/6535dbba96ba3.webp",
     modType: [
         {

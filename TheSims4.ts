@@ -1,3 +1,7 @@
+/**
+ * @description 模拟人生4 支持
+ */
+
 import { FileHandler } from "@src/model/FileHandler";
 import type { IModInfo, IState, ISupportedGames } from "@src/model/Interfaces";
 import { useManager } from "@src/stores/useManager";
@@ -40,6 +44,7 @@ export const supportedGames: ISupportedGames = {
             exePath: join('Game', 'Bin', 'TS4_x64.exe')
         }
     ],
+    archivePath: join(FileHandler.getMyDocuments(), "Electronic Arts", "The Sims 4"),
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/8a.jpg",
     modType: [
         {

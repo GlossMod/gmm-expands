@@ -66,6 +66,7 @@ export const supportedGames: ISupportedGames = {
     installdir: join('Elden Ring', 'Game'),
     gameName: "ELDEN RING",
     gameExe: 'eldenring.exe',
+    archivePath: join(FileHandler.GetAppData(), "Roaming", "EldenRing"),
     startExe: [
         {
             name: '启动 激活Mod',

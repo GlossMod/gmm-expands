@@ -68,6 +68,7 @@ export const supportedGames: ISupportedGames = {
             exePath: join('bin64', 'dontstarve_steam_x64.exe')
         },
     ],
+    archivePath: join(FileHandler.getMyDocuments(), "Klei"),
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/14.jpg",
     modType: [
         {

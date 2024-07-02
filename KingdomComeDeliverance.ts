@@ -29,6 +29,7 @@ export const supportedGames: ISupportedGames = {
             exePath: join("Bin", "Win64", "KingdomCome.exe")
         }
     ],
+    archivePath: join(FileHandler.GetAppData(), "..", "Saved Games", "kingdomcome"),
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/155.jpg",
     modType: [
         {

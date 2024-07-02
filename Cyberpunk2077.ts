@@ -1,3 +1,7 @@
+/**
+ * @description 赛博朋克2077 支持
+ */
+
 import { FileHandler } from "@src/model/FileHandler";
 import type { IModInfo, IState, ISupportedGames } from "@src/model/Interfaces";
 import { useManager } from "@src/stores/useManager";
@@ -56,24 +60,6 @@ function handlePlugins(mod: IModInfo, installPath: string, isInstall: boolean) {
     }
 }
 
-// function handleMixed(mod: IModInfo, installPath: string, isInstall: boolean) {
-
-//     let archive = false, bin = false, engine = false, r6 = false
-//     mod.modFiles.forEach(item => {
-//         let list = FileHandler.pathToArray(item)
-//         if (list.includes('archive')) archive = true
-//         if (list.includes('bin')) bin = true
-//         if (list.includes('engine')) engine = true
-//         if (list.includes('r6')) r6 = true
-//     })
-
-//     if (archive) Manager.installByFolder(mod, installPath, 'archive', isInstall, true)
-//     if (bin) Manager.installByFolder(mod, installPath, 'bin', isInstall, true)
-//     if (engine) Manager.installByFolder(mod, installPath, 'engine', isInstall, true)
-//     if (r6) Manager.installByFolder(mod, installPath, 'r6', isInstall, true)
-
-// }
-
 export const supportedGames: ISupportedGames = {
     GlossGameId: 195,
     steamAppID: 1091500,
@@ -103,6 +89,7 @@ export const supportedGames: ISupportedGames = {
             rootPath: ""
         }
     ],
+    archivePath: join(FileHandler.GetAppData(), "..", "Saved Games", "CD Projekt Red"),
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/195.png",
     modType: [
         {

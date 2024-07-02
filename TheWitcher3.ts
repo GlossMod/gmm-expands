@@ -84,7 +84,7 @@ export const supportedGames: ISupportedGames = {
             exePath: join("bin", "x64", "witcher3.exe")
         }
     ],
-    // startExe: "REDprelauncher.exe",
+    archivePath: join(FileHandler.getMyDocuments(), "The Witcher 3"),
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/4a.jpg",
     modType: [
         {

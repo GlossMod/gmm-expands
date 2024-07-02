@@ -5,6 +5,7 @@
 import type { ISupportedGames } from "@src/model/Interfaces";
 import { join } from "node:path"
 import { UnityGame } from "@src/model/UnityGame";
+import { FileHandler } from "@src/model/FileHandler";
 
 
 export const supportedGames: ISupportedGames = {
@@ -26,6 +27,7 @@ export const supportedGames: ISupportedGames = {
             exePath: join("DSPGAME.exe")
         }
     ],
+    archivePath: join(FileHandler.getMyDocuments(), "Dyson Sphere Program"),
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/60112fb1bdafa.png",
     modType: UnityGame.modType,
     checkModType: UnityGame.checkModType

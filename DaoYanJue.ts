@@ -5,6 +5,7 @@
 import type { ISupportedGames } from "@src/model/Interfaces";
 import { join } from 'path'
 import { UnrealEngine } from "@src/model/UnrealEngine";
+import { FileHandler } from "@src/model/FileHandler";
 
 
 export const supportedGames: ISupportedGames = {
@@ -23,6 +24,7 @@ export const supportedGames: ISupportedGames = {
             exePath: "FNGameX.exe"
         }
     ],
+    archivePath: join(FileHandler.GetAppData(), "LocalLow", "FNGameX", "Saved"),
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/66447d161b2ff.webp",
     modType: UnrealEngine.modType("FNGameX", false),
     checkModType: UnrealEngine.checkModType

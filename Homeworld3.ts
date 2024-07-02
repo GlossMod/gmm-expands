@@ -5,6 +5,7 @@
 import type { ISupportedGames } from "@src/model/Interfaces";
 import { join } from 'path'
 import { UnrealEngine } from "@src/model/UnrealEngine";
+import { FileHandler } from "@src/model/FileHandler";
 
 
 export const supportedGames: ISupportedGames = {
@@ -24,6 +25,7 @@ export const supportedGames: ISupportedGames = {
             exePath: "Homeworld3.exe"
         }
     ],
+    archivePath: join(FileHandler.GetAppData(), "Local", "Homeworld3", "Saved"),
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/6423ab827ad41.webp",
     modType: UnrealEngine.modType("Homeworld3", false),
     checkModType: UnrealEngine.checkModType

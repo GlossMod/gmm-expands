@@ -5,6 +5,7 @@
 import type { ISupportedGames } from "@src/model/Interfaces";
 import { join } from 'path'
 import { UnrealEngine } from "@src/model/UnrealEngine";
+import { FileHandler } from "@src/model/FileHandler";
 
 
 export const supportedGames: ISupportedGames = {
@@ -23,6 +24,9 @@ export const supportedGames: ISupportedGames = {
             exePath: "LOTF2.exe"
         }
     ],
+    archivePath: (() => {
+        return join(FileHandler.GetAppData(), "Local", "LOTF2", "Saved")
+    })(),
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/664db7b3148f8.webp",
     modType: UnrealEngine.modType("LOTF2", false),
     checkModType: UnrealEngine.checkModType

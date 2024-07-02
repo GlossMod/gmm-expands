@@ -62,6 +62,7 @@ export const supportedGames: ISupportedGames = {
             exePath: join("Grim Dawn.exe")
         }
     ],
+    archivePath: join(FileHandler.getMyDocuments(), "My Games", "Grim Dawn"),
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/80.jpg",
     modType: [
         {

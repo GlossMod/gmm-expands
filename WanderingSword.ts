@@ -1,7 +1,12 @@
+/**
+ * @description 逸剑风云决 支持
+ */
+
 import type { IModInfo, IState, ISupportedGames } from "@src/model/Interfaces";
 import { join, extname, sep, basename, dirname } from 'path'
 import { Manager } from "@src/model/Manager";
 import { ElMessage } from "element-plus";
+import { FileHandler } from "@src/model/FileHandler";
 
 export const supportedGames: ISupportedGames = {
     GlossGameId: 328,
@@ -19,6 +24,7 @@ export const supportedGames: ISupportedGames = {
         }
     ],
     gameExe: "JH.exe",
+    archivePath: join(FileHandler.GetAppData(), "Local", "Wandering_Sword", "Saved"),
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/656d920e5f559.webp",
     modType: [
         {

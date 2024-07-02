@@ -67,6 +67,7 @@ export const supportedGames: ISupportedGames = {
             exePath: 'steam://rungameid/413150'
         }
     ],
+    archivePath: join(FileHandler.GetAppData(), "Roaming", "StardewValley"),
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/10.jpg",
     modType: [
         {

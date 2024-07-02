@@ -24,6 +24,7 @@ export const supportedGames: ISupportedGames = {
             exePath: join("Darkest Dungeon II.exe")
         }
     ],
+    archivePath: join(FileHandler.getMyDocuments(), "Darkest"),
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/664ef0d003b8a.webp",
     modType: [
         ...UnityGame.modType,

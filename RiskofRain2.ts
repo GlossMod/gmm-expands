@@ -5,6 +5,7 @@
 import type { ISupportedGames } from "@src/model/Interfaces";
 import { join } from "node:path"
 import { UnityGame } from "@src/model/UnityGame";
+import { Steam } from "@src/model/Steam";
 
 
 export const supportedGames: ISupportedGames = {
@@ -26,6 +27,7 @@ export const supportedGames: ISupportedGames = {
             exePath: join("Risk of Rain 2.exe")
         }
     ],
+    archivePath: join(Steam.getSteamInstallPath() || "", "userdata", Steam.GetLastSteamId32(), "632360", "remote", "UserProfiles"),
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/607926e04c16a.png",
     modType: UnityGame.modType,
     checkModType: UnityGame.checkModType

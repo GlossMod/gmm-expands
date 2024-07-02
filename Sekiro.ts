@@ -3,7 +3,6 @@
  */
 
 import type { IModInfo, IState, ISupportedGames } from "@src/model/Interfaces";
-import axios from "axios";
 import { basename, join } from 'node:path'
 import { FileHandler } from "@src/model/FileHandler"
 import { statSync } from "fs";
@@ -94,6 +93,7 @@ export const supportedGames: ISupportedGames = {
             exePath: 'sekiro.exe'
         }
     ],
+    archivePath: join(FileHandler.GetAppData(), "Roaming", "Sekiro"),
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/185.png",
     modType: [
         {

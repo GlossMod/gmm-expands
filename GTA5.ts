@@ -680,6 +680,7 @@ export const supportedGames: ISupportedGames = {
             exePath: join("PlayGTAV.exe")
         }
     ],
+    archivePath: join(FileHandler.getMyDocuments(), "Rockstar Games", "GTA V"),
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/616cd448533b9.png",
     modType: [
         {

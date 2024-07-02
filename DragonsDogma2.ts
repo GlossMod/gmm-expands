@@ -1,3 +1,7 @@
+/**
+ * @description 龙之信条2 支持
+ */
+
 import type { IModInfo, IState, ISupportedGames } from "@src/model/Interfaces";
 import { join, extname, basename } from 'path'
 import { Manager } from "@src/model/Manager";
@@ -5,6 +9,7 @@ import { ElMessage } from "element-plus";
 import { useManager } from "@src/stores/useManager";
 import { statSync } from "fs"
 import { FileHandler } from "@src/model/FileHandler";
+import { Steam } from "@src/model/Steam";
 
 let pakList = {
     get data() {
@@ -150,6 +155,7 @@ export const supportedGames: ISupportedGames = {
             exePath: 'DD2.exe'
         }
     ],
+    archivePath: join(Steam.getSteamInstallPath() || "", "userdata", Steam.GetLastSteamId32(), "367500", "remote"),
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/65f8f21471754.webp",
     modType: [
         {

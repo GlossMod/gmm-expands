@@ -5,6 +5,7 @@
 import type { ISupportedGames } from "@src/model/Interfaces";
 import { join } from 'path'
 import { UnityGameILCPP2 } from "@src/model/UnityGame";
+import { FileHandler } from "@src/model/FileHandler";
 
 
 export const supportedGames: ISupportedGames = {
@@ -23,6 +24,7 @@ export const supportedGames: ISupportedGames = {
             exePath: "tld.exe"
         }
     ],
+    archivePath: join(FileHandler.GetAppData(), "Local", "Hinterland", "TheLongDark"),
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/65.png",
     modType: UnityGameILCPP2.modType,
     checkModType: UnityGameILCPP2.checkModType

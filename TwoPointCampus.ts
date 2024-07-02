@@ -7,6 +7,7 @@ import { join, extname } from "node:path"
 import { homedir } from "os";
 import { ElMessage } from "element-plus";
 import { Manager } from "@src/model/Manager";
+import { FileHandler } from "@src/model/FileHandler";
 
 
 
@@ -27,6 +28,7 @@ export const supportedGames: ISupportedGames = {
             exePath: join("TPC.exe")
         }
     ],
+    archivePath: join(FileHandler.GetAppData(), "LocalLow", "Two Point Studios", "Two Point Campus"),
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/65a74761bb3fe.webp",
     modType: [
         {

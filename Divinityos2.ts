@@ -1,6 +1,9 @@
+/**
+ * @description 神界：原罪2 支持
+ */
+
 import type { IModInfo, IState, ISupportedGames } from "@src/model/Interfaces";
 import { join, extname, sep, basename, dirname } from 'path'
-import { Manager } from "@src/model/Manager";
 import { ElMessage } from "element-plus";
 import { FileHandler } from "@src/model/FileHandler";
 import { useManager } from "@src/stores/useManager";
@@ -53,6 +56,7 @@ export const supportedGames: ISupportedGames = {
             rootPath: join('..', '..')
         }
     ],
+    archivePath: join(FileHandler.getMyDocuments(), "Larian Studios", "Divinity Original Sin 2 Definitive Edition"),
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/34.jpg",
     modType: [
         {

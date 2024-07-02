@@ -55,6 +55,7 @@ export const supportedGames: ISupportedGames = {
         }
     ],
     gameExe: "RimWorldWin64.exe",
+    archivePath: join(FileHandler.GetAppData(), "LocalLow", "Ludeon Studios", "RimWorld by Ludeon Studios"),
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/19.jpg",
     modType: [
         {

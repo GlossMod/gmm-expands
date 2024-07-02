@@ -24,6 +24,7 @@ export const supportedGames: ISupportedGames = {
             exePath: join("theHunterCotW_F.exe")
         }
     ],
+    archivePath: join(FileHandler.getMyDocuments(), "Avalanche Studios", "theHunter Call of the Wild", "Saves"),
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/64e2df9a8310c.webp",
     modType: [
         {

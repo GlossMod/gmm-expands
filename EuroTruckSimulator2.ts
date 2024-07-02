@@ -45,6 +45,7 @@ export const supportedGames: ISupportedGames = {
             exePath: join('bin","win_x64', 'eurotrucks2.exe')
         }
     ],
+    archivePath: join(FileHandler.getMyDocuments(), "Euro Truck Simulator 2"),
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/15.jpg",
     modType: [
         {

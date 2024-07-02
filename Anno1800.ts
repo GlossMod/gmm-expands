@@ -6,6 +6,7 @@ import type { ISupportedGames } from "@src/model/Interfaces";
 import { join, extname, basename } from "node:path"
 import { ElMessage } from "element-plus";
 import { Manager } from "@src/model/Manager";
+import { FileHandler } from "@src/model/FileHandler";
 
 
 
@@ -31,6 +32,7 @@ export const supportedGames: ISupportedGames = {
             exePath: join("Bin", "Win64", "Anno1800.exe")
         }
     ],
+    archivePath: join(FileHandler.getMyDocuments(), "Anno 1800"),
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/189.png",
     modType: [
         {

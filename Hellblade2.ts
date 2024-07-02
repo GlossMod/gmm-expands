@@ -5,6 +5,7 @@
 import type { ISupportedGames } from "@src/model/Interfaces";
 import { join } from 'path'
 import { UnrealEngine } from "@src/model/UnrealEngine";
+import { FileHandler } from "@src/model/FileHandler";
 
 
 export const supportedGames: ISupportedGames = {
@@ -23,6 +24,7 @@ export const supportedGames: ISupportedGames = {
             exePath: "Hellblade2.exe"
         }
     ],
+    archivePath: join(FileHandler.GetAppData(), "Local", "Hellblade2", "Saved"),
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/181.jpg",
     modType: UnrealEngine.modType("Hellblade2", false),
     checkModType: UnrealEngine.checkModType

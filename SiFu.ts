@@ -44,6 +44,7 @@ export const supportedGames: ISupportedGames = {
             exePath: join("Sifu.exe")
         }
     ],
+    archivePath: join(FileHandler.GetAppData(), "Local", "Sifu", "Saved"),
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/62207195e18a2.png",
     modType: [
         {

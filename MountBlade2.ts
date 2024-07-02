@@ -64,6 +64,7 @@ export const supportedGames: ISupportedGames = {
             exePath: join("bin", "Win64_Shipping_Client", "TaleWorlds.MountAndBlade.Launcher.exe")
         }
     ],
+    archivePath: join(FileHandler.getMyDocuments(), "Mount and Blade II Bannerlord"),
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/225.png",
     modType: [
         {

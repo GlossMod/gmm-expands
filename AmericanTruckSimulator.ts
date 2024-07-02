@@ -45,6 +45,7 @@ export const supportedGames: ISupportedGames = {
             exePath: join('bin","win_x64', 'amtrucks.exe')
         }
     ],
+    archivePath: join(FileHandler.getMyDocuments(), "American Truck Simulator"),
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/52.jpg",
     modType: [
         {

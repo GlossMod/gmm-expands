@@ -5,6 +5,7 @@ import type { IModInfo, IState, ISupportedGames } from "@src/model/Interfaces";
 import { join, extname, basename } from 'path'
 import { Manager } from "@src/model/Manager";
 import { ElMessage } from "element-plus";
+import { Steam } from "@src/model/Steam";
 
 
 export const supportedGames: ISupportedGames = {
@@ -23,6 +24,7 @@ export const supportedGames: ISupportedGames = {
             exePath: 'StreetFighter6.exe'
         }
     ],
+    archivePath: join(Steam.getSteamInstallPath() || "", "userdata", Steam.GetLastSteamId32(), "632360", "remote"),
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/64ad1276b1fca.png",
     modType: [
         {

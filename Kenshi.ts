@@ -6,6 +6,7 @@ import type { ISupportedGames } from "@src/model/Interfaces";
 import { basename, join, extname } from "node:path"
 import { ElMessage } from "element-plus";
 import { Manager } from "@src/model/Manager";
+import { FileHandler } from "@src/model/FileHandler";
 
 export const supportedGames: ISupportedGames = {
     GlossGameId: 186,
@@ -23,6 +24,7 @@ export const supportedGames: ISupportedGames = {
             exePath: join("kenshi_x64.exe")
         }
     ],
+    archivePath: join(FileHandler.GetAppData(), "Local", "Kenshi", "Saved"),
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/186.png",
     modType: [
         {

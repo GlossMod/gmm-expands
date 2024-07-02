@@ -6,6 +6,7 @@ import type { ISupportedGames } from "@src/model/Interfaces";
 import { join, extname } from 'path'
 import { Manager } from "@src/model/Manager";
 import { ElMessage } from "element-plus";
+import { FileHandler } from "@src/model/FileHandler";
 
 
 export const supportedGames: ISupportedGames = {
@@ -24,6 +25,7 @@ export const supportedGames: ISupportedGames = {
             exePath: "GhostOfTsushima.exe"
         }
     ],
+    archivePath: join(FileHandler.getMyDocuments(), "Ghost of Tsushima DIRECTOR'S CUT"),
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/664703cf381cf.webp",
     modType: [
         {

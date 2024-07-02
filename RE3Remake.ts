@@ -1,7 +1,11 @@
+/**
+ * @description 生化危机3 重制版 支持
+ */
 import type { IModInfo, IState, ISupportedGames } from "@src/model/Interfaces";
 import { join, extname, basename } from 'path'
 import { Manager } from "@src/model/Manager";
 import { ElMessage } from "element-plus";
+import { Steam } from "@src/model/Steam";
 
 
 export const supportedGames: ISupportedGames = {
@@ -24,6 +28,7 @@ export const supportedGames: ISupportedGames = {
             exePath: 're3.exe'
         }
     ],
+    archivePath: join(Steam.getSteamInstallPath() || "", "userdata", Steam.GetLastSteamId32(), "952060", "remote"),
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/224.png",
     modType: [
         {

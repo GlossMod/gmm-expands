@@ -44,6 +44,7 @@ export const supportedGames: ISupportedGames = {
             exePath: join("Three_Kingdoms.exe")
         }
     ],
+    archivePath: join(FileHandler.GetAppData(), "Roaming", "The Creative Assembly", "ThreeKingdoms"),
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/193.png",
     modType: [
         {

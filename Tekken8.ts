@@ -5,6 +5,7 @@
 import type { ISupportedGames } from "@src/model/Interfaces";
 import { join } from 'path'
 import { UnrealEngine } from "@src/model/UnrealEngine";
+import { FileHandler } from "@src/model/FileHandler";
 
 
 export const supportedGames: ISupportedGames = {
@@ -23,6 +24,7 @@ export const supportedGames: ISupportedGames = {
             exePath: "TEKKEN 8.exe"
         }
     ],
+    archivePath: join(FileHandler.GetAppData(), "Local", "TEKKEN 8", "Saved"),
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/65b9e69f3b61b.webp",
     modType: UnrealEngine.modType("Polaris", false),
     checkModType: UnrealEngine.checkModType

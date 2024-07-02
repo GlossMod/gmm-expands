@@ -184,8 +184,8 @@ export const supportedGames: ISupportedGames = {
             name: 'DirectX 11',
             exePath: join('bin', 'bg3_dx11.exe')
         },
-
     ],
+    archivePath: join(FileHandler.GetAppData(), 'Local', 'Larian Studios', "Baldur's Gate 3"),
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/5f9fc80ea912c.png",
     modType: [
         {

@@ -1,5 +1,5 @@
 /**
- * @description 深海迷航 支持
+ * @description 大侠立志传 支持
  */
 
 import type { ISupportedGames } from "@src/model/Interfaces";
@@ -25,6 +25,7 @@ export const supportedGames: ISupportedGames = {
             exePath: join("Wulin.exe")
         }
     ],
+    archivePath: join(FileHandler.GetAppData(), "LocalLow", "DefaultCompany", "Wulin"),
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/641d08aca63ce.webp",
     modType: [
         {

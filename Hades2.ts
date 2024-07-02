@@ -54,6 +54,7 @@ export const supportedGames: ISupportedGames = {
             exePath: join("Ship", "Hades2.exe")
         }
     ],
+    archivePath: join(FileHandler.GetAppData(), "..", "Saved Games", "Hades II"),
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/663add9906fe2.webp",
     modType: [
         {

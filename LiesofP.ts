@@ -2,6 +2,7 @@ import type { IModInfo, IState, ISupportedGames } from "@src/model/Interfaces";
 import { join, extname, sep, basename, dirname } from 'path'
 import { Manager } from "@src/model/Manager";
 import { ElMessage } from "element-plus";
+import { FileHandler } from "@src/model/FileHandler";
 
 export const supportedGames: ISupportedGames = {
     GlossGameId: 325,

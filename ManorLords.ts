@@ -5,6 +5,7 @@ import type { ISupportedGames } from "@src/model/Interfaces";
 import { join } from 'path'
 
 import { UnrealEngine } from "@src/model/UnrealEngine"
+import { FileHandler } from "@src/model/FileHandler";
 
 
 export const supportedGames: ISupportedGames = {
@@ -23,6 +24,7 @@ export const supportedGames: ISupportedGames = {
         }
     ],
     gameExe: "ManorLords.exe",
+    archivePath: join(FileHandler.GetAppData(), "Local", "ManorLords", "Saved"),
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/662db2a8b4521.webp",
     modType: UnrealEngine.modType("ManorLords", false),
     checkModType: UnrealEngine.checkModType

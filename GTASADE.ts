@@ -1,5 +1,5 @@
 /**
- * @description 无人深空 支持
+ * @description GTASADE 支持
  */
 
 import type { ISupportedGames } from "@src/model/Interfaces";
@@ -33,6 +33,7 @@ export const supportedGames: ISupportedGames = {
             exePath: join("Gameface", "Binaries", "Win64", "SanAndreas.exe")
         }
     ],
+    archivePath: join(FileHandler.getMyDocuments(), "Rockstar Games", "GTA San Andreas Definitive Edition"),
     gameCoverImg: "imgs/gtasade_logo.jpg",
     modType: [
         {

@@ -32,6 +32,7 @@ export const supportedGames: ISupportedGames = {
             exePath: join("likeadragon8.exe")
         }
     ],
+    archivePath: join(FileHandler.GetAppData(), "Local", "SEGA", "LikeADragon8"),
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/65b9e51412790.webp",
     modType: [
         {

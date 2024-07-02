@@ -34,31 +34,6 @@ async function setArchive() {
     }
 }
 
-// 软链 Data
-async function symlinkData() {
-    let documents = await FileHandler.getMyDocuments()
-
-    const data = join(documents, "My Games", "Starfield", "Data")
-
-    // 判断是否已经软链过了
-    if (await FileHandler.isSymlink(data)) {
-        console.log('Data 已软链过, 无需再次软链.');
-        return
-    }
-
-    // FileHandler.deleteFolder(data)
-    // 重命名旧的文件夹
-    FileHandler.renameFile(data, join(dirname(data), 'old_data'))
-
-    // 获取游戏目录中的Data
-    const manager = useManager()
-    const gameData = join(manager.gameStorage, "Data")
-
-    // 软链
-    FileHandler.createLink(gameData, data)
-
-}
-
 // 修改 plugins
 async function setPlugins(mod: IModInfo, install: boolean) {
     // AppData\Local\Fallout4\plugins.txt
@@ -86,14 +61,6 @@ async function setPlugins(mod: IModInfo, install: boolean) {
 
 }
 
-// // 安装 卸载 data 类型的mod
-// async function handleDataMod(mod: IModInfo, installPath: string, isInstall: boolean) {
-//     if (isInstall) setArchive();
-//     if (isInstall) symlinkData();
-
-//     return Manager.installByFolder(mod, installPath, "data", isInstall, false, true)
-
-// }
 //#endregion
 
 //#region  Plugins 类型的mod
@@ -104,24 +71,6 @@ async function handlePlugins(mod: IModInfo, installPath: string, isInstall: bool
     if (isInstall) Manager.checkInstalled("SFSE", 201756)
 
     return Manager.installByFolder(mod, installPath, "plugins", isInstall, false, true)
-
-    // const manager = useManager()
-    // let modStorage = join(manager.modStorage ?? "", mod.id.toString())
-
-    // let files: string[] = []
-    // mod.modFiles.forEach(item => {
-    //     try {
-    //         let file = join(modStorage, item)
-    //         if (statSync(file).isFile()) {
-    //             files.push(file)
-    //         }
-    //     } catch { }
-
-    // })
-    // let lastFolder = basename(FileHandler.getCommonParentFolder(files))
-
-    // return Manager.installByFolder(mod, installPath, lastFolder, isInstall)
-
 }
 
 //#endregion
@@ -252,6 +201,7 @@ export const supportedGames: ISupportedGames = {
             exePath: 'Starfield.exe'
         },
     ],
+    archivePath: join(FileHandler.getMyDocuments(), "My Games", "Starfield"),
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/64db454e9f5c4.webp",
     modType: [
         {

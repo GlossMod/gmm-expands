@@ -31,6 +31,7 @@ export const supportedGames: ISupportedGames = {
             exePath: join("Base", "Binaries", "Win64Steam", "CivilizationVI.exe")
         }
     ],
+    archivePath: join(FileHandler.getMyDocuments(), "My Games", "Sid Meier's Civilization VI"),
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/5.jpg",
     modType: [
         {

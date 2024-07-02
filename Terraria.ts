@@ -28,6 +28,7 @@ export const supportedGames: ISupportedGames = {
             exePath: join("Terraria.exe")
         }
     ],
+    archivePath: join(FileHandler.getMyDocuments(), "My Games", "Terraria"),
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/64cc631c336ce.webp",
     modType: [
         {

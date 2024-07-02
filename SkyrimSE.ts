@@ -3,14 +3,13 @@
  */
 
 
-import type { IModInfo, IState, ISupportedGames } from "@src/model/Interfaces";
+import type { IModInfo, ISupportedGames } from "@src/model/Interfaces";
 import { basename, join, extname, dirname } from 'node:path'
 import { FileHandler } from "@src/model/FileHandler"
-import { useManager } from "@src/stores/useManager";
 import { ElMessage } from "element-plus";
 import { Manager } from "@src/model/Manager";
 import ini from 'ini'
-import { statSync, readFileSync, writeFileSync } from "fs";
+import { readFileSync, writeFileSync } from "fs";
 import { homedir } from 'os'
 
 // 修改 Archive配置
@@ -82,6 +81,7 @@ export const supportedGames: ISupportedGames = {
             exePath: 'skse64_loader.exe'
         }
     ],
+    archivePath: join(FileHandler.getMyDocuments(), "My Games", "Skyrim Special Edition"),
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/2.jpg",
     modType: [
         {

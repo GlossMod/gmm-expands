@@ -77,6 +77,7 @@ export const supportedGames: ISupportedGames = {
             exePath: 'steam://rungameid/1888160'
         }
     ],
+    archivePath: join(FileHandler.GetAppData(), 'Roaming', 'ArmoredCore6'),
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/64e5a555a4360.webp",
     modType: [
         {

@@ -5,6 +5,7 @@ import type { ISupportedGames } from "@src/model/Interfaces";
 import { join } from 'path'
 
 import { UnrealEngine } from "@src/model/UnrealEngine"
+import { FileHandler } from "@src/model/FileHandler";
 
 
 export const supportedGames: ISupportedGames = {
@@ -33,6 +34,7 @@ export const supportedGames: ISupportedGames = {
             rootPath: ".",
         }
     ],
+    archivePath: join(FileHandler.GetAppData(), "Local", "Pal", "Saved"),
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/65ae3cdbc7680.webp",
     modType: UnrealEngine.modType("Pal"),
     checkModType: UnrealEngine.checkModType

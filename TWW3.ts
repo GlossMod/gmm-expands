@@ -43,6 +43,7 @@ export const supportedGames: ISupportedGames = {
             exePath: join("Warhammer3.exe")
         }
     ],
+    archivePath: join(FileHandler.GetAppData(), "Roaming", "The Creative Assembly", "Warhammer3"),
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/61dbfe86987ba.png",
     modType: [
         {

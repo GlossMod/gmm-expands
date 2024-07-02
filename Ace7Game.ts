@@ -5,6 +5,7 @@ import type { ISupportedGames } from "@src/model/Interfaces";
 import { join } from 'path'
 
 import { UnrealEngine } from "@src/model/UnrealEngine"
+import { FileHandler } from "@src/model/FileHandler";
 
 
 export const supportedGames: ISupportedGames = {
@@ -12,6 +13,7 @@ export const supportedGames: ISupportedGames = {
     steamAppID: 502500,
     installdir: join("ACE COMBAT 7"),
     gameName: "ACE COMBAT 7",
+    archivePath: join(FileHandler.GetAppData(), "Local", "BANDAI NAMCO Entertainment", "ACE COMBAT 7"),
     startExe: [
         {
             name: "Steam 启动",

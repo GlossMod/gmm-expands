@@ -7,6 +7,7 @@ import type { IModInfo, IState, ISupportedGames } from "@src/model/Interfaces";
 import { join, extname, sep, basename, dirname } from 'path'
 import { Manager } from "@src/model/Manager";
 import { ElMessage } from "element-plus";
+import { FileHandler } from "@src/model/FileHandler";
 
 export const supportedGames: ISupportedGames = {
     GlossGameId: 266,
@@ -29,6 +30,7 @@ export const supportedGames: ISupportedGames = {
         }
     ],
     gameExe: "ff7remake.exe",
+    archivePath: join(FileHandler.getMyDocuments(), "My Games", "FINAL FANTASY VII REMAKE"),
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/61c027ed1cbc1.png",
     modType: [
         {

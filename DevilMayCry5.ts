@@ -1,7 +1,13 @@
+/**
+ * @description 鬼泣5 支持
+ */
+
 import type { IModInfo, IState, ISupportedGames } from "@src/model/Interfaces";
 import { join, extname, basename } from 'path'
 import { Manager } from "@src/model/Manager";
 import { ElMessage } from "element-plus";
+import { FileHandler } from "@src/model/FileHandler";
+import { Steam } from "@src/model/Steam";
 
 
 export const supportedGames: ISupportedGames = {
@@ -24,6 +30,14 @@ export const supportedGames: ISupportedGames = {
             exePath: 'DevilMayCry5.exe'
         }
     ],
+    archivePath: (() => {
+        let steamPath = Steam.getSteamInstallPath()
+        if (steamPath) {
+            return join(steamPath, 'userdata', Steam.GetLastSteamId32(), '601150', 'remote')
+        } else {
+            return join(FileHandler.GetAppData(), "Local", "SKIDROW", "220440", "Storage")
+        }
+    })(),
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/183.jpg",
     modType: [
         {

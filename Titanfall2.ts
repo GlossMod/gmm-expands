@@ -6,6 +6,7 @@ import type { ISupportedGames } from "@src/model/Interfaces";
 import { join, extname, basename } from "node:path"
 import { ElMessage } from "element-plus";
 import { Manager } from "@src/model/Manager";
+import { FileHandler } from "@src/model/FileHandler";
 
 
 
@@ -28,6 +29,7 @@ export const supportedGames: ISupportedGames = {
             exePath: join("NorthstarLauncher.exe")
         }
     ],
+    archivePath: join(FileHandler.getMyDocuments(), "Respawn", "Titanfall2"),
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/65a9d3b2453ae.webp",
     modType: [
         {

@@ -5,6 +5,7 @@
 import type { ISupportedGames } from "@src/model/Interfaces";
 import { join } from 'path'
 import { UnrealEngine } from "@src/model/UnrealEngine";
+import { FileHandler } from "@src/model/FileHandler";
 
 
 export const supportedGames: ISupportedGames = {
@@ -23,6 +24,7 @@ export const supportedGames: ISupportedGames = {
             exePath: "AtomicHeart.exe"
         }
     ],
+    archivePath: join(FileHandler.GetAppData(), "..", "Saved Games", "AtomicHeart"),
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/63f5846644d4e.webp",
     modType: UnrealEngine.modType("AtomicHeart", false),
     checkModType: UnrealEngine.checkModType

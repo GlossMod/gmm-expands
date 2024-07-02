@@ -5,6 +5,7 @@
 import type { ISupportedGames } from "@src/model/Interfaces";
 import { join } from "node:path"
 import { UnityGame } from "@src/model/UnityGame";
+import { FileHandler } from "@src/model/FileHandler";
 
 
 export const supportedGames: ISupportedGames = {
@@ -23,6 +24,7 @@ export const supportedGames: ISupportedGames = {
             exePath: join("WarmSnow.exe")
         }
     ],
+    archivePath: join(FileHandler.GetAppData(), "LocalLow", "BadMudStudio", "WarmSnow"),
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/61eb6d1e3f646.png",
     modType: UnityGame.modType,
     checkModType: UnityGame.checkModType

@@ -5,6 +5,7 @@
 import type { ISupportedGames } from "@src/model/Interfaces";
 import { join } from "node:path"
 import { UnityGame } from "@src/model/UnityGame";
+import { FileHandler } from "@src/model/FileHandler";
 
 
 export const supportedGames: ISupportedGames = {
@@ -23,6 +24,7 @@ export const supportedGames: ISupportedGames = {
             exePath: join("Mortal.exe")
         }
     ],
+    archivePath: join(FileHandler.GetAppData(), "LocalLow", "Obb Studio", "Mortal"),
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/667126e01ba80.webp",
     modType: UnityGame.modType,
     checkModType: UnityGame.checkModType

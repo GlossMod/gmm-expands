@@ -2,6 +2,7 @@ import type { IModInfo, ISupportedGames } from "@src/model/Interfaces";
 import { join, extname } from 'path'
 import { Manager } from "@src/model/Manager";
 import { ElMessage } from "element-plus";
+import { FileHandler } from "@src/model/FileHandler";
 
 export const supportedGames: ISupportedGames = {
     GlossGameId: 207,
@@ -23,6 +24,7 @@ export const supportedGames: ISupportedGames = {
             exePath: 'CodeVein.exe'
         }
     ],
+    archivePath: join(FileHandler.GetAppData(), "Local", "CodeVein", "Saved"),
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/207.png",
     modType: [
         {

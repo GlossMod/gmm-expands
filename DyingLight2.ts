@@ -162,6 +162,7 @@ export const supportedGames: ISupportedGames = {
             exePath: join("ph", "work", "bin", "x64", "DyingLightGame_x64_rwdi.exe")
         }
     ],
+    archivePath: join(FileHandler.getMyDocuments(), "dying light 2", "out"),
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/61dbf5a660a03.png",
     modType: [
         {

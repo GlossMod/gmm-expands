@@ -1,3 +1,7 @@
+/**
+ * @description 太吾绘卷 支持
+ */
+
 import { FileHandler } from "@src/model/FileHandler";
 import type { IModInfo, IState, ISupportedGames } from "@src/model/Interfaces";
 import { useManager } from "@src/stores/useManager";

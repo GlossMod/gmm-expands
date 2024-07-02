@@ -89,6 +89,7 @@ export const supportedGames: ISupportedGames = {
             exePath: 'f4se_loader.exe'
         }
     ],
+    archivePath: join(FileHandler.getMyDocuments(), "My Games", "Fallout4"),
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/6b.png",
     modType: [
         {

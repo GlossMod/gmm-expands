@@ -6,6 +6,7 @@ import type { ISupportedGames } from "@src/model/Interfaces";
 import { basename, join, extname } from "node:path"
 import { ElMessage } from "element-plus";
 import { Manager } from "@src/model/Manager";
+import { FileHandler } from "@src/model/FileHandler";
 
 
 export const supportedGames: ISupportedGames = {
@@ -18,6 +19,7 @@ export const supportedGames: ISupportedGames = {
     installdir: join("7 Days to Die"),
     gameName: "7 Days to Die",
     gameExe: "7DaysToDie.exe",
+    archivePath: join(FileHandler.GetAppData(), "Roaming", "7DaysToDie"),
     startExe: [
         {
             name: "Steam 启动",

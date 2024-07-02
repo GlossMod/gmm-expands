@@ -24,6 +24,7 @@ export const supportedGames: ISupportedGames = {
             exePath: join("ck3.exe")
         }
     ],
+    archivePath: join(FileHandler.getMyDocuments(), "Paradox Interactive", "Crusader Kings III"),
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/236.png",
     modType: [
         {

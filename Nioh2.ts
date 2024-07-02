@@ -1,5 +1,5 @@
 /**
- * @description 无人深空 支持
+ * @description 仁王2 支持
  */
 
 import type { IModInfo, ISupportedGames } from "@src/model/Interfaces";
@@ -45,6 +45,7 @@ export const supportedGames: ISupportedGames = {
             exePath: join("nioh2.exe")
         }
     ],
+    archivePath: join(FileHandler.getMyDocuments(), "KoeiTecmo", "Nioh2"),
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/6041c647d7a35.png",
     modType: [
         {

@@ -43,6 +43,7 @@ export const supportedGames: ISupportedGames = {
             exePath: join("Binaries", "NMS.exe")
         }
     ],
+    archivePath: join(FileHandler.GetAppData(), "Roaming", "HelloGames", "NMS"),
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/24.jpg",
     modType: [
         {

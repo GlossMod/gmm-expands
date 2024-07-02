@@ -5,6 +5,7 @@
 import type { ISupportedGames } from "@src/model/Interfaces";
 import { join, basename, extname } from "node:path"
 import { UnityGame } from "@src/model/UnityGame";
+import { FileHandler } from "@src/model/FileHandler";
 
 
 export const supportedGames: ISupportedGames = {
@@ -26,6 +27,7 @@ export const supportedGames: ISupportedGames = {
             exePath: join("Cult Of The Lamb.exe")
         }
     ],
+    archivePath: join(FileHandler.GetAppData(), "LocalLow", "Massive Monster", "Cult Of The Lamb"),
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/65f2c99bb3e08.webp",
     modType: UnityGame.modType,
     checkModType: UnityGame.checkModType

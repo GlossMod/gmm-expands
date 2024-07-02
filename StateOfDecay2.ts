@@ -1,7 +1,12 @@
+/**
+ * @description 腐烂国度2 支持
+ */
+
 import type { IModInfo, IState, ISupportedGames } from "@src/model/Interfaces";
 import { join, extname, sep, basename, dirname } from 'path'
 import { Manager } from "@src/model/Manager";
 import { ElMessage } from "element-plus";
+import { FileHandler } from "@src/model/FileHandler";
 
 export const supportedGames: ISupportedGames = {
     GlossGameId: 238,
@@ -23,6 +28,7 @@ export const supportedGames: ISupportedGames = {
         }
     ],
     gameExe: "StateOfDecay2.exe",
+    archivePath: join(FileHandler.GetAppData(), "Local", "StateOfDecay2", "Saved"),
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/238.png",
     modType: [
         {

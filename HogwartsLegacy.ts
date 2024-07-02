@@ -27,6 +27,7 @@ export const supportedGames: ISupportedGames = {
             exePath: 'HogwartsLegacy.exe'
         }
     ],
+    archivePath: join(FileHandler.GetAppData(), "Local", "HogwartsLegacy", "Saved"),
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/63e2f9656f092.webp",
     modType: [
         {

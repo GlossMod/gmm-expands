@@ -5,6 +5,7 @@
 import type { ISupportedGames } from "@src/model/Interfaces";
 import { join, basename, extname } from "node:path"
 import { UnityGame } from "@src/model/UnityGame";
+import { FileHandler } from "@src/model/FileHandler";
 
 
 export const supportedGames: ISupportedGames = {
@@ -23,6 +24,7 @@ export const supportedGames: ISupportedGames = {
             exePath: join("ContrabandPolice.exe")
         }
     ],
+    archivePath: join(FileHandler.GetAppData(), "LocalLow", "CrazyRocks", "ContrabandPolice"),
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/65f1169237040.webp",
     modType: [
         ...UnityGame.modType
