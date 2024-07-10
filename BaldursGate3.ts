@@ -42,7 +42,7 @@ async function LoadModDataFromPak(pakPath: string) {
     try {
 
         let assemblyFile = join(manager.modStorage ?? "", manager.getModInfoByWebId(200783)?.id.toString() ?? "", 'BaldursGate3.dll')
-        console.log(assemblyFile);
+        // console.log(assemblyFile);
 
         let Invoke = edge.func({
             assemblyFile: assemblyFile,
@@ -52,10 +52,19 @@ async function LoadModDataFromPak(pakPath: string) {
         return new Promise<IAttribute[]>((resolve, reject) => {
             Invoke(pakPath, async (error: any, result: any) => {
                 if (error) reject(error);
-                let attribute
+                let attribute: IAttribute[] = []
                 if (result) {
                     let data = await xml2js.parseStringPromise(result)
-                    attribute = data.save.region[0].node[0].children[0].node[1].attribute
+
+                    data.save.region[0].node[0].children[0].node.forEach((item: any) => {
+                        if (item.attribute) attribute.push(...item.attribute)
+                    })
+                    // if (data.save.region[0].node[0].children[0].node[0]?.attribute) {
+                    //     attribute.push(...data.save.region[0].node[0].children[0].node[0].attribute)
+                    // }
+                    // if (data.save.region[0].node[0].children[0].node[1]?.attribute) {
+                    //     attribute.push(...data.save.region[0].node[0].children[0].node[1].attribute)
+                    // }
                 }
 
                 resolve(attribute);
@@ -79,7 +88,7 @@ async function handlePak(mod: IModInfo, installPath: string, isInstall: boolean)
 
     let modsettings_data = await modsettings.data
     let root = modsettings_data.save.region[0].node[0].children[0].node
-    console.log(root);
+    // console.log(root);
     if (!root[0].children || !root[0].children[0].node) {
         // 如果用户是第一次装Mod
         // console.log('第一次装Mod');
@@ -105,42 +114,46 @@ async function handlePak(mod: IModInfo, installPath: string, isInstall: boolean)
 
                 let meta = await LoadModDataFromPak(modStorage)
                 if (meta) {
+                    // console.log(meta);
+
                     let ModuleShortDesc = meta.filter(item => (item.$.id == 'Folder' || item.$.id == 'MD5' || item.$.id == 'Name' || item.$.id == 'UUID' || item.$.id == 'Version64'))
 
-                    if (isInstall) {
-                        // 安装
-                        // ModOrder 中添加 UUID
-                        root[0].children[0].node.push({
-                            $: {
-                                id: "Module"
-                            },
-                            attribute: [
-                                {
-                                    $: {
-                                        id: "UUID",
-                                        type: "FixedString",
-                                        value: ModuleShortDesc.find(item => item.$.id == 'UUID')?.$.value,
+                    if (ModuleShortDesc.length > 0) {
+                        if (isInstall) {
+                            // 安装
+                            // ModOrder 中添加 UUID
+                            root[0].children[0].node.push({
+                                $: {
+                                    id: "Module"
+                                },
+                                attribute: [
+                                    {
+                                        $: {
+                                            id: "UUID",
+                                            type: "FixedString",
+                                            value: ModuleShortDesc.find(item => item.$.id == 'UUID')?.$.value,
+                                        }
                                     }
-                                }
-                            ]
-                        })
-                        // Mods 中添加 数据
-                        root[1].children[0].node.push({
-                            $: {
-                                id: 'ModuleShortDesc'
-                            },
-                            attribute: [...ModuleShortDesc]
-                        })
-                    } else {
-                        // 卸载
-                        // ModOrder 中删除 UUID
-                        root[0].children[0].node = root[0].children[0].node.filter((item: any) => item?.attribute[0].$.value != ModuleShortDesc.find(item => item.$.id == 'UUID')?.$.value)
-                        // Mods 中删除 数据
-                        root[1].children[0].node = root[1].children[0].node.filter((item: any) => {
-                            let uuid = item?.attribute.find((item: any) => item.$.id == 'UUID')
-                            if (uuid) return uuid.$.value != ModuleShortDesc.find(item => item.$.id == 'UUID')?.$.value
-                            else return true
-                        })
+                                ]
+                            })
+                            // Mods 中添加 数据
+                            root[1].children[0].node.push({
+                                $: {
+                                    id: 'ModuleShortDesc'
+                                },
+                                attribute: [...ModuleShortDesc]
+                            })
+                        } else {
+                            // 卸载
+                            // ModOrder 中删除 UUID
+                            root[0].children[0].node = root[0].children[0].node.filter((item: any) => item?.attribute[0].$.value != ModuleShortDesc.find(item => item.$.id == 'UUID')?.$.value)
+                            // Mods 中删除 数据
+                            root[1].children[0].node = root[1].children[0].node.filter((item: any) => {
+                                let uuid = item?.attribute.find((item: any) => item.$.id == 'UUID')
+                                if (uuid) return uuid.$.value != ModuleShortDesc.find(item => item.$.id == 'UUID')?.$.value
+                                else return true
+                            })
+                        }
                     }
                     modsettings.data = modsettings_data
                 }

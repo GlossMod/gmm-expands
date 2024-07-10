@@ -54,7 +54,7 @@ async function install_xml(file: string, isInstall: boolean) {
 
     let mods_xml_data = await mods_xml.data;
     let { ModsManager } = mods_xml_data
-    console.log(ModsManager);
+    // console.log(ModsManager);
 
     let Mods = ModsManager.Mods
     let mod = Mods[0].Mod?.find((item: any) => item.$?.folder == folder)
@@ -138,7 +138,7 @@ async function writeDlcName(name: string, isInstall: boolean) {
         xmlData.SMandatoryPacksData.Paths[0].Item = dlclist.filter(item => item != `dlcpacks:/${name}/`)
     }
 
-    console.log(xmlData);
+    // console.log(xmlData);
 
 
     let file = join(tools_path, 'dlclist.xml')
@@ -186,7 +186,7 @@ function buidGmm() {
     // 如果不存在 则生成
     let dlcpacks_path = join(gameStorage, "mods", "update", "x64", "dlcpacks")
     const cmd = `"${join(tools_path, "_buidGMM.bat")}" "${dlcpacks_path}"`
-    console.log(cmd);
+    // console.log(cmd);
 
     execSync(cmd, { encoding: 'utf8' }).toString()
 }
@@ -200,7 +200,7 @@ function initGmm_rpf() {
     const gmm_rpf = join(gameStorage, "mods", "update", "x64", "dlcpacks", "gmm", "dlc.rpf")
     if (FileHandler.fileExists(gmm_rpf)) {
         //如果存在 则跳过
-        console.log("gmm 的 dlc.rpf 已存在");
+        // console.log("gmm 的 dlc.rpf 已存在");
         return
     }
     // buidGmm();
@@ -653,7 +653,7 @@ async function gameconfig(mod: IModInfo, isInstall: boolean) {
 
             const cmd = `"${_write_bat}" "${update_path}" "${filename}" "${inputFile}"`
 
-            console.log(cmd);
+            // console.log(cmd);
 
 
             execSync(cmd, { encoding: 'utf8' }).toString()

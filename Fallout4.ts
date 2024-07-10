@@ -18,7 +18,7 @@ async function setArchive() {
         let documents = FileHandler.getMyDocuments()
         const Fallout4Ini = join(documents, "My Games", "Fallout4", "Fallout4.ini")
         let config = ini.parse(await FileHandler.readFileSync(Fallout4Ini, ''))
-        console.log(config);
+        // console.log(config);
         if (config.Archive?.bInvalidateOlderFiles == 1) {
             console.log('Fallout4.ini 已配置过, 无需再次配置.');
             return

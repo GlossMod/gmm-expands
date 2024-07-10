@@ -21,14 +21,14 @@ function handleMods(mod: IModInfo, installPath: string, isInstall: boolean) {
 
     mod.modFiles.forEach(item => {
         if (folderList.includes(basename(item))) {
-            console.log(basename(item));
+            // console.log(basename(item));
             folders.push(join(modStorage, item, ".."))
         }
     })
 
     // files 去重
     folders = [...new Set(folders)]
-    console.log(folders);
+    // console.log(folders);
 
     folders.forEach(item => {
         let target = join(gameStorage, basename(item))

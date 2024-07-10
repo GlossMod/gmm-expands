@@ -53,7 +53,7 @@ async function install_xml(file: string, isInstall: boolean) {
 
     let mods_xml_data = await mods_xml.data;
     let { ModsManager } = mods_xml_data
-    console.log(ModsManager);
+    // console.log(ModsManager);
 
     let Mods = ModsManager.Mods
     let mod = Mods[0].Mod?.find((item: any) => item.$?.folder == folder)

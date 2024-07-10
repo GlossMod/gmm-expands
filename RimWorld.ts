@@ -18,7 +18,7 @@ async function handleMod(mod: IModInfo, installPath: string, isInstall: boolean)
         }
     })
     if (modBaseFolder.length > 0) {
-        console.log(modBaseFolder);
+        // console.log(modBaseFolder);
         modBaseFolder.forEach(item => {
             let destPath = join(manager.gameStorage, installPath, basename(item))
             if (isInstall) {

@@ -78,7 +78,7 @@ async function handlePak(mod: IModInfo, isInstall: boolean) {
                 let modPakInGamePak = pakListData.filter(item => item[0] == mod.id.toString())
                 let pakName = modPakInGamePak.find(item => extname(item[1]) == extname(modStorage))
                 if (pakName) {
-                    console.log(pakName[2]);
+                    // console.log(pakName[2]);
                     pakListData = pakListData.filter(item => item != pakName)
                     let gamePak = join(gameStorage, 'data_win64', pakName[2])
                     FileHandler.deleteFile(gamePak)
@@ -89,7 +89,7 @@ async function handlePak(mod: IModInfo, isInstall: boolean) {
     })
 
     pakList.data = pakListData
-    console.log(pakListData);
+    // console.log(pakListData);
 
     return true
 }

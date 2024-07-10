@@ -15,10 +15,10 @@ import { homedir } from 'os'
 // 修改 Archive配置
 async function setArchive() {
     try {
-        let documents = await FileHandler.getMyDocuments()
+        let documents = FileHandler.getMyDocuments()
         const Starfield = join(documents, "My Games", "Skyrim Special Edition", "Skyrim.ini")
         let config = ini.parse(readFileSync(Starfield, 'utf-8'))
-        console.log(config);
+        // console.log(config);
         if (config.Archive?.bInvalidateOlderFiles == 1) {
             console.log('Skyrim.ini 已配置过, 无需再次配置.');
             return

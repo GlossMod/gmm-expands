@@ -76,7 +76,7 @@ function handlePak(mod: IModInfo, isInstall: boolean) {
             let gameStorage = join(manager.gameStorage ?? "")
             // 获取游戏目录下所有 *.pak 文件
             let pakFiles = FileHandler.getFolderFiles(gameStorage).filter(item => extname(item) == '.pak')
-            console.log(pakFiles);
+            // console.log(pakFiles);
             // 获取 "re_chunk_000.pak.patch_001.pak" 中的 patch_001.pak 为 1
             let pakNum = pakFiles.map(item => {
                 let name = basename(item)
@@ -91,7 +91,7 @@ function handlePak(mod: IModInfo, isInstall: boolean) {
             // 001 或 010
             let num = isInstall ? String(maxNum + 1).padStart(3, '0') : String(maxNum).padStart(3, '0')
             let pakName = `re_chunk_000.pak.patch_${num}.pak`
-            console.log(pakName);
+            // console.log(pakName);
 
             let gamePak = join(gameStorage, pakName)
             if (isInstall) {

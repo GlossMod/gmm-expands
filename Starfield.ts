@@ -19,7 +19,7 @@ async function setArchive() {
         // let documents = await FileHandler.getMyDocuments()
         const Starfield = join(manager.gameStorage, "Starfield.ini")
         let config = ini.parse(readFileSync(Starfield, 'utf-8'))
-        console.log(config);
+        // console.log(config);
         if (config.Archive?.bInvalidateOlderFiles == 1) {
             console.log('StarfieldPrefs.ini 已配置过, 无需再次配置.');
             return
@@ -85,7 +85,7 @@ function setGeneral(name: string, isInstall: boolean) {
     let config = ini.parse(readFileSync(Starfield, 'utf-8'))
     // 获取 config.General 下面的所有 key
     let keys = Object.keys(config.General)
-    console.log(keys);
+    // console.log(keys);
 
     if (isInstall) {
         // 判断 key 中是否有包含 sTestFile 的
@@ -167,7 +167,7 @@ function handleSfse(mod: IModInfo, install: boolean) {
             if (baseFolder != '.') {
                 path = item.replace(baseFolder, "")
             }
-            console.log(path);
+            // console.log(path);
             let target = join(manager.gameStorage ?? "", path)
             if (install) FileHandler.copyFile(source, target)
             else FileHandler.deleteFile(target)

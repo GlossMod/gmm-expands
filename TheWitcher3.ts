@@ -26,7 +26,7 @@ function getModFolder(mod: IModInfo, mark: string, mark2: string) {
         if (statSync(modStorage).isFile()) {
             // 将 item 拆分为数组
             let itemArr = item.split("/")
-            console.log(itemArr.length);
+            // console.log(itemArr.length);
             for (let index = 0; index < itemArr.length; index++) {
                 const item2 = itemArr[index];
                 if (item2.toLowerCase().includes(mark)) {
