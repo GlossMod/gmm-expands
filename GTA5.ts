@@ -152,22 +152,24 @@ async function writeDlcName(name: string, isInstall: boolean) {
     }
 }
 
-function dlcHandler(mod: IModInfo, installPath: string, isInstall: boolean) {
+async function dlcHandler(mod: IModInfo, installPath: string, isInstall: boolean) {
     let manager = useManager()
     let modStorage = join(manager.modStorage, mod.id.toString())
     let gameStorage = join(manager.gameStorage ?? "")
 
-    mod.modFiles.forEach(async item => {
+    for (let index in mod.modFiles) {
+        const item = mod.modFiles[index];
         if (basename(item) == 'dlc.rpf') {
             let name = await GetDlcName(join(modStorage, item))
-            writeDlcName(name, isInstall);
+            await writeDlcName(name, isInstall);
             if (isInstall) {
                 FileHandler.copyFile(join(modStorage, item), join(gameStorage, installPath, name, 'dlc.rpf'))
             } else {
                 FileHandler.deleteFile(join(gameStorage, installPath, name, 'dlc.rpf'))
             }
         }
-    })
+    }
+
 
     return true
 }
