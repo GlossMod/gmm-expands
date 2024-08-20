@@ -19,7 +19,7 @@ export const supportedGames: ISupportedGames = {
             exePath: 'DBFighterZ.exe'
         }
     ],
-    archivePath: join(FileHandler.GetAppData(), "Local", "CodeVein", "Saved"),
+    archivePath: join(FileHandler.GetAppData(), "Local", "DBFighterZ", "Saved"),
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/157.jpg",
     modType: UnrealEngine.modType("RED", false),
     checkModType: UnrealEngine.checkModType
