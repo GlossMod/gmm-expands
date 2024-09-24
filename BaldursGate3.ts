@@ -22,12 +22,12 @@ interface IAttribute {
 
 let modsettings = {
     get data() {
-        let file = join(homedir(), 'AppData', 'Local', 'Larian Studios', "Baldur's Gate 3", 'PlayerProfiles', 'Public', 'modsettings.lsx')
+        let file = join(FileHandler.GetAppData(), 'Local', 'Larian Studios', "Baldur's Gate 3", 'PlayerProfiles', 'Public', 'modsettings.lsx')
         let data = FileHandler.readFile(file)
         return xml2js.parseStringPromise(data)
     },
     set data(value) {
-        let file = join(homedir(), 'AppData', 'Local', 'Larian Studios', "Baldur's Gate 3", 'PlayerProfiles', 'Public', 'modsettings.lsx')
+        let file = join(FileHandler.GetAppData(), 'Local', 'Larian Studios', "Baldur's Gate 3", 'PlayerProfiles', 'Public', 'modsettings.lsx')
         let data = new xml2js.Builder().buildObject(value)
         if (data) FileHandler.writeFile(file, data)
     }
@@ -168,10 +168,7 @@ async function handlePak(mod: IModInfo, installPath: string, isInstall: boolean)
 export const supportedGames: ISupportedGames = {
     GlossGameId: 240,
     steamAppID: 1086940,
-    NexusMods: {
-        game_domain_name: "baldursgate3",
-        game_id: 3474
-    },
+    mod_io: 6715,
     installdir: join("Baldurs Gate 3", "bin"),
     gameName: "Baldurs Gate 3",
     gameExe: [

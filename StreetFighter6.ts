@@ -1,8 +1,8 @@
 /**
  * @description 街头霸王6 支持
  */
-import type { IModInfo, IState, ISupportedGames } from "@src/model/Interfaces";
-import { join, extname, basename } from 'path'
+import type { ISupportedGames } from "@src/model/Interfaces";
+import { join, basename } from 'path'
 import { Manager } from "@src/model/Manager";
 import { ElMessage } from "element-plus";
 import { Steam } from "@src/model/Steam";

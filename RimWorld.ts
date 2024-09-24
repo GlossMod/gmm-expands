@@ -1,6 +1,6 @@
 // 边缘世界 MOD
 import type { IModInfo, ISupportedGames } from "@src/model/Interfaces";
-import { join, extname, sep, basename, dirname } from 'path'
+import { join, basename } from 'path'
 import { FileHandler } from "@src/model/FileHandler";
 import { useManager } from "@src/stores/useManager";
 import { ElMessage } from "element-plus";
