@@ -2,12 +2,8 @@
 //  * @description 人类 支持
 //  */
 
-// import type { ISupportedGames } from "@src/model/Interfaces";
 // import { join, extname, basename } from "node:path"
 // import { ElMessage } from "element-plus";
-// import { FileHandler } from "@src/model/FileHandler";
-// import { useManager } from "@src/stores/useManager";
-
 
 
 // export const supportedGames: ISupportedGames = {

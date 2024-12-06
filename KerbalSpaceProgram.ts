@@ -1,13 +1,10 @@
 /**
  * @description 坎巴拉太空计划 支持
  */
-import type { IModInfo, ISupportedGames } from "@src/model/Interfaces";
-import { join, basename, extname } from 'path'
 
+import { join, basename, extname } from 'path'
 import { ElMessage } from "element-plus";
-import { Manager } from '@src/model/Manager'
-import { useManager } from "@src/stores/useManager";
-import { FileHandler } from "@src/model/FileHandler";
+
 
 /**
  * 安装/卸载 .craft 类型的Mod

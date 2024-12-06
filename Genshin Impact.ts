@@ -3,12 +3,8 @@
  */
 
 
-import type { ISupportedGames } from "@src/model/Interfaces";
 import { join, extname, basename } from 'path'
-import { Manager } from "@src/model/Manager";
 import { ElMessage } from "element-plus";
-
-
 export const supportedGames: ISupportedGames = {
     GlossGameId: 291,
     steamAppID: 0,

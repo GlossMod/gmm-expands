@@ -2,12 +2,10 @@
  * @description 模拟人生4 支持
  */
 
-import { FileHandler } from "@src/model/FileHandler";
-import type { IModInfo, IState, ISupportedGames } from "@src/model/Interfaces";
-import { useManager } from "@src/stores/useManager";
+
+
 import { join, basename, extname } from 'path'
 import { homedir } from "os";
-
 function handleMod(mod: IModInfo, isInstall: boolean) {
 
     let manager = useManager()
@@ -20,7 +18,6 @@ function handleMod(mod: IModInfo, isInstall: boolean) {
         return FileHandler.removeLink(destPath)
     }
 }
-
 
 export const supportedGames: ISupportedGames = {
     GlossGameId: 8,
@@ -60,7 +57,6 @@ export const supportedGames: ISupportedGames = {
         }
     ],
     checkModType(mod) {
-
 
         return 1
     }

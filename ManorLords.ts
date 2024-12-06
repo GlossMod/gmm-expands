@@ -1,11 +1,8 @@
 /**
  * @description 庄园领主 支持
  */
-import type { ISupportedGames } from "@src/model/Interfaces";
-import { join } from 'path'
 
-import { UnrealEngine } from "@src/model/UnrealEngine"
-import { FileHandler } from "@src/model/FileHandler";
+import { join } from 'path'
 
 
 export const supportedGames: ISupportedGames = {

@@ -2,12 +2,8 @@
  * @description 鬼泣5 支持
  */
 
-import type { IModInfo, IState, ISupportedGames } from "@src/model/Interfaces";
 import { join, extname, basename } from 'path'
-import { Manager } from "@src/model/Manager";
 import { ElMessage } from "element-plus";
-import { FileHandler } from "@src/model/FileHandler";
-import { Steam } from "@src/model/Steam";
 
 
 export const supportedGames: ISupportedGames = {

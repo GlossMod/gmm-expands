@@ -2,12 +2,8 @@
  * @description 战锤40K：星际战士2  支持
  */
 
-import type { ISupportedGames } from "@src/model/Interfaces";
 import { join, extname } from "node:path"
-import { Manager } from "@src/model/Manager";
 import { ElMessage } from "element-plus";
-import { FileHandler } from "@src/model/FileHandler";
-
 export const supportedGames: ISupportedGames = {
     GlossGameId: 390,
     steamAppID: 2183900,

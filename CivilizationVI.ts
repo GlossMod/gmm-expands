@@ -2,12 +2,8 @@
  * @description 文明6 支持
  */
 
-import type { ISupportedGames } from "@src/model/Interfaces";
 import { join, extname, basename } from "node:path"
 import { ElMessage } from "element-plus";
-import { FileHandler } from "@src/model/FileHandler";
-import { Manager } from "@src/model/Manager";
-
 
 
 export const supportedGames: ISupportedGames = {

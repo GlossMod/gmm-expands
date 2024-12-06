@@ -2,11 +2,8 @@
  * @description 猎人 荒野的召唤 支持
  */
 
-import type { ISupportedGames } from "@src/model/Interfaces";
 import { basename, join, extname } from "node:path"
 import { ElMessage } from "element-plus";
-import { Manager } from "@src/model/Manager";
-import { FileHandler } from "@src/model/FileHandler";
 
 export const supportedGames: ISupportedGames = {
     GlossGameId: 322,

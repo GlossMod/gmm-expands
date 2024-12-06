@@ -1,12 +1,9 @@
 /**
  * @description 远征：泥泞奔驰游戏 支持
  */
-import type { ISupportedGames } from "@src/model/Interfaces";
+
 import { join, extname } from 'path'
-
 import { ElMessage } from "element-plus";
-import { Manager } from "@src/model/Manager";
-
 
 export const supportedGames: ISupportedGames = {
     GlossGameId: 356,

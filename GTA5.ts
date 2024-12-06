@@ -2,15 +2,10 @@
  * @description GTA5 支持
  */
 
-import type { IModInfo, ISupportedGames } from "@src/model/Interfaces";
 import { basename, join, extname, } from "node:path"
 import { ElMessage } from "element-plus";
-import { Manager } from "@src/model/Manager";
-import { FileHandler } from "@src/model/FileHandler";
-import { useManager } from "@src/stores/useManager";
+
 import { execSync } from 'child_process';
-
-
 const xml2js = require('xml2js')
 
 //#region 脚本相关
@@ -33,7 +28,6 @@ let mods_xml = {
         if (data) FileHandler.writeFile(file, data)
     }
 }
-
 
 function asi(mod: IModInfo, isInstall: boolean) {
     let manager = useManager()
@@ -85,7 +79,6 @@ async function install_xml(file: string, isInstall: boolean) {
 
     mods_xml.data = mods_xml_data
 }
-
 
 
 //#endregion
@@ -140,7 +133,6 @@ async function writeDlcName(name: string, isInstall: boolean) {
 
     // console.log(xmlData);
 
-
     let file = join(tools_path, 'dlclist.xml')
     let data = new xml2js.Builder().buildObject(xmlData)
     if (data) {
@@ -170,14 +162,12 @@ async function dlcHandler(mod: IModInfo, installPath: string, isInstall: boolean
         }
     }
 
-
     return true
 }
 
 //#endregion
 
 //#region 载具 替换式
-
 
 function buidGmm() {
     const manager = useManager()
@@ -239,7 +229,6 @@ async function tyfHandler(mod: IModInfo, isInstall: boolean) {
 }
 
 //#endregion
-
 
 //#region 人物
 
@@ -656,7 +645,6 @@ async function gameconfig(mod: IModInfo, isInstall: boolean) {
             const cmd = `"${_write_bat}" "${update_path}" "${filename}" "${inputFile}"`
 
             // console.log(cmd);
-
 
             execSync(cmd, { encoding: 'utf8' }).toString()
         }

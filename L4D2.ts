@@ -3,13 +3,9 @@
  */
 
 
-import type { IState, ISupportedGames } from "@src/model/Interfaces";
 import { extname, basename, join } from 'path'
-import { FileHandler } from "@src/model/FileHandler"
-import { useManager } from "@src/stores/useManager";
 
 // console.log(settings.settings.managerGame);
-
 
 export const supportedGames: ISupportedGames = {
     GlossGameId: 12,

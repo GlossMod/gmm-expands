@@ -2,10 +2,7 @@
 //  * @description 古龙风云录 支持
 //  */
 
-// import type { ISupportedGames } from "@src/model/Interfaces";
 // import { join } from "node:path"
-// import { UnityGame } from "@src/model/UnityGame";
-// import { Manager } from "@src/model/Manager";
 
 
 // export const supportedGames: ISupportedGames = {
@@ -42,11 +39,9 @@
 //     checkModType(mod) {
 //         let id = 99
 
-
 //         if (id == 99) {
 //             id = UnityGame.checkModType(mod)
 //         }
-
 
 //         return id
 //     }

@@ -2,13 +2,9 @@
  * @description 巫师3 安装支持
  */
 
-import type { IModInfo, IState, ISupportedGames } from "@src/model/Interfaces";
 import { basename, join } from "node:path"
-import { FileHandler } from "@src/model/FileHandler"
 import { statSync } from "fs";
-import { useManager } from "@src/stores/useManager";
 import { ElMessage } from "element-plus";
-
 /**
  * 获取 mod 文件夹
  * @param mod 
@@ -57,7 +53,6 @@ function handleMods(mod: IModInfo, installPath: string, isInstall: boolean, mark
     if (isInstall) return FileHandler.createLink(modFolder, gameStorage)
     else return FileHandler.removeLink(gameStorage)
 }
-
 
 export const supportedGames: ISupportedGames = {
     GlossGameId: 4,

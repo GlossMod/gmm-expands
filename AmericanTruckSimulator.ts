@@ -1,13 +1,10 @@
 /**
  * @description 美国卡车模拟器2 Mod支持
  */
-import { FileHandler } from "@src/model/FileHandler";
-import type { IModInfo, ISupportedGames } from "@src/model/Interfaces";
-import { useManager } from "@src/stores/useManager";
+
+
 import { join, basename, extname } from 'path'
 import { ElMessage } from "element-plus";
-import { Manager } from "@src/model/Manager";
-
 async function handleMod(mod: IModInfo, installPath: string, isInstall: boolean) {
     let manager = useManager()
     mod.modFiles.forEach(item => {

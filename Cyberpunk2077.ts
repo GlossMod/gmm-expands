@@ -2,14 +2,11 @@
  * @description 赛博朋克2077 支持
  */
 
-import { FileHandler } from "@src/model/FileHandler";
-import type { IModInfo, IState, ISupportedGames } from "@src/model/Interfaces";
-import { useManager } from "@src/stores/useManager";
+
+
 import { join, extname, sep, basename, dirname } from 'path'
 import { statSync } from "fs";
-import { Manager } from "@src/model/Manager";
 import { ElMessage } from "element-plus";
-
 function getCommonParentFolder(paths: string[]): string {
 
     /// AI 给的写法 虽然看不懂 但感觉很酷
@@ -29,7 +26,6 @@ function handlePlugins(mod: IModInfo, installPath: string, isInstall: boolean) {
     // if (isInstall) {
     //     if (!Manager.checkInstalled("Cyber Engine Tweaks (CET)", 197625)) return false
     // }
-
 
     const manager = useManager()
     let modStorage = join(manager.modStorage, mod.id.toString())
@@ -186,7 +182,6 @@ export const supportedGames: ISupportedGames = {
         let lua = false
         let mainFolder = false
         mod.modFiles.forEach(item => {
-
 
             // 判断目录是否包含 folderList
             let list = FileHandler.pathToArray(item)

@@ -2,12 +2,10 @@
  * @description 太吾绘卷 支持
  */
 
-import { FileHandler } from "@src/model/FileHandler";
-import type { IModInfo, IState, ISupportedGames } from "@src/model/Interfaces";
-import { useManager } from "@src/stores/useManager";
+
+
 import { join, basename, dirname } from 'path'
 import { ElMessage } from "element-plus";
-
 function handlePlugins(mod: IModInfo, installPath: string, isInstall: boolean) {
     let res: IState[] = []
     const manager = useManager()

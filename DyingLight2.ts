@@ -2,12 +2,9 @@
  * @description 消逝的光芒2 支持
  */
 
-import type { IModInfo, ISupportedGames } from "@src/model/Interfaces";
 import { join, extname, basename } from 'path'
 import { statSync } from 'fs'
 import { ElMessage } from "element-plus";
-import { useManager } from "@src/stores/useManager";
-import { FileHandler } from "@src/model/FileHandler";
 
 let pakList = {
     get data() {
@@ -34,7 +31,6 @@ let pakList = {
     }
 }
 
-
 function getGameFileName(isDat: boolean) {
     const manager = useManager()
     let dataFolder = join(manager.gameStorage, "ph", "source")
@@ -55,7 +51,6 @@ function getGameFileName(isDat: boolean) {
     // console.log(datName);
     return datName
 }
-
 
 async function handlePak(mod: IModInfo, isInstall: boolean) {
     const manager = useManager()
@@ -135,8 +130,6 @@ async function handlePak(mod: IModInfo, isInstall: boolean) {
 
     return true
 }
-
-
 
 
 

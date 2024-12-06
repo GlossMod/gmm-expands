@@ -1,17 +1,12 @@
 /**
  * @description 怪物猎人世界 支持
  */
-import { FileHandler } from "@src/model/FileHandler";
-import type { IModInfo, IState, ISupportedGames } from "@src/model/Interfaces";
-import { useManager } from "@src/stores/useManager";
+
+
 import { join, basename, extname } from 'path'
 import { statSync } from "fs";
-import { Manager } from "@src/model/Manager";
 import { ElMessage } from "element-plus";
-import { Steam } from "@src/model/Steam";
-
 // let dictionaryList: string[] = []
-
 
 async function handleMod(mod: IModInfo, installPath: string, isInstall: boolean) {
     if (isInstall) {
@@ -50,7 +45,6 @@ async function handleMod(mod: IModInfo, installPath: string, isInstall: boolean)
 
     return res
 }
-
 
 export const supportedGames: ISupportedGames = {
     GlossGameId: 161,
@@ -194,7 +188,6 @@ export const supportedGames: ISupportedGames = {
         if (nativePC) return 2
 
         if (plugins) return 3
-
 
         return 4
     }

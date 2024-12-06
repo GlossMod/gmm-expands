@@ -2,11 +2,7 @@
  * @description 大侠立志传 支持
  */
 
-import type { ISupportedGames } from "@src/model/Interfaces";
 import { join, basename, extname } from "node:path"
-import { UnityGame } from "@src/model/UnityGame"
-import { FileHandler } from "@src/model/FileHandler";
-import { Manager } from "@src/model/Manager";
 
 
 export const supportedGames: ISupportedGames = {

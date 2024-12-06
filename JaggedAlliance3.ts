@@ -3,12 +3,8 @@
  */
 
 
-import type { ISupportedGames } from "@src/model/Interfaces";
 import { join, basename } from "node:path"
-import { Manager } from "@src/model/Manager";
 import { ElMessage } from "element-plus";
-import { FileHandler } from "@src/model/FileHandler";
-
 
 export const supportedGames: ISupportedGames = {
     GlossGameId: 318,

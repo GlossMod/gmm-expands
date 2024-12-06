@@ -3,12 +3,8 @@
  */
 
 
-import type { ISupportedGames } from "@src/model/Interfaces";
 import { join, dirname } from 'path'
-import { FileHandler } from "@src/model/FileHandler";
-import { UnrealEngine } from "@src/model/UnrealEngine";
-import { Manager } from "@src/model/Manager";
-import { useManager } from "@src/stores/useManager";
+
 
 
 export const supportedGames: ISupportedGames = {
@@ -66,7 +62,6 @@ export const supportedGames: ISupportedGames = {
 
                 // console.log(enableFile);
                 FileHandler.ensureDirectoryExistence(enableFile)
-
 
                 return Manager.installByFolderParent(mod, this.installPath ?? "", "Scripts", true)
             },

@@ -2,13 +2,8 @@
  * @description 城市天际线2 支持
  */
 
-import type { ISupportedGames } from "@src/model/Interfaces";
 import { join, basename, extname } from "node:path"
-import { UnityGame } from "@src/model/UnityGame";
-import { Manager } from "@src/model/Manager";
 import { homedir } from 'os'
-import { FileHandler } from "@src/model/FileHandler";
-
 
 export const supportedGames: ISupportedGames = {
     GlossGameId: 326,

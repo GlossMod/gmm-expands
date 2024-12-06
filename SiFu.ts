@@ -2,11 +2,8 @@
  * @description 师父 支持
  */
 
-import type { IModInfo, ISupportedGames } from "@src/model/Interfaces";
 import { basename, join, extname } from "node:path"
-import { FileHandler } from "@src/model/FileHandler"
-import { useManager } from "@src/stores/useManager";
-import { UnrealEngine } from "@src/model/UnrealEngine";
+
 
 function handlePack(mod: IModInfo, installPath: string, install: boolean) {
     const manager = useManager()

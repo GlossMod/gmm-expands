@@ -1,15 +1,13 @@
 /** 
  * @description 装甲核心6 支持
 */
-import { FileHandler } from "@src/model/FileHandler";
-import type { IModInfo, IState, ISupportedGames } from "@src/model/Interfaces";
-import { Manager } from "@src/model/Manager";
-import { useManager } from "@src/stores/useManager";
+
+
+
 import axios from "axios";
 import { ElMessage } from "element-plus";
 import { statSync } from "fs";
 import { basename, join } from "path";
-
 let dictionaryList: string[] = []
 
 async function handleMod(mod: IModInfo, installPath: string, isInstall: boolean) {
@@ -55,7 +53,6 @@ async function handleMod(mod: IModInfo, installPath: string, isInstall: boolean)
         return false
     }
 }
-
 
 export const supportedGames: ISupportedGames = {
     GlossGameId: 323,

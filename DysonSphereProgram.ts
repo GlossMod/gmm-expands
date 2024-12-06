@@ -2,10 +2,7 @@
  * @description 戴森球计划 支持
  */
 
-import type { ISupportedGames } from "@src/model/Interfaces";
 import { join } from "node:path"
-import { UnityGame } from "@src/model/UnityGame";
-import { FileHandler } from "@src/model/FileHandler";
 
 
 export const supportedGames: ISupportedGames = {

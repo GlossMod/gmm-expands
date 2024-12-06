@@ -1,15 +1,10 @@
 // 星空 Mod支持
-import type { IModInfo, IState, ISupportedGames } from "@src/model/Interfaces";
+
 import { extname, basename, join, dirname } from 'path'
-import { FileHandler } from "@src/model/FileHandler"
-import { useManager } from "@src/stores/useManager";
 import { ElMessage } from "element-plus";
 import { statSync, readFileSync, writeFileSync } from "fs";
 import ini from 'ini'
-import { Manager } from "@src/model/Manager";
 import { homedir } from 'os'
-
-
 //#region  data 类型的mod
 
 // 设置 Starfield.ini
@@ -74,7 +69,6 @@ async function handlePlugins(mod: IModInfo, installPath: string, isInstall: bool
 }
 
 //#endregion
-
 
 //#region  esp 类型的mod
 
@@ -282,7 +276,6 @@ export const supportedGames: ISupportedGames = {
         let plugins = false
         let esp = false
         let sfse = false
-
 
         mod.modFiles.forEach(item => {
             if (item.toLowerCase().includes('data')) data = true

@@ -1,11 +1,7 @@
 // 饥荒 Mod支持
-import type { IModInfo, IState, ISupportedGames } from "@src/model/Interfaces";
+
 import { basename, join, dirname } from 'path'
-import { FileHandler } from "@src/model/FileHandler"
-import { useManager } from "@src/stores/useManager";
 import { ElMessage } from "element-plus";
-
-
 function handleMods(mod: IModInfo, installPath: string, isInstall: boolean) {
     let res: IState[] = []
     const manager = useManager()
@@ -33,7 +29,6 @@ function handleMods(mod: IModInfo, installPath: string, isInstall: boolean) {
     }
     return res
 }
-
 
 export const supportedGames: ISupportedGames = {
     GlossGameId: 14,

@@ -3,15 +3,11 @@
  */
 
 
-import type { IModInfo, ISupportedGames } from "@src/model/Interfaces";
 import { basename, join, extname, dirname } from 'node:path'
-import { FileHandler } from "@src/model/FileHandler"
 import { ElMessage } from "element-plus";
-import { Manager } from "@src/model/Manager";
 import ini from 'ini'
 import { readFileSync, writeFileSync } from "fs";
 import { homedir } from 'os'
-
 // 修改 Archive配置
 async function setArchive() {
     try {
@@ -53,7 +49,6 @@ async function setPlugins(mod: IModInfo, install: boolean) {
     FileHandler.writeFile(documents, arr.join('\n'))
 
 }
-
 
 export const supportedGames: ISupportedGames = {
     GlossGameId: 2,

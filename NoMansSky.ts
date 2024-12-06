@@ -2,13 +2,8 @@
  * @description 无人深空 支持
  */
 
-import type { ISupportedGames } from "@src/model/Interfaces";
 import { join, extname } from "node:path"
-import { FileHandler } from "@src/model/FileHandler"
-import { useManager } from "@src/stores/useManager";
 import { ElMessage } from "element-plus";
-import { Manager } from "@src/model/Manager";
-
 async function renameFile() {
     const manager = useManager()
     let gameStorage = join(manager.gameStorage ?? "", "GAMEDATA", "PCBANKS")

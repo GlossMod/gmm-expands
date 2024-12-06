@@ -2,19 +2,14 @@
  * @description 恐怖黎明 支持
  */
 
-import type { IModInfo, ISupportedGames } from "@src/model/Interfaces";
 import { basename, join, extname } from "node:path"
 import { ElMessage } from "element-plus";
-import { Manager } from "@src/model/Manager";
-import { FileHandler } from "@src/model/FileHandler";
-import { useManager } from "@src/stores/useManager";
 
 
 function handleMods(mod: IModInfo, installPath: string, isInstall: boolean) {
     const manager = useManager()
     let modStorage = join(manager.modStorage, mod.id.toString())
     let gameStorage = join(manager.gameStorage ?? "", installPath)
-
 
     let folders = [] as string[]
     let folderList = ['resources', 'database', 'localization']
@@ -40,7 +35,6 @@ function handleMods(mod: IModInfo, installPath: string, isInstall: boolean) {
     })
     return true
 }
-
 
 export const supportedGames: ISupportedGames = {
     GlossGameId: 80,

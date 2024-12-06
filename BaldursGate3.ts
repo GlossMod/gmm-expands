@@ -1,13 +1,9 @@
 // 博德之门3 Mod支持
-import type { IModInfo, IState, ISupportedGames } from "@src/model/Interfaces";
+
 import { extname, basename, join } from 'path'
-import { FileHandler } from "@src/model/FileHandler"
-import { useManager } from "@src/stores/useManager";
 import { ElMessage } from "element-plus";
 import { homedir, } from "os";
-import { Manager } from "@src/model/Manager";
 import { statSync } from "fs";
-
 const xml2js = require('xml2js')
 
 interface IAttribute {
@@ -33,11 +29,9 @@ let modsettings = {
     }
 }
 
-
 async function LoadModDataFromPak(pakPath: string) {
-    const edge = require('electron-edge-js-v26-only')
+    const edge = require('electron-edge-js')
     const manager = useManager()
-
 
     try {
 

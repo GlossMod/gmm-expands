@@ -2,11 +2,8 @@
  * @description 暗黑地牢2 支持
  */
 
-import type { ISupportedGames } from "@src/model/Interfaces";
 import { join } from "node:path"
-import { UnityGame } from "@src/model/UnityGame";
-import { FileHandler } from "@src/model/FileHandler";
-import { Manager } from "@src/model/Manager";
+
 
 export const supportedGames: ISupportedGames = {
     GlossGameId: 353,

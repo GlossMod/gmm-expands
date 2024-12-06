@@ -2,12 +2,9 @@
  * 导出所有扩展
  */
 
-import type { ISupportedGames } from "@src/model/Interfaces"
 
 // 批量导入当前目录中的所有组件
 const modules = import.meta.glob('./*.ts', { eager: true })
-
-
 function getLangFiles(mList: any) {
     let msg: ISupportedGames[] = []
     for (let path in mList) {

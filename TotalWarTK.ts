@@ -2,14 +2,9 @@
  * @description 全面战争 三国 支持
  */
 
-import type { IModInfo, IState, ISupportedGames } from "@src/model/Interfaces";
 import { basename, join, extname } from "node:path"
-import { FileHandler } from "@src/model/FileHandler"
 import { statSync } from "fs";
-import { useManager } from "@src/stores/useManager";
 import { ElMessage } from "element-plus";
-import { Manager } from "@src/model/Manager";
-
 function handlePack(mod: IModInfo, installPath: string, install: boolean) {
     const manager = useManager()
     const modStorage = join(manager.modStorage ?? "", mod.id.toString())

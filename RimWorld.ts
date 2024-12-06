@@ -1,10 +1,7 @@
 // 边缘世界 MOD
-import type { IModInfo, ISupportedGames } from "@src/model/Interfaces";
-import { join, basename } from 'path'
-import { FileHandler } from "@src/model/FileHandler";
-import { useManager } from "@src/stores/useManager";
-import { ElMessage } from "element-plus";
 
+import { join, basename } from 'path'
+import { ElMessage } from "element-plus";
 async function handleMod(mod: IModInfo, installPath: string, isInstall: boolean) {
 
     let manager = useManager()

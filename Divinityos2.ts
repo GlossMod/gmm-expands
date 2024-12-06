@@ -2,11 +2,8 @@
  * @description 神界：原罪2 支持
  */
 
-import type { IModInfo, IState, ISupportedGames } from "@src/model/Interfaces";
 import { join, extname, sep, basename, dirname } from 'path'
 import { ElMessage } from "element-plus";
-import { FileHandler } from "@src/model/FileHandler";
-import { useManager } from "@src/stores/useManager";
 
 async function handlePakMod(mod: IModInfo, isInstall: boolean) {
 

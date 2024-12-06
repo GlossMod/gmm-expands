@@ -2,13 +2,8 @@
 //  * @description 幽浮2 支持
 //  */
 
-// import type { IModInfo, IState, ISupportedGames } from "@src/model/Interfaces";
 // import { basename, join, extname } from "node:path"
-// import { FileHandler } from "@src/model/FileHandler"
-// import { useManager } from "@src/stores/useManager";
 // import { ElMessage } from "element-plus";
-// import { Manager } from "@src/model/Manager";
-
 // async function handleMods(mod: IModInfo, installPath: string, isInstall: boolean) {
 //     let manager = useManager()
 //     let srcPath = join(manager.modStorage, mod.id.toString())

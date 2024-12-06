@@ -2,11 +2,7 @@
  * @description 丧尸围城豪华复刻版 支持
  */
 
-import type { ISupportedGames } from "@src/model/Interfaces";
 import { join } from 'path'
-import { Steam } from "@src/model/Steam";
-import { REEngine } from "@src/model/REEngine"
-
 
 
 export const supportedGames: ISupportedGames = {

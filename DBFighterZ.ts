@@ -1,7 +1,5 @@
-import type { ISupportedGames } from "@src/model/Interfaces";
+
 import { join } from 'path'
-import { FileHandler } from "@src/model/FileHandler";
-import { UnrealEngine } from "@src/model/UnrealEngine";
 
 export const supportedGames: ISupportedGames = {
     GlossGameId: 157,

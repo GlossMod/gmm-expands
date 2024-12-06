@@ -2,10 +2,7 @@
  * @description 冰汽时代 2 支持
  */
 
-import type { ISupportedGames } from "@src/model/Interfaces";
 import { join } from "node:path"
-import { FileHandler } from "@src/model/FileHandler";
-import { UnrealEngine } from "@src/model/UnrealEngine";
 
 export const supportedGames: ISupportedGames = {
     GlossGameId: 387,

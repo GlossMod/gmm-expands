@@ -3,13 +3,8 @@
 //  */
 
 
-// import type { ISupportedGames } from "@src/model/Interfaces";
 // import { join, extname, basename } from "node:path"
-// import { UnityGame } from "@src/model/UnityGame";
-// import { Manager } from "@src/model/Manager";
 // import { ElMessage } from "element-plus";
-// import { FileHandler } from "@src/model/FileHandler";
-
 
 // export const supportedGames: ISupportedGames = {
 //     GlossGameId: 265,

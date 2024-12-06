@@ -2,16 +2,11 @@
  * @description 荒野大镖客 支持
  */
 
-import type { IModInfo, ISupportedGames } from "@src/model/Interfaces";
 import { basename, join, extname, } from "node:path"
 import { ElMessage } from "element-plus";
-import { Manager } from "@src/model/Manager";
-import { FileHandler } from "@src/model/FileHandler";
-import { useManager } from "@src/stores/useManager";
+
 // import xml2js from "xml2js"
-
 const xml2js = require('xml2js')
-
 
 let mods_xml = {
     get data() {
@@ -31,7 +26,6 @@ let mods_xml = {
         if (data) FileHandler.writeFile(file, data)
     }
 }
-
 
 function asi(mod: IModInfo, isInstall: boolean) {
     let manager = useManager()
@@ -101,7 +95,6 @@ function lmi(mod: IModInfo, installPath: string, isInstall: boolean) {
         return false
     }
 }
-
 
 export const supportedGames: ISupportedGames = {
     GlossGameId: 208,
@@ -220,7 +213,6 @@ export const supportedGames: ISupportedGames = {
         if (lml) return 2
         if (rootFolder) return 3
         if (scripts) return 5
-
 
         return 99
     }

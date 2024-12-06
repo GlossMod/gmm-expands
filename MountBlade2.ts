@@ -2,13 +2,9 @@
  * @description 骑马与砍杀2 安装支持
  */
 
-import type { IModInfo, IState, ISupportedGames } from "@src/model/Interfaces";
 import { basename, join, extname, dirname } from 'node:path'
-import { FileHandler } from "@src/model/FileHandler"
 import { statSync } from "fs";
-import { useManager } from "@src/stores/useManager";
 import { ElMessage } from "element-plus";
-
 function getModFolder(mod: IModInfo) {
     let modFolder = ""
     const manager = useManager()
@@ -37,7 +33,6 @@ function handleMods(mod: IModInfo, installPath: string, isInstall: boolean) {
     else return FileHandler.removeLink(gameStorage)
 
 }
-
 
 export const supportedGames: ISupportedGames = {
     GlossGameId: 225,

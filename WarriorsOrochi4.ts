@@ -2,11 +2,8 @@
  * @description 剑士 支持
  */
 
-import type { ISupportedGames } from "@src/model/Interfaces";
 import { basename, join, extname } from "node:path"
 import { ElMessage } from "element-plus";
-import { Manager } from "@src/model/Manager";
-
 export const supportedGames: ISupportedGames = {
     GlossGameId: 168,
     steamAppID: 831560,

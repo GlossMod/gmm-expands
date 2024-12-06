@@ -1,10 +1,8 @@
 /** 
  * @description 霍格沃茨之遗 安装
 */
-import type { ISupportedGames } from "@src/model/Interfaces";
+
 import { join } from 'node:path'
-import { FileHandler } from "@src/model/FileHandler";
-import { UnrealEngine } from "@src/model/UnrealEngine";
 
 export const supportedGames: ISupportedGames = {
     GlossGameId: 302,

@@ -2,14 +2,11 @@
  * @description 星露谷物语 支持
  */
 
-import { FileHandler } from "@src/model/FileHandler";
-import type { IModInfo, IState, ISupportedGames } from "@src/model/Interfaces";
-import { useManager } from "@src/stores/useManager";
+
+
 import { join, basename, dirname, parse } from 'path'
-import { Manager } from "@src/model/Manager";
 import { ElMessage } from "element-plus";
 import { spawn } from 'child_process';
-
 function handleSMAPI(mod: IModInfo, isInstall: boolean) {
     let manager = useManager()
     let modStorage = join(manager.modStorage, mod.id.toString())

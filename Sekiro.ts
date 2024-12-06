@@ -2,14 +2,9 @@
  * @description 只狼 安装支持
  */
 
-import type { IModInfo, IState, ISupportedGames } from "@src/model/Interfaces";
 import { basename, join } from 'node:path'
-import { FileHandler } from "@src/model/FileHandler"
 import { statSync } from "fs";
-import { Manager } from "@src/model/Manager"
-import { useManager } from "@src/stores/useManager";
 import { ElMessage } from "element-plus";
-
 let dictionaryList: string[] = []
 
 // function getDictionaryList(data: string[]) {
@@ -37,7 +32,6 @@ async function handleMod(mod: IModInfo, installPath: string, isInstall: boolean)
         let res: IState[] = []
         mod.modFiles.forEach(async file => {
             try {
-
 
                 // let modStorage = `${settings.settings.modStorageLocation}\\${settings.settings.managerGame.gameName}\\${mod.id}\\${file}`
                 let modStorage = join(manager.modStorage, mod.id.toString(), file)
@@ -70,7 +64,6 @@ async function handleMod(mod: IModInfo, installPath: string, isInstall: boolean)
         return false
     }
 }
-
 
 
 export const supportedGames: ISupportedGames = {
@@ -143,7 +136,6 @@ export const supportedGames: ISupportedGames = {
             let SekiroDictionary = FileHandler.readFile(join(FileHandler.getResourcesPath(), 'res', 'SekiroDictionary.txt'))
             dictionaryList = SekiroDictionary.split("\r\n")
         }
-
 
         let engine = false
         let mods = false

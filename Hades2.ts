@@ -2,19 +2,14 @@
  * @description 哈迪斯2 支持
  */
 
-import type { ISupportedGames } from "@src/model/Interfaces"
 import { basename, join, extname, dirname } from "node:path"
 import { ElMessage } from "element-plus"
-import { Manager } from "@src/model/Manager"
-import { useManager } from "@src/stores/useManager"
-import { FileHandler } from "@src/model/FileHandler"
-import { spawn } from 'child_process'
 
+import { spawn } from 'child_process'
 function ModImporter() {
     const manage = useManager()
 
-    let ModImporter = join(manage.gameStorage, "Content", "modimporter.exe")
-
+    let Modimporter = join(manage.gameStorage, "Content", "modimporter.exe")
     // 判断 ModImporter 是否存在此文件
     if (!FileHandler.fileExists(ModImporter)) {
         ElMessage.warning("未找到 modimporter.exe, 您的Mod可能不会生效, 请先安装 ModImporter")
@@ -22,7 +17,6 @@ function ModImporter() {
     }
 
     let cmd = `start cmd /S /C modimporter.exe --no-input`
-
     spawn(cmd, {
         cwd: dirname(ModImporter),
         shell: true,
@@ -99,15 +93,13 @@ export const supportedGames: ISupportedGames = {
     ],
     checkModType(mod) {
         let mods = false
-        let ModImporter = false
-
+        let Modimporter = false
         mod.modFiles.forEach(item => {
             if (basename(item) == 'modfile.txt') mods = true
             if (basename(item) == 'modimporter.exe') ModImporter = true
         })
 
-        if (ModImporter) return 2
-
+        if (Modimporter) return 2
         if (mods) return 1
 
         return 99

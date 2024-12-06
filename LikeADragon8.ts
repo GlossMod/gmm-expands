@@ -2,12 +2,8 @@
  * @description 如龙8 支持
  */
 
-import type { ISupportedGames } from "@src/model/Interfaces";
 import { join, basename } from "node:path"
 import { ElMessage } from "element-plus";
-import { Manager } from "@src/model/Manager";
-import { FileHandler } from "@src/model/FileHandler";
-import { useManager } from "@src/stores/useManager";
 
 
 function runSRMM() {

@@ -2,10 +2,7 @@
  * @description 海山 支持
  */
 
-import type { ISupportedGames } from "@src/model/Interfaces";
 import { join } from "node:path"
-import { UnityGame } from "@src/model/UnityGame";
-
 
 export const supportedGames: ISupportedGames = {
     GlossGameId: 378,

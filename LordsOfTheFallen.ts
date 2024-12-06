@@ -2,10 +2,7 @@
  * @description 堕落之主 支持
  */
 
-import type { ISupportedGames } from "@src/model/Interfaces";
 import { join } from 'path'
-import { UnrealEngine } from "@src/model/UnrealEngine";
-import { FileHandler } from "@src/model/FileHandler";
 
 
 export const supportedGames: ISupportedGames = {

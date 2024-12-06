@@ -1,12 +1,9 @@
 /**
  * @description 生化危机3 重制版 支持
  */
-import type { IModInfo, IState, ISupportedGames } from "@src/model/Interfaces";
-import { join, extname, basename } from 'path'
-import { Manager } from "@src/model/Manager";
-import { ElMessage } from "element-plus";
-import { Steam } from "@src/model/Steam";
 
+import { join, extname, basename } from 'path'
+import { ElMessage } from "element-plus";
 
 export const supportedGames: ISupportedGames = {
     GlossGameId: 303,

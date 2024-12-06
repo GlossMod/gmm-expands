@@ -2,11 +2,7 @@
  * @description 龙之信条2 支持
  */
 
-import type { ISupportedGames } from "@src/model/Interfaces";
 import { join } from 'path'
-import { Steam } from "@src/model/Steam";
-
-import { REEngine } from "@src/model/REEngine"
 
 
 

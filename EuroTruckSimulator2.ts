@@ -1,13 +1,10 @@
 /**
  * @description 欧洲卡车模拟器2 Mod支持
  */
-import { FileHandler } from "@src/model/FileHandler";
-import type { IModInfo, IState, ISupportedGames } from "@src/model/Interfaces";
-import { useManager } from "@src/stores/useManager";
-import { join, basename, extname } from 'path'
-import { Manager } from "@src/model/Manager";
-import { ElMessage } from "element-plus";
 
+
+import { join, basename, extname } from 'path'
+import { ElMessage } from "element-plus";
 async function handleMod(mod: IModInfo, installPath: string, isInstall: boolean) {
     let manager = useManager()
     mod.modFiles.forEach(item => {
@@ -22,7 +19,6 @@ async function handleMod(mod: IModInfo, installPath: string, isInstall: boolean)
     })
     return true
 }
-
 
 export const supportedGames: ISupportedGames = {
     GlossGameId: 15,
