@@ -10,7 +10,7 @@ export const supportedGames: ISupportedGames = {
     startExe: [
         {
             name: 'Steam 启动',
-            exePath: 'steam://rungameid/678950'
+            cmd: 'steam://rungameid/678950'
         },
         {
             name: '直接启动',

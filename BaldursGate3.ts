@@ -30,7 +30,7 @@ let modsettings = {
 }
 
 async function LoadModDataFromPak(pakPath: string) {
-    const edge = require('electron-edge-js')
+    const edge = require('electron-edge-js-v33-only')
     const manager = useManager()
 
     try {
@@ -178,7 +178,7 @@ export const supportedGames: ISupportedGames = {
     startExe: [
         {
             name: 'Steam 启动',
-            exePath: 'steam://rungameid/1086940'
+            cmd: 'steam://rungameid/1086940'
         },
         {
             name: 'Vulkan',

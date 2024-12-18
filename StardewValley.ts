@@ -61,7 +61,7 @@ export const supportedGames: ISupportedGames = {
         },
         {
             name: 'Steam 启动 (无Mod)',
-            exePath: 'steam://rungameid/413150'
+            cmd: 'steam://rungameid/413150'
         }
     ],
     archivePath: join(FileHandler.GetAppData(), "Roaming", "StardewValley"),

@@ -16,7 +16,7 @@
 //     startExe: [
 //         {
 //             name: "Steam 启动",
-//             exePath: "steam://rungameid/1124300"
+//             cmd: "steam://rungameid/1124300"
 //         },
 //         {
 //             name: "直接启动",

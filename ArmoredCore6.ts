@@ -71,7 +71,7 @@ export const supportedGames: ISupportedGames = {
         },
         {
             name: 'Steam启动',
-            exePath: 'steam://rungameid/1888160'
+            cmd: 'steam://rungameid/1888160'
         }
     ],
     archivePath: join(FileHandler.GetAppData(), 'Roaming', 'ArmoredCore6'),

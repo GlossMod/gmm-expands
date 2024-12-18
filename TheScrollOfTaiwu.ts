@@ -46,14 +46,15 @@ export const supportedGames: ISupportedGames = {
         {
             name: "The Scroll of Taiwu.exe",
             rootPath: ""
-        },
-        {
-            name: "TaiwuLauncher.exe",
-            rootPath: ""
         }
     ],
     // https://store.steampowered.com/app/838350?snr=5000_5100___primarylinks
-    startExe: 'steam://rungameid/838350',
+    startExe: [
+        {
+            name: 'Steam 启动',
+            cmd: 'steam://rungameid/838350'
+        }
+    ],
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/167.png",
     modType: [
         {

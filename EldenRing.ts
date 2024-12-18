@@ -72,7 +72,7 @@ export const supportedGames: ISupportedGames = {
         },
         {
             name: 'Steam启动',
-            exePath: 'steam://rungameid/1245620'
+            cmd: 'steam://rungameid/1245620'
         }
     ],
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/620b6924d8c0d.png",

@@ -30,7 +30,7 @@
 //     startExe: [
 //         {
 //             name: "Steam 启动",
-//             exePath: "steam://rungameid/268500"
+//             cmd: "steam://rungameid/268500"
 //         },
 //         {
 //             name: "直接启动",

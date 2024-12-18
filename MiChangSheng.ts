@@ -58,7 +58,12 @@ export const supportedGames: ISupportedGames = {
     gameName: "MiChangSheng",
     // https://store.steampowered.com/app/1189490?snr=5000_5100___primarylinks
     gameExe: '觅长生.exe',
-    startExe: 'steam://rungameid/1189490',
+    startExe: [
+        {
+            name: 'Steam 启动',
+            cmd: 'steam://rungameid/1189490'
+        }
+    ],
     gameCoverImg: "https://mod.3dmgame.com/static/upload/game/60d93f98c7462.png",
     modType: [
         {
